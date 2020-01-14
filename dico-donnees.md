@@ -31,10 +31,10 @@
 
 |Champ|Type|Spécificités|Description|
 |-|-|-|-|
-|id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT|Identifiant du type de gas|
+|id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT|Identifiant du type de carburant|
 |name|VARCHAR()|NOT NULL|Le nom du type de carburant|
-|created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création du service|
-|updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour du service|
+|created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création du carburant|
+|updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour du carburant|
 
 ## gas station ('gas_station')
 
@@ -54,7 +54,7 @@
 |created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création de la station service|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour de la station service|
 |area_id|entity|NOT NULL|aire (autre entité)|
-|gas_station_id|entity|NOT NULL|nom du carburant (autre entité)|
+|gas_type_id|entity|NOT NULL|nom du carburant (autre entité)|
 
 ## comment ('comment')
 
@@ -77,6 +77,7 @@
 |username|VARCHAR(32)|NOT NULL|Le pseudo de l'utilisateur|
 |email|VARCHAR(64)|NOT NULL|Le pseudo de l'utilisateur|
 |password|VARCHAR(64)|NOT NULL|Le pseudo de l'utilisateur|
+|role|VARCHAR(64)|NOT NULL|Le role de l'utilisateur|
 |created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création de l'utilisateur|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour de l'utilisateur|
 
