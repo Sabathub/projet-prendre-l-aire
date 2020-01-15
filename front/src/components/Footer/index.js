@@ -12,6 +12,7 @@ const Footer = () => (
         <a class="item">Contact</a>
         <a class="item">Qui sommes-nous</a>
         <a class="item">Mentions Légales</a>
+        {/* // Social Medias */}
       </div>
   </div>
 );
