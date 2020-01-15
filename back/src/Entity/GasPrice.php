@@ -31,6 +31,18 @@ class GasPrice
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Area", inversedBy="gasPrices")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $area;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\GasType", inversedBy="gasPrices")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $gasType;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +81,30 @@ class GasPrice
     {
         $this->updatedAt = $updatedAt;
 
+        return $this;
+    }
+
+    public function getArea(): ?Area
+    {
+        return $this->area;
+    }
+
+    public function setArea(?Area $area): self
+    {
+        $this->area = $area;
+        
+      return $this;
+    }
+
+    public function getGasType(): ?GasType
+    {
+        return $this->gasType;
+    }
+
+    public function setGasType(?GasType $gasType): self
+    {
+        $this->gasType = $gasType;
+      
         return $this;
     }
 }

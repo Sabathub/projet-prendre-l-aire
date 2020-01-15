@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class GasType
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\GasPrice", mappedBy="gasType", orphanRemoval=true)
+     */
+    private $gasPrices;
+
+    public function __construct()
+    {
+        $this->gasPrices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +80,37 @@ class GasType
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GasPrice[]
+     */
+    public function getGasPrices(): Collection
+    {
+        return $this->gasPrices;
+    }
+
+    public function addGasPrice(GasPrice $gasPrice): self
+    {
+        if (!$this->gasPrices->contains($gasPrice)) {
+            $this->gasPrices[] = $gasPrice;
+            $gasPrice->setGasType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGasPrice(GasPrice $gasPrice): self
+    {
+        if ($this->gasPrices->contains($gasPrice)) {
+            $this->gasPrices->removeElement($gasPrice);
+            // set the owning side to null (unless already changed)
+            if ($gasPrice->getGasType() === $this) {
+                $gasPrice->setGasType(null);
+            }
+        }
 
         return $this;
     }
