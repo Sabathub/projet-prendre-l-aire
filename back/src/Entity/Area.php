@@ -61,6 +61,11 @@ class Area
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\GasStation", inversedBy="areas")
+     */
+    private $gasStation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -170,6 +175,18 @@ class Area
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getGasStation(): ?GasStation
+    {
+        return $this->gasStation;
+    }
+
+    public function setGasStation(?GasStation $gasStation): self
+    {
+        $this->gasStation = $gasStation;
 
         return $this;
     }
