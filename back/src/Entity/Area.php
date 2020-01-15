@@ -65,6 +65,11 @@ class Area
 
     /**
 
+     * @ORM\ManyToOne(targetEntity="App\Entity\GasStation", inversedBy="areas")
+     */
+    private $gasStation;
+
+     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Highway", inversedBy="areas")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -205,6 +210,18 @@ class Area
         return $this;
     }
 
+
+    public function getGasStation(): ?GasStation
+    {
+        return $this->gasStation;
+    }
+
+    public function setGasStation(?GasStation $gasStation): self
+    {
+        $this->gasStation = $gasStation;
+
+        return $this;
+    }
 
     public function getHighway(): ?Highway
     {
