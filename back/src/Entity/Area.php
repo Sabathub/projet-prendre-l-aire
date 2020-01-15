@@ -64,6 +64,13 @@ class Area
     private $updatedAt;
 
     /**
+
+     * @ORM\ManyToOne(targetEntity="App\Entity\Highway", inversedBy="areas")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $highway;
+
+     /**
      * @ORM\OneToMany(targetEntity="App\Entity\GasPrice", mappedBy="area", orphanRemoval=true)
      */
     private $gasPrices;
@@ -198,8 +205,20 @@ class Area
         return $this;
     }
 
-    /**
 
+    public function getHighway(): ?Highway
+    {
+        return $this->highway;
+    }
+
+    public function setHighway(?Highway $highway): self
+    {
+        $this->highway = $highway;
+
+        return $this;
+    }
+
+    /**
      * @return Collection|GasPrice[]
      */
     public function getGasPrices(): Collection
