@@ -65,6 +65,11 @@ class Area
 
     /**
 
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="area")
+     */
+    private $comments;
+
+     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\GasStation", inversedBy="areas")
      */
     private $gasStation;
@@ -95,6 +100,7 @@ class Area
         $this->restaurants = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->gasPrices = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
     
     public function getId(): ?int
@@ -211,6 +217,23 @@ class Area
     }
 
 
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setArea($this);
+        }
+      return $this;
+    }
+
     public function getGasStation(): ?GasStation
     {
         return $this->gasStation;
@@ -282,9 +305,20 @@ class Area
         if (!$this->services->contains($service)) {
             $this->services[] = $service;
             $service->addArea($this);
-
         }
 
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getArea() === $this) {
+                $comment->setArea(null);
+            }
+       
         return $this;
     }
 
