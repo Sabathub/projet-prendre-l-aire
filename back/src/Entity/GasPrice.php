@@ -31,6 +31,12 @@ class GasPrice
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Area", inversedBy="gasPrices")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $area;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +74,18 @@ class GasPrice
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getArea(): ?Area
+    {
+        return $this->area;
+    }
+
+    public function setArea(?Area $area): self
+    {
+        $this->area = $area;
 
         return $this;
     }
