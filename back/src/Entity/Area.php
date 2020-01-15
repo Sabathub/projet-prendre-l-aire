@@ -64,15 +64,45 @@ class Area
     private $updatedAt;
 
     /**
+
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="area")
      */
     private $comments;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\GasStation", inversedBy="areas")
+     */
+    private $gasStation;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Highway", inversedBy="areas")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $highway;
+
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\GasPrice", mappedBy="area", orphanRemoval=true)
+     */
+    private $gasPrices;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="areas")
+     */
+    private $restaurants;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", mappedBy="areas")
+     */
+    private $services;
+
     public function __construct()
     {
+        $this->restaurants = new ArrayCollection();
+        $this->services = new ArrayCollection();
+        $this->gasPrices = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -186,6 +216,7 @@ class Area
         return $this;
     }
 
+
     /**
      * @return Collection|Comment[]
      */
@@ -200,6 +231,81 @@ class Area
             $this->comments[] = $comment;
             $comment->setArea($this);
         }
+      return $this;
+    }
+
+    public function getGasStation(): ?GasStation
+    {
+        return $this->gasStation;
+    }
+
+    public function setGasStation(?GasStation $gasStation): self
+    {
+        $this->gasStation = $gasStation;
+
+        return $this;
+    }
+
+    public function getHighway(): ?Highway
+    {
+        return $this->highway;
+    }
+
+    public function setHighway(?Highway $highway): self
+    {
+        $this->highway = $highway;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GasPrice[]
+     */
+    public function getGasPrices(): Collection
+    {
+        return $this->gasPrices;
+    }
+
+    public function addGasPrice(GasPrice $gasPrice): self
+    {
+        if (!$this->gasPrices->contains($gasPrice)) {
+            $this->gasPrices[] = $gasPrice;
+            $gasPrice->setArea($this);
+            }
+      return $this;
+    }
+
+     /**
+     * @return Collection|Restaurant[]
+     */
+    public function getRestaurants(): Collection
+    {
+        return $this->restaurants;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurants->contains($restaurant)) {
+            $this->restaurants[] = $restaurant;
+            $restaurant->addArea($this);
+        }
+      return $this;
+    }
+  
+     /**
+     * @return Collection|Service[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->addArea($this);
+        }
 
         return $this;
     }
@@ -212,8 +318,39 @@ class Area
             if ($comment->getArea() === $this) {
                 $comment->setArea(null);
             }
+       
+        return $this;
+    }
+
+    public function removeGasPrice(GasPrice $gasPrice): self
+    {
+        if ($this->gasPrices->contains($gasPrice)) {
+            $this->gasPrices->removeElement($gasPrice);
+            // set the owning side to null (unless already changed)
+            if ($gasPrice->getArea() === $this) {
+                $gasPrice->setArea(null);
+            }
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->contains($restaurant)) {
+            $this->restaurants->removeElement($restaurant);
+            $restaurant->removeArea($this);
+            }
+
+        return $this;
+    }
+  
+    public function removeService(Service $service): self
+    {
+        if ($this->services->contains($service)) {
+            $this->services->removeElement($service);
+            $service->removeArea($this);
         }
 
         return $this;
     }
+
 }

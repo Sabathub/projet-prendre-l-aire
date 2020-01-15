@@ -42,10 +42,18 @@ class Comment
     private $updatedAt;
 
     /**
+
      * @ORM\ManyToOne(targetEntity="App\Entity\Area", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $area;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
 
     public function getId(): ?int
     {
@@ -120,6 +128,18 @@ class Comment
     public function setArea(?Area $area): self
     {
         $this->area = $area;
+      
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
