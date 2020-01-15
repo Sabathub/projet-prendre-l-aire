@@ -41,6 +41,12 @@ class Comment
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Area", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $area;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +108,18 @@ class Comment
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getArea(): ?Area
+    {
+        return $this->area;
+    }
+
+    public function setArea(?Area $area): self
+    {
+        $this->area = $area;
 
         return $this;
     }
