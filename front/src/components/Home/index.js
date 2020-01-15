@@ -5,7 +5,16 @@ import React from 'react';
 import './home.scss';
 
 const Home = () => (
-  <div>Home</div>
+  <div>
+    {/* // Description */}
+    <p>Description</p>
+    {/* // Liste déroulante */}
+    <p>Liste déroulante</p>
+    {/* // geolocalisation */}
+    <p>geolocalisation</p>
+    {/* // carte */}
+    <p>geolocalisation</p>
+  </div>
 );
 
  export default Home;
