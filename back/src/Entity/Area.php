@@ -64,6 +64,11 @@ class Area
     private $updatedAt;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\GasPrice", mappedBy="area", orphanRemoval=true)
+     */
+    private $gasPrices;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="areas")
      */
     private $restaurants;
@@ -77,6 +82,7 @@ class Area
     {
         $this->restaurants = new ArrayCollection();
         $this->services = new ArrayCollection();
+        $this->gasPrices = new ArrayCollection();
     }
     
     public function getId(): ?int
@@ -193,6 +199,24 @@ class Area
     }
 
     /**
+
+     * @return Collection|GasPrice[]
+     */
+    public function getGasPrices(): Collection
+    {
+        return $this->gasPrices;
+    }
+
+    public function addGasPrice(GasPrice $gasPrice): self
+    {
+        if (!$this->gasPrices->contains($gasPrice)) {
+            $this->gasPrices[] = $gasPrice;
+            $gasPrice->setArea($this);
+            }
+      return $this;
+    }
+
+     /**
      * @return Collection|Restaurant[]
      */
     public function getRestaurants(): Collection
@@ -222,11 +246,22 @@ class Area
         if (!$this->services->contains($service)) {
             $this->services[] = $service;
             $service->addArea($this);
+
         }
 
         return $this;
     }
 
+    public function removeGasPrice(GasPrice $gasPrice): self
+    {
+        if ($this->gasPrices->contains($gasPrice)) {
+            $this->gasPrices->removeElement($gasPrice);
+            // set the owning side to null (unless already changed)
+            if ($gasPrice->getArea() === $this) {
+                $gasPrice->setArea(null);
+            }
+        return $this;
+    }
 
     public function removeRestaurant(Restaurant $restaurant): self
     {
