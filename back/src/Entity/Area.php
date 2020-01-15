@@ -68,11 +68,23 @@ class Area
      */
     private $gasPrices;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="areas")
+     */
+    private $restaurants;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", mappedBy="areas")
+     */
+    private $services;
+
     public function __construct()
     {
+        $this->restaurants = new ArrayCollection();
+        $this->services = new ArrayCollection();
         $this->gasPrices = new ArrayCollection();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +199,7 @@ class Area
     }
 
     /**
+
      * @return Collection|GasPrice[]
      */
     public function getGasPrices(): Collection
@@ -199,6 +212,41 @@ class Area
         if (!$this->gasPrices->contains($gasPrice)) {
             $this->gasPrices[] = $gasPrice;
             $gasPrice->setArea($this);
+            }
+      return $this;
+    }
+
+     /**
+     * @return Collection|Restaurant[]
+     */
+    public function getRestaurants(): Collection
+    {
+        return $this->restaurants;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurants->contains($restaurant)) {
+            $this->restaurants[] = $restaurant;
+            $restaurant->addArea($this);
+        }
+      return $this;
+    }
+  
+     /**
+     * @return Collection|Service[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->addArea($this);
+
         }
 
         return $this;
@@ -212,8 +260,27 @@ class Area
             if ($gasPrice->getArea() === $this) {
                 $gasPrice->setArea(null);
             }
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->contains($restaurant)) {
+            $this->restaurants->removeElement($restaurant);
+            $restaurant->removeArea($this);
+            }
+
+        return $this;
+    }
+  
+    public function removeService(Service $service): self
+    {
+        if ($this->services->contains($service)) {
+            $this->services->removeElement($service);
+            $service->removeArea($this);
         }
 
         return $this;
     }
+
 }
