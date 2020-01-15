@@ -318,7 +318,7 @@ class Area
             if ($comment->getArea() === $this) {
                 $comment->setArea(null);
             }
-       
+        }
         return $this;
     }
 
@@ -330,6 +330,7 @@ class Area
             if ($gasPrice->getArea() === $this) {
                 $gasPrice->setArea(null);
             }
+        }
         return $this;
     }
 
