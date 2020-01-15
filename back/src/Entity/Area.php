@@ -64,15 +64,21 @@ class Area
     private $updatedAt;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="areas")
+     */
+    private $restaurants;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Service", mappedBy="areas")
      */
     private $services;
 
     public function __construct()
     {
+        $this->restaurants = new ArrayCollection();
         $this->services = new ArrayCollection();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +193,23 @@ class Area
     }
 
     /**
+     * @return Collection|Restaurant[]
+     */
+    public function getRestaurants(): Collection
+    {
+        return $this->restaurants;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurants->contains($restaurant)) {
+            $this->restaurants[] = $restaurant;
+            $restaurant->addArea($this);
+        }
+      return $this;
+    }
+  
+     /**
      * @return Collection|Service[]
      */
     public function getServices(): Collection
@@ -204,6 +227,17 @@ class Area
         return $this;
     }
 
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->contains($restaurant)) {
+            $this->restaurants->removeElement($restaurant);
+            $restaurant->removeArea($this);
+            }
+
+        return $this;
+    }
+  
     public function removeService(Service $service): self
     {
         if ($this->services->contains($service)) {
