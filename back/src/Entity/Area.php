@@ -19,12 +19,14 @@ class Area
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      */
     private $name;
 
@@ -373,3 +375,5 @@ class Area
     }
 
 }
+
+
