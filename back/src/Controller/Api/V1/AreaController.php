@@ -24,5 +24,14 @@ class AreaController extends AbstractController
         $data = $serializer->normalize($areas, null, ['groups' => 'api_v1']);
         return $this->json($data);
     }
+
+    /**
+     * @Route("/{id}", name="show", methods={"GET"})
+     */
+    public function show(Area $area, SerializerInterface $serializer)
+    {
+        $data = $serializer->normalize($area, null, ['groups' => 'api_v1']);
+        return $this->json($data);
+    }
 }
 
