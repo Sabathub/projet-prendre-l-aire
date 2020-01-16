@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GasPriceRepository")
@@ -13,11 +16,13 @@ class GasPrice
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("api_v1")
      */
     private $id;
 
     /**
      * @ORM\Column(type="decimal", precision=4, scale=3)
+     * @Groups("api_v1")
      */
     private $price;
 
@@ -40,6 +45,7 @@ class GasPrice
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\GasType", inversedBy="gasPrices")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_v1")
      */
     private $gasType;
 
