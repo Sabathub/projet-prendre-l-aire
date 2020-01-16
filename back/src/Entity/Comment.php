@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -13,21 +16,25 @@ class Comment
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("api_v1")
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("api_v1")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("api_v1")
      */
     private $picture;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @Groups("api_v1")
      */
     private $rate;
 
@@ -45,12 +52,14 @@ class Comment
 
      * @ORM\ManyToOne(targetEntity="App\Entity\Area", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_v1")
      */
     private $area;
 
      /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_v1")
      */
     private $user;
 
