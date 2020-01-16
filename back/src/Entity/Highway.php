@@ -19,12 +19,14 @@ class Highway
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups("api_v1")
+     * @Groups("api_v1_highways")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_v1")
+     * @Groups("api_v1_highways")
      */
     private $name;
 
@@ -93,6 +95,7 @@ class Highway
 
     /**
      * @return Collection|Area[]
+     * @Groups("api_v1_highways")
      */
     public function getAreas(): Collection
     {
