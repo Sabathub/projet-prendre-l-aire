@@ -101,6 +101,7 @@ class Area
         $this->services = new ArrayCollection();
         $this->gasPrices = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
     
     public function getId(): ?int

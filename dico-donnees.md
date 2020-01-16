@@ -8,15 +8,14 @@
 |name|VARCHAR(32)|NOT NULL|Le nom de l'aire de repos|
 |zip code|TINYINT|NOT NULL|code postal de la ville rattachée à l'aire de repos|
 |city|VARCHAR(32)|NOT NULL|ville rattachée à l'aire de repos|
-|kilometers|TINYINT|NOT NULL|kilomètre où se situe l'aire de repos|
+|kilometers|DECIMAL(5,2)|NOT NULL|kilomètre où se situe l'aire de repos|
 |direction|VARCHAR(32)|NOT NULL|sens de l'aire de repos sur l'autoroute|
-|latitude|INT|NOT NULL, UNSIGNED|latitude de l'aire de repos|
-|longitude|INT|NOT NULL, UNSIGNED|longitude de l'aire de repos|
+|latitude|DECIMAL(10,6)|NOT NULL, UNSIGNED|latitude de l'aire de repos|
+|longitude|DECIMAL(10,6)|NOT NULL, UNSIGNED|longitude de l'aire de repos|
 |created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création du label|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour du label|
 |gas_station_id|entity|NULL|le nom de la station de carburant (autre entité)|
 |highway_id|entity|NOT NULL|le numéro d'autoroute (autre entité) sur lequel l'aire est rattachée|
-
 
 ## service ('service')
 
@@ -50,7 +49,7 @@
 |Champ|Type|Spécificités|Description|
 |-|-|-|-|
 |id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT|Identifiant de la relation entre le carburant, son prix et l'aire|
-|price|VARCHAR(32)|NOT NULL|prix du carburant|
+|price|DECIMAL|NOT NULL|prix du carburant|
 |created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création de la station service|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour de la station service|
 |area_id|entity|NOT NULL|aire (autre entité)|
