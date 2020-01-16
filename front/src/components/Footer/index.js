@@ -7,11 +7,11 @@ import './footer.scss';
 
 const Footer = () => (
   <div>
-    <div class="ui stackable menu">
-      <div class="item"><img src="http://localhost:8080/src/images/logo.svg" /></div>
-        <a class="item">Contact</a>
-        <a class="item">Qui sommes-nous</a>
-        <a class="item">Mentions Légales</a>
+    <div className="ui stackable menu">
+      <div className="item"><img src="http://localhost:8080/src/images/logo.svg" /></div>
+        <a className="item">Contact</a>
+        <a className="item">Qui sommes-nous</a>
+        <a className="item">Mentions Légales</a>
         {/* // Social Medias */}
       </div>
   </div>
