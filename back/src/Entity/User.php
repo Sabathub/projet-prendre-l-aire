@@ -56,6 +56,8 @@ class User
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+
     }
 
     public function getId(): ?int

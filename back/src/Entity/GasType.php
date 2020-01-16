@@ -41,6 +41,8 @@ class GasType
     public function __construct()
     {
         $this->gasPrices = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+
     }
 
     public function getId(): ?int
