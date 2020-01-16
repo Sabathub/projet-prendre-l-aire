@@ -30,7 +30,6 @@ class AreaController extends AbstractController
      */
     public function show(Area $area, SerializerInterface $serializer)
     {
-        // Puis on sérialise
         $data = $serializer->normalize($area, null, ['groups' => 'api_v1']);
         return $this->json($data);
     }
