@@ -50,7 +50,7 @@
 |Champ|Type|Spécificités|Description|
 |-|-|-|-|
 |id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT|Identifiant de la relation entre le carburant, son prix et l'aire|
-|price|VARCHAR(32)|NOT NULL|prix du carburant|
+|price|DECIMAL|NOT NULL|prix du carburant|
 |created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création de la station service|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour de la station service|
 |area_id|entity|NOT NULL|aire (autre entité)|
