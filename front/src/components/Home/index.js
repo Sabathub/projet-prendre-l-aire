@@ -39,12 +39,11 @@ export default class Home extends Component {
           </p>
         </Accordion.Content>
       </Accordion>
+      <p>Liste déroulante de filtres</p>
 {/* // Composant Map de React-Leaflet pour la carte */}
       <HomeMap />
-      <p>carte</p>
-      <p>Liste déroulante de filtres</p>
       <p>géolocalisation</p>
-      <p>carte</p>
+
       </>
     )
   }

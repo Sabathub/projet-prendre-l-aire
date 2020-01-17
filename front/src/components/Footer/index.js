@@ -1,23 +1,73 @@
 // Import NPM
-import React from 'react';
-import { Menu } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Menu } from 'semantic-ui-react';
+import { TiSocialFacebook, TiSocialTumbler, TiSocialInstagram } from 'react-icons/ti';
 
 // Import local
 import './footer.scss';
 
-const Footer = () => (
-  <div>
-    <div className="ui stackable menu">
-      <div className="item"><img src="http://localhost:8080/src/images/logo.svg" /></div>
-        <a className="item">Contact</a>
-        <a className="item">Qui sommes-nous</a>
-        <a className="item">Mentions Légales</a>
-        {/* // Social Medias */}
-      </div>
-  </div>
-);
+export default class Footer extends Component {
+  state = {}
 
- export default Footer;
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  render() {
+    const { activeItem } = this.state
+
+    return (
+      <Menu stackable>
+          <Menu.Item>
+            <img src="http://localhost:8080/src/images/logo.svg" />
+          </Menu.Item>
+          <Menu.Item
+            name='features'
+            active={activeItem === 'features'}
+            onClick={this.handleItemClick}
+          >
+            Contact
+          </Menu.Item>
+
+          <Menu.Item
+            name='testimonials'
+            active={activeItem === 'testimonials'}
+            onClick={this.handleItemClick}
+          >
+            Qui sommes-nous
+          </Menu.Item>
+
+          <Menu.Item
+            name='sign-in'
+            active={activeItem === 'sign-in'}
+            onClick={this.handleItemClick}
+          >
+            Mentions Légales
+          </Menu.Item>
+
+          <Menu.Item
+            name='sign-in'
+            active={activeItem === 'sign-in'}
+            onClick={this.handleItemClick}
+          >
+            <TiSocialFacebook />
+          </Menu.Item>
+          <Menu.Item
+            name='sign-in'
+            active={activeItem === 'sign-in'}
+            onClick={this.handleItemClick}
+          >
+            <TiSocialTumbler />
+          </Menu.Item>
+          <Menu.Item
+            name='sign-in'
+            active={activeItem === 'sign-in'}
+            onClick={this.handleItemClick}
+          >
+            <TiSocialInstagram />
+          </Menu.Item>
+      </Menu>
+    )
+  }
+}
 
 
 
