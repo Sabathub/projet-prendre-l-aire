@@ -19,6 +19,7 @@ class Area
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      * @Groups("api_v1_highways")
      */
     private $id;
@@ -26,6 +27,7 @@ class Area
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      * @Groups("api_v1_highways")
      */
     private $name;
@@ -376,3 +378,5 @@ class Area
     }
 
 }
+
+
