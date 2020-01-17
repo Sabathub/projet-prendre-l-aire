@@ -5,6 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AreaRepository")
@@ -15,41 +18,49 @@ class Area
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("api_v1")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_v1")
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("api_v1")
      */
     private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_v1")
      */
     private $city;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
+     * @Groups("api_v1")
      */
     private $kilometers;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_v1")
      */
     private $direction;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=6)
+     * @Groups("api_v1")
      */
     private $latitude;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=6)
+     * @Groups("api_v1")
      */
     private $longitude;
 
@@ -66,32 +77,38 @@ class Area
     /**
 
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="area")
+     * @Groups("api_v1")
      */
     private $comments;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\GasStation", inversedBy="areas")
+     * @Groups("api_v1")
      */
     private $gasStation;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Highway", inversedBy="areas")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_v1")
      */
     private $highway;
 
-     /**
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\GasPrice", mappedBy="area", orphanRemoval=true)
+     * @Groups("api_v1")
      */
     private $gasPrices;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="areas")
+     * @Groups("api_v1")
      */
     private $restaurants;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Service", mappedBy="areas")
+     * @Groups("api_v1")
      */
     private $services;
 
@@ -101,6 +118,7 @@ class Area
         $this->services = new ArrayCollection();
         $this->gasPrices = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
     
     public function getId(): ?int
@@ -234,6 +252,18 @@ class Area
       return $this;
     }
 
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getArea() === $this) {
+                $comment->setArea(null);
+            }
+        }
+        return $this;
+    }
+
     public function getGasStation(): ?GasStation
     {
         return $this->gasStation;
@@ -275,6 +305,18 @@ class Area
       return $this;
     }
 
+    public function removeGasPrice(GasPrice $gasPrice): self
+    {
+        if ($this->gasPrices->contains($gasPrice)) {
+            $this->gasPrices->removeElement($gasPrice);
+            // set the owning side to null (unless already changed)
+            if ($gasPrice->getArea() === $this) {
+                $gasPrice->setArea(null);
+            }
+        }
+        return $this;
+    }
+
      /**
      * @return Collection|Restaurant[]
      */
@@ -291,6 +333,16 @@ class Area
         }
       return $this;
     }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->contains($restaurant)) {
+            $this->restaurants->removeElement($restaurant);
+            $restaurant->removeArea($this);
+        }
+
+        return $this;
+    }
   
      /**
      * @return Collection|Service[]
@@ -306,40 +358,6 @@ class Area
             $this->services[] = $service;
             $service->addArea($this);
         }
-
-        return $this;
-    }
-
-    public function removeComment(Comment $comment): self
-    {
-        if ($this->comments->contains($comment)) {
-            $this->comments->removeElement($comment);
-            // set the owning side to null (unless already changed)
-            if ($comment->getArea() === $this) {
-                $comment->setArea(null);
-            }
-        }
-        return $this;
-    }
-
-    public function removeGasPrice(GasPrice $gasPrice): self
-    {
-        if ($this->gasPrices->contains($gasPrice)) {
-            $this->gasPrices->removeElement($gasPrice);
-            // set the owning side to null (unless already changed)
-            if ($gasPrice->getArea() === $this) {
-                $gasPrice->setArea(null);
-            }
-        }
-        return $this;
-    }
-
-    public function removeRestaurant(Restaurant $restaurant): self
-    {
-        if ($this->restaurants->contains($restaurant)) {
-            $this->restaurants->removeElement($restaurant);
-            $restaurant->removeArea($this);
-            }
 
         return $this;
     }
