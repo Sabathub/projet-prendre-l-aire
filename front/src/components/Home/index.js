@@ -42,7 +42,7 @@ export default class Home extends Component {
       <p>Liste déroulante de filtres</p>
 {/* // Composant Map de React-Leaflet pour la carte */}
       <HomeMap />
-      <p>géolocalisation</p>
+      
 
       </>
     )
