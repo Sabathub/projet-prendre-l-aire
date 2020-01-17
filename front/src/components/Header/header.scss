@@ -1,0 +1,25 @@
+@import 'src/styles/vars';
+
+#navbar {
+    background-color: $primary-color;
+    border-radius: 6px;
+    color: #fff;
+}
+
+#title {
+    width: 6rem;
+    font-size: 1.6em;
+}
+
+.logo {
+    mask: url(/src/images/logo.svg);
+    display: inline-block;
+    width: 55px;
+    height: 80px;
+    background: white;
+    mask-size: contain;
+  }
+  .logo:hover,
+  .logo:focus {
+    background: red;
+  }

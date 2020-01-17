@@ -1,19 +1,35 @@
 // Import NPM
-import React from 'react';
+import React, { Component } from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
 
 // Import local
 import './header.scss';
-import Nav from 'src/components/Header/Nav';
 
-const Header = () => (
-  <div>
-    <a href="#" title="Retour à l'acceuil">
-      <img src='http://localhost:8080/src/images/logo.svg' width="20px" alt="Image logo Prendre l'aire" />
-      <h1>Prendre l'aire</h1>
-    </a>
-  <Nav />
-  </div>
-);
+class Header extends Component {
+  render() {
+    return (
+      <>
+{/* // Composant Navbar et Nav de Semantic UI pour le menu de navigation */}
+        <Navbar id="navbar" className="navbar-dark" expand="lg">
+          <Navbar.Brand className="font-italic" href="#home" title="Retour à l'acceuil">
+            <span className="logo"></span>
+            <div className="d-inline-block text-wrap align-middle text-left" id="title">&nbsp;Prendre l'aire</div>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav" >
+            <Nav className="ml-auto">
+              <Nav.Link className="active" href="#home" title="Retour à l'acceuil">Accueil</Nav.Link>
+              <Nav.Link href="#signin" title="Créer un compte">Inscription</Nav.Link>
+              <Nav.Link href="#signup" title="Se connecter">Connexion</Nav.Link>
+              <Nav.Link href="#profile" title="Accéder à mon profil">Profil</Nav.Link>
+              <Nav.Link href="#logout" title="Se déconnecter">Déconnexion</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </>
+    );
+  }
+}
 
  export default Header;
 
