@@ -13,15 +13,17 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('description');
-            // ->add('picture', FileType::class, [
-            //     'attr' => [
-            //         'accept' => '.jpg,.jpeg,.png,.gif'
-            //     ],
-            //     'required' => false,
-            //     'mapped' => false,
-            // ])
+            ->add('description')
+            ->add('picture', FileType::class, [
+                'attr' => [
+                    'accept' => '.jpg,.jpeg,.png,.gif'
+                ],
+                'required' => false,
+                // 'mapped' => false, picture est bien dans notre entité donc on le commente
+            ])
             ->add('rate')
+            ->add('area')
+            ->add('user')
         ;
     }
 
