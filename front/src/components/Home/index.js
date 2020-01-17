@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 // Import local
 import './home.scss';
+import Homesearch from './homesearch.js';
 import HomeMap from './homemap.js';
 
 export default class Home extends Component {
@@ -39,7 +40,7 @@ export default class Home extends Component {
           </p>
         </Accordion.Content>
       </Accordion>
-      <p>Liste déroulante de filtres</p>
+      <Homesearch />
 {/* // Composant Map de React-Leaflet pour la carte */}
       <HomeMap />
       <p>géolocalisation</p>
