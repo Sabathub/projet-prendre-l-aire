@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Card, Icon, Image } from 'semantic-ui-react'
+import { Container, Card, Header, Image } from 'semantic-ui-react'
 import Kevin from './../../assets/team/team_kevin_dubuy.png'
 import { FaLinkedinIn, FaTwitter, FaGithub } from 'react-icons/fa';
 
@@ -7,6 +7,7 @@ import './team.scss';
 
 const Team = () => (
   <Container id='team'>
+    <Header id='pageTitle' as='h1'>Qui sommes-nous ?</Header>
     <Card.Group id='cards'>
       {/* Team member card */}
       <Card className="card">
