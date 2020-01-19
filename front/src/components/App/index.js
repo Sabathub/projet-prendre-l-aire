@@ -1,11 +1,12 @@
 // == Import : npm
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 // == Import : local
 import './app.scss';
 import Header from 'src/components/Header';
-// import Home from 'src/components/Home';
-// import Login from 'src/components/Login';
+import Home from 'src/components/Home';
+import Login from 'src/components/Login';
 import Team from 'src/components/Team';
 import Footer from 'src/components/Footer';
 
@@ -13,9 +14,15 @@ import Footer from 'src/components/Footer';
 const App = () => (
   <div id="app">
     <Header />
-    {/* //<Home /> */}
-    {/* <Login /> */}
-    <Team />
+    <Route exact path="/">
+      <Home />
+    </Route>
+    <Route path="/signin">
+      <Login />
+    </Route>
+    <Route path="/team">
+      <Team />
+    </Route>
     <Footer />
   </div>
 );
