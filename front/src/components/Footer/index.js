@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import { TiSocialFacebook, TiSocialTumbler, TiSocialInstagram } from 'react-icons/ti';
+import Logo from './../../assets/logo_contour.svg'
 
 // Import local
 import './footer.scss';
@@ -17,7 +18,7 @@ export default class Footer extends Component {
     return (
       <Menu stackable>
           <Menu.Item>
-            <img src="http://localhost:8080/src/images/logo.svg" />
+            <img src={Logo} />
           </Menu.Item>
           <Menu.Item
             name='features'

@@ -11,15 +11,28 @@
     font-size: 1.6em;
 }
 
-.logo {
-    mask: url(/src/images/logo.svg);
-    display: inline-block;
-    width: 55px;
-    height: 80px;
-    background: white;
-    mask-size: contain;
+.navigation-item {
+  margin: .4em .6em;
+  color: #f8f9fa;
+  text-decoration: none;
+  transition-duration: .5s;
+  transition-timing-function: ease;
+
+  &:hover {
+    transform: scale(1.2);
+    color: #f8f9fa;
+    text-decoration: none;
   }
-  .logo:hover,
-  .logo:focus {
-    background: red;
+
+  &-active {
+    color: $beige;
+    font-weight: bolder;
+
+    &:hover {
+      transform: scale(1);
+      color: $beige;
+      text-decoration: none;
+    }
   }
+}
+
