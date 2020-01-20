@@ -7,6 +7,7 @@ import { Container, Image, Segment, Grid, Button, Icon } from 'semantic-ui-react
    <Container>
      <h1>Mon profil</h1>
      <Segment>
+
       <Grid columns={3} stackable centered>
         <Grid.Row verticalAlign='middle'>
           <Grid.Column width={3} textAlign='center'>
@@ -33,11 +34,34 @@ import { Container, Image, Segment, Grid, Button, Icon } from 'semantic-ui-react
           </Grid.Column>
         </Grid.Row>     
       </Grid>
-     </Segment>
-     
-      <p>Commentaires</p>
-    </Container>  
+      
+      <h2 id="commentsTitle">Mes commentaires</h2>
 
+      <Grid divided='vertically'>
+        <Grid.Row columns={2}>
+          <Grid.Column>
+            <Image className="comment" src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          </Grid.Column>
+          <Grid.Column>
+            <Image className="comment" src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row columns={3}>
+          <Grid.Column>
+            <Image className="comment" src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          </Grid.Column>
+          <Grid.Column>
+            <Image className="comment" src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          </Grid.Column>
+          <Grid.Column>
+            <Image className="comment" src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+
+     </Segment>
+    </Container>  
  );
 
  export default Profile;
