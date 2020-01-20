@@ -1,5 +1,6 @@
 // Import NPM
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import Logo from './../../assets/logo_contour.svg'
 
@@ -10,7 +11,7 @@ class Header extends Component {
   render() {
     return (
       <>
-{/* // Composant Navbar et Nav de Semantic UI pour le menu de navigation */}
+{/* // Composant Navbar et Nav de Boostrap pour le menu de navigation */}
         <Navbar id="navbar" className="navbar-dark" expand="lg">
           <Navbar.Brand className="font-italic" href="#home" title="Retour à l'acceuil">
             <img
@@ -24,11 +25,42 @@ class Header extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className="ml-auto">
-              <Nav.Link className="active" href="#home" title="Retour à l'acceuil">Accueil</Nav.Link>
-              <Nav.Link href="#signin" title="Créer un compte">Inscription</Nav.Link>
-              <Nav.Link href="#signup" title="Se connecter">Connexion</Nav.Link>
-              <Nav.Link href="#profile" title="Accéder à mon profil">Profil</Nav.Link>
-              <Nav.Link href="#logout" title="Se déconnecter">Déconnexion</Nav.Link>
+              <NavLink
+                to="/"
+                exact
+                className="navigation-item"
+                activeClassName="navigation-item-active"
+              >
+                Accueil
+              </NavLink>
+              <NavLink
+                to="/signup"
+                className="navigation-item"
+                activeClassName="navigation-item-active"
+              >
+                Inscription
+              </NavLink>
+              <NavLink
+                to="/signin"
+                className="navigation-item"
+                activeClassName="navigation-item-active"
+              >
+                Connexion
+              </NavLink>
+              <NavLink
+                to="/profile"
+                className="navigation-item"
+                activeClassName="navigation-item-active"
+              >
+                Profil
+              </NavLink>
+              <NavLink
+                to="/logout"
+                className="navigation-item"
+                activeClassName="navigation-item-active"
+              >
+                Déconnexion
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
