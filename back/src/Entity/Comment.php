@@ -60,12 +60,12 @@ class Comment
      */
     private $area;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("api_v1")
      */
     private $user;
+
 
     public function __construct()
     {
@@ -152,9 +152,6 @@ class Comment
         return $this;
     }
 
-    /**
-     * @Groups("api_v1_comment")
-     */
     public function getUser(): ?User
     {
         return $this->user;
@@ -166,4 +163,5 @@ class Comment
 
         return $this;
     }
+
 }
