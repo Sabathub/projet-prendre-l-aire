@@ -17,24 +17,28 @@ class Comment
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      */
     private $picture;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      * @Groups("api_v1")
+     * @Groups("api_v1_comment")
      */
     private $rate;
 
@@ -52,7 +56,7 @@ class Comment
 
      * @ORM\ManyToOne(targetEntity="App\Entity\Area", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("api_v1")
+     * 
      */
     private $area;
 
@@ -133,6 +137,9 @@ class Comment
         return $this;
     }
 
+    /**
+     * @Groups("api_v1_comment")
+     */
     public function getArea(): ?Area
     {
         return $this->area;
@@ -145,6 +152,9 @@ class Comment
         return $this;
     }
 
+    /**
+     * @Groups("api_v1_comment")
+     */
     public function getUser(): ?User
     {
         return $this->user;
