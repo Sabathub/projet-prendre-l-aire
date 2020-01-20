@@ -311,6 +311,21 @@ class AppFixtures extends Fixture
         $priceSp98Area4->setArea($area4);
         $manager->persist($priceSp98Area4);
 
+        $commentArea1UserLaetitia = new Comment();
+        $commentArea1UserLaetitia->setDescription('Ceci est un test bidon');
+        $commentArea1UserLaetitia->setPicture('assets/images/Cracovie_Nov2007 021.1.jpg');
+        $commentArea1UserLaetitia->setRate(1);
+        $commentArea1UserLaetitia->setArea($area1);
+        $commentArea1UserLaetitia->setUser($userLaetitia);
+        $manager->persist($commentArea1UserLaetitia);
+
+        $commentArea2UserSophie = new Comment();
+        $commentArea2UserSophie->setDescription('Cette aire est trop cool !!! (oui j\'y suis jamais allée)');
+        $commentArea2UserSophie->setPicture('assets/images/Cracovie_Nov2007 021.1.jpg');
+        $commentArea2UserSophie->setRate(5);
+        $commentArea2UserSophie->setArea($area2);
+        $commentArea2UserSophie->setUser($userSophie);
+        $manager->persist($commentArea2UserSophie);
 
         $manager->flush();
     }

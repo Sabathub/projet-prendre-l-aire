@@ -9,6 +9,7 @@ import Home from 'src/components/Home';
 import Signup from 'src/components/Signup';
 import Login from 'src/components/Login';
 import Team from 'src/components/Team';
+import Profile from 'src/components/Profile';
 import Footer from 'src/components/Footer';
 // == Composant
 const App = () => (
@@ -25,6 +26,9 @@ const App = () => (
     </Route>
     <Route path="/team">
       <Team />
+    </Route>
+    <Route path="/profile">
+      <Profile />
     </Route>
     <Footer />
   </div>
