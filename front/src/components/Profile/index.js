@@ -5,6 +5,7 @@ import { Container, Image, Segment, Grid, Button, Icon } from 'semantic-ui-react
 
  const Profile = () => (
    <Container>
+     <h1>Mon profil</h1>
      <Segment>
       <Grid columns={3} stackable centered>
         <Grid.Row verticalAlign='middle'>
@@ -18,13 +19,13 @@ import { Container, Image, Segment, Grid, Button, Icon } from 'semantic-ui-react
           </Grid.Column>
           <Grid.Column width={4} textAlign='center'>
             <Button animated color='red'>
-              <Button.Content visible>Modifiez</Button.Content>
+              <Button.Content visible>Modifier mon profil</Button.Content>
               <Button.Content hidden>
                 <Icon name='pencil alternate' />
               </Button.Content>
             </Button>
             <Button animated color='teal'>
-              <Button.Content visible>Supprimez</Button.Content>
+              <Button.Content visible>Supprimer mon compte</Button.Content>
               <Button.Content hidden>
                 <Icon name='trash' />
               </Button.Content>
