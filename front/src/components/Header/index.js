@@ -1,6 +1,7 @@
 // Import NPM
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import Logo from './../../assets/logo_contour.svg'
 
 // Import local
 import './header.scss';
@@ -12,7 +13,12 @@ class Header extends Component {
 {/* // Composant Navbar et Nav de Semantic UI pour le menu de navigation */}
         <Navbar id="navbar" className="navbar-dark" expand="lg">
           <Navbar.Brand className="font-italic" href="#home" title="Retour à l'acceuil">
-            <span className="logo"></span>
+            <img
+              alt=""
+              src={Logo}
+              height="80"
+              className="d-inline-block align-middle"
+            />{' '}
             <div className="d-inline-block text-wrap align-middle text-left" id="title">&nbsp;Prendre l'aire</div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

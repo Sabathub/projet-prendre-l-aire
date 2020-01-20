@@ -10,16 +10,3 @@
     width: 6rem;
     font-size: 1.6em;
 }
-
-.logo {
-    mask: url(/src/images/logo.svg);
-    display: inline-block;
-    width: 55px;
-    height: 80px;
-    background: white;
-    mask-size: contain;
-  }
-  .logo:hover,
-  .logo:focus {
-    background: red;
-  }
