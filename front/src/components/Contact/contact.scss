@@ -1,22 +1,5 @@
 @import 'src/styles/vars';
 
-#container {
-    display: flex;
-    justify-content: center;
-}
-
-#form {
-    padding: 1em 0;
-    width: 40%;
-}
-
-.field {
-    padding: 1em 0;
-}
-.label {
-    padding-bottom: 1em;
-}
-
 h1 {
     font-size: 36px;
     background-color: $beige;
