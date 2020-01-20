@@ -9,7 +9,6 @@ import Home from 'src/components/Home';
 import Login from 'src/components/Login';
 import Team from 'src/components/Team';
 import Footer from 'src/components/Footer';
-
 // == Composant
 const App = () => (
   <div id="app">
