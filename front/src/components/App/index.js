@@ -13,6 +13,8 @@ import Profile from 'src/containers/Profile';
 import Contact from 'src/containers/Contact';
 import Footer from 'src/containers/Footer';
 
+import users from 'src/data/users';
+
 // == Composant
 class App extends React.Component {
   render () {
@@ -35,7 +37,7 @@ class App extends React.Component {
           <Contact />
         </Route>
         <Route path="/profile">
-          <Profile />
+          <Profile user={users[1]} />
         </Route>
         <Footer />
       </div>

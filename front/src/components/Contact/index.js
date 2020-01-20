@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Dropdown, Form } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Dropdown, Form } from 'semantic-ui-react';
 
 import './contact.scss';
 

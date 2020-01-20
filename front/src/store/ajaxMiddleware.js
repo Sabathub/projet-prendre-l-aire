@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SWITCH_OFF } from './reducer';
 
 const ajaxMiddleware = (store) => (next) => (action) => {
-   switch (action.type) {
+  switch (action.type) {
     case SWITCH_OFF:
       // appel axios
       axios.get('https://raw.githubusercontent.com/raywenderlich/recipes/master/Recipes.json')
