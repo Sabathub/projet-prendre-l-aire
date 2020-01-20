@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
-import { TiSocialFacebook, TiSocialTumbler, TiSocialInstagram } from 'react-icons/ti';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Logo from './../../assets/logo_contour.svg'
 
 // Import local
@@ -59,19 +59,19 @@ export default class Footer extends Component {
             <Menu.Item
             href="https://fr-fr.facebook.com/"
             >
-              <TiSocialFacebook />
+              <FaFacebookF />
             </Menu.Item>
 
             <Menu.Item
             href="https://twitter.com/"
             >
-              <TiSocialTumbler />
+              <FaTwitter />
             </Menu.Item>
 
           <Menu.Item
             href="https://www.instagram.com/"
           >
-            <TiSocialInstagram />
+            <FaInstagram />
           </Menu.Item>
       </Menu>
     )
