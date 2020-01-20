@@ -56,23 +56,27 @@ export default class Footer extends Component {
             Mentions Légales
             </Menu.Item>
 
-            <Menu.Item
-            href="https://fr-fr.facebook.com/"
+            <Menu.Menu
+            position="right" 
             >
-              <FaFacebookF />
-            </Menu.Item>
+              <Menu.Item
+              href="https://fr-fr.facebook.com/"
+              >
+                <FaFacebookF />
+              </Menu.Item>
 
-            <Menu.Item
-            href="https://twitter.com/"
-            >
-              <FaTwitter />
-            </Menu.Item>
+              <Menu.Item
+              href="https://twitter.com/"
+              >
+                <FaTwitter />
+              </Menu.Item>
 
-          <Menu.Item
-            href="https://www.instagram.com/"
-          >
-            <FaInstagram />
-          </Menu.Item>
+              <Menu.Item
+              href="https://www.instagram.com/"
+              >
+                <FaInstagram />
+              </Menu.Item>
+            </Menu.Menu>
       </Menu>
     )
   }
