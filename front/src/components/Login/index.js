@@ -6,7 +6,7 @@ import './login.scss';
 const Login = () => (
   <div id="container">
     <Form id="form">
-    <h1>Page de connexion</h1>
+    <h1>Formulaire de connexion</h1>
     <Form.Field className="field">
       <label className="label">Adresse e-mail :</label>
       <input placeholder='mail' />

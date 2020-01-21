@@ -1,7 +1,8 @@
 // Import NPM
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
-import { TiSocialFacebook, TiSocialTumbler, TiSocialInstagram } from 'react-icons/ti';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Logo from './../../assets/logo_contour.svg'
 
 // Import local
@@ -17,54 +18,65 @@ export default class Footer extends Component {
 
     return (
       <Menu stackable>
-          <Menu.Item>
+          <Menu.Item
+          as= { Link }
+          to="/"
+          title="Retour à l'acceuil"
+          >
             <img src={Logo} />
           </Menu.Item>
-          <Menu.Item
-            name='features'
-            active={activeItem === 'features'}
+
+            <Menu.Item
+            as= { Link }
+            to="/contact"
+            name='Contact'
+            active={activeItem === 'Contact'}
             onClick={this.handleItemClick}
-          >
+            >
             Contact
-          </Menu.Item>
+            </Menu.Item>
 
-          <Menu.Item
-            name='testimonials'
-            active={activeItem === 'testimonials'}
+            <Menu.Item
+            as= { Link }
+            to="/team"
+            name='Qui sommes-nous'
+            active={activeItem === 'Qui sommes-nous'}
             onClick={this.handleItemClick}
-          >
+            >
             Qui sommes-nous
-          </Menu.Item>
+            </Menu.Item>
 
-          <Menu.Item
-            name='sign-in'
-            active={activeItem === 'sign-in'}
+            <Menu.Item
+            as= { Link }
+            to="/legalmentions"
+            name='Mentions Légales'
+            active={activeItem === 'Mentions Légales'}
             onClick={this.handleItemClick}
-          >
+            >
             Mentions Légales
-          </Menu.Item>
+            </Menu.Item>
 
-          <Menu.Item
-            name='sign-in'
-            active={activeItem === 'sign-in'}
-            onClick={this.handleItemClick}
-          >
-            <TiSocialFacebook />
-          </Menu.Item>
-          <Menu.Item
-            name='sign-in'
-            active={activeItem === 'sign-in'}
-            onClick={this.handleItemClick}
-          >
-            <TiSocialTumbler />
-          </Menu.Item>
-          <Menu.Item
-            name='sign-in'
-            active={activeItem === 'sign-in'}
-            onClick={this.handleItemClick}
-          >
-            <TiSocialInstagram />
-          </Menu.Item>
+            <Menu.Menu
+            position="right" 
+            >
+              <Menu.Item
+              href="https://fr-fr.facebook.com/"
+              >
+                <FaFacebookF />
+              </Menu.Item>
+
+              <Menu.Item
+              href="https://twitter.com/"
+              >
+                <FaTwitter />
+              </Menu.Item>
+
+              <Menu.Item
+              href="https://www.instagram.com/"
+              >
+                <FaInstagram />
+              </Menu.Item>
+            </Menu.Menu>
       </Menu>
     )
   }
