@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Home from 'src/components/Home';
+import Area from 'src/components/Area';
 import Signup from 'src/components/Signup';
 import Login from 'src/components/Login';
 import Team from 'src/components/Team';
@@ -25,6 +26,9 @@ const Page = ({ logged }) => (
   <Switch>
     <Route exact path="/">
       <Home />
+    </Route>
+    <Route path="/areas"> {/* // <= Ajouter le slug dans l'url */}
+      <Area />
     </Route>
     <Route path="/signup">
       <Signup />
