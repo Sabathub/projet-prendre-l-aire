@@ -38,35 +38,33 @@ class CommentController extends AbstractController
     }
 
     /**
+     * Create a new comment
      * @Route("/", name="new", methods={"POST"})
      */
-    public function new(Request $request, ImageUploader $imageUploader)
+    public function new(Request $request, ImageUploader $imageUploader, SerializerInterface $serializer)
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment, ['csrf_protection' => false]);
         $form->handleRequest($request);
-        //dd($request->request, $form, $form->isSubmitted(), $form->isValid());
-        // Jusqu'ci tout se passe comme d'habitude
-        // On crée un objet Question (vide), on crée un formulaire QuestionType lié à $question
-        //On relie le formulaire à la requête, ce qui nous donne un formulaire rempli et un objet Question rempli avec les données reçues
-        // Donc, $form->isSubmitted() donne true
-        // Cependant ->isValid() donne false
-        // La validation concerne à la fois les contraintes sur les données du formulaire mais aussi le token. On peut désactiver le token avec une option comme ici dans ->createForm()
+
         if ($form->isSubmitted() && $form->isValid() ) {
 
+            // upload of the picture 
             $fileName = $imageUploader->moveFile($form['picture']->getData(), 'images');
             $comment->setPicture($fileName);
  
-            // Ici, si on teste le contrôleur maintenant, Symfony ne trouve pas d'utilisateur, $this->getUser() donne null. Ça produira une erreur dans notre code
-            // Pour aller jusqu'au bout, il faudrait que la requête API envoie quelque chose pour s'authentifier. C'est là que le JWT devient intéressant, on peut aussi utiliser le cookie.
-            // On associe le user connecté à la question
+            // add comment to bdd
             $comment->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-            return $this->json('un truc pour dire que ça marche');
+
+            // return comment in JSON
+            $data = $serializer->normalize($comment, null, ['groups' => 'api_v1_comment']);
+            return $this->json($data);
         }
-        return $this->json('le formulaire envoyé est mal formé');
+        
+        throw new \Exception('Form invalid');
     }
 }
 
