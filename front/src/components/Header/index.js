@@ -7,10 +7,9 @@ import Logo from '../../assets/logo_contour.svg';
 // Import local
 import './header.scss';
 
-const Header = () =>  {
+const Header = ({ logged }) =>  {
     return (
       <>
-        {/* // Composant Navbar et Nav de Boostrap pour le menu de navigation */}
         <Navbar id="navbar" className="navbar-dark" expand="lg">
           <Navbar.Brand className="font-italic" title="Retour à l'acceuil">
             <Link
@@ -23,7 +22,7 @@ const Header = () =>  {
                 height="80"
                 className="d-inline-block align-middle"
               />{' '}
-              <div className="d-inline-block text-wrap align-middle text-left" id="title">&nbsp;Prendre l'aire</div>
+              <div className="d-inline-block text-wrap align-middle text-left navigation-item" id="title">&nbsp;Prendre l'aire</div>
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -37,6 +36,8 @@ const Header = () =>  {
               >
                 Accueil
               </NavLink>
+              {!logged && (
+              <>
               <NavLink
                 to="/signup"
                 className="navigation-item"
@@ -51,20 +52,27 @@ const Header = () =>  {
               >
                 Connexion
               </NavLink>
-              <NavLink
-                to="/profile"
-                className="navigation-item"
-                activeClassName="navigation-item-active"
-              >
-                Profil
-              </NavLink>
-              <NavLink
-                to="/logout"
-                className="navigation-item"
-                activeClassName="navigation-item-active"
-              >
-                Déconnexion
-              </NavLink>
+              </>
+              )}
+
+              {logged && (
+              <>
+                <NavLink
+                  to="/profile"
+                  className="navigation-item"
+                  activeClassName="navigation-item-active"
+                >
+                  Profil
+                </NavLink>
+                <NavLink
+                  to="/logout"
+                  className="navigation-item"
+                  activeClassName="navigation-item-active"
+                >
+                  Déconnexion
+                </NavLink>
+              </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -20,15 +20,15 @@ class App extends React.Component {
   render () {
     return (
       <div id="app">
-        <Header logged={false} />
+        <Header logged={true} />
         <Route exact path="/">
           <Home />
         </Route>
         <Route path="/signup">
-          <Signup />
+          <Signup logged={false} />
         </Route>
         <Route path="/signin">
-          <Login />
+          <Login logged={false} />
         </Route>
         <Route path="/team">
           <Team />
@@ -39,7 +39,7 @@ class App extends React.Component {
         <Route path="/profile">
           <Profile user={users[1]} />
         </Route>
-        <Footer logged={false} />
+        <Footer />
       </div>
     );
   }
