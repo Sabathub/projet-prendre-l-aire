@@ -2,29 +2,67 @@
 
 namespace App\Controller\Api\V1;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use App\Form\UserType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-
+/**
+ * @Route("/api/v1/users", name="api_v1_users_")
+ */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * Show single user's information
+     * @Route("/{id}", name="show", requirements={"id": "\d+"}, methods={"GET"})
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function show(User $user, SerializerInterface $serializer)
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        // return single user's informations in JSON
+        $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
+        return $this->json($data);
+    }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+    /**
+     * Create a new user
+     * @Route("/new", name="register", methods={"POST"})
+     */
+    public function register(Request $request, SerializerInterface $serializer, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        // first create new object user and a form associated
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user, ['csrf_protection' => false]);
+        $form->handleRequest($request);
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            // attribute role user
+            $user->setRoles(['ROLE_USER']);
+            
+            // get plain password 
+            $plainPassword = $user->getPassword();
+
+            // encode password
+            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
+            
+            // replace plain password by the hashed password
+            $user->setPassword($encodedPassword);
+
+            // save in database
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // return user in JSON
+            $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
+            return $this->json($data);
+        }
+        
     }
 
     /**

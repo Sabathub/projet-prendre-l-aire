@@ -21,6 +21,7 @@ class Area
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_highways")
+     * @Groups("api_v1_user")
      */
     private $id;
 
@@ -29,6 +30,7 @@ class Area
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_highways")
+     * @Groups("api_v1_user")
      */
     private $name;
 
