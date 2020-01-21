@@ -117,39 +117,39 @@ class AppFixtures extends Fixture
 
         // Create user
         $userLaetitia = new User();
-        $userLaetitia->setUsername('laetitia');
-        $userLaetitia->setPassword('laetitia');
+        $userLaetitia->setUsername('Laetitia');
+        $userLaetitia->setPassword('$argon2id$v=19$m=65536,t=4,p=1$3cHx7GaIZ5qTuNsvKe43mw$hiW9P8BlrVKqEmKX9/FtUmTd4LJ6EF3DjRNr7zcim8k');
         $userLaetitia->setEmail('laetitia@gmail.com');
-        $userLaetitia->setRole('member');
+        $userLaetitia->setRoles(["ROLE_ADMIN"]);
         $manager->persist($userLaetitia);
 
         $userSophie = new User();
-        $userSophie->setUsername('sophie');
-        $userSophie->setPassword('sophie');
+        $userSophie->setUsername('Sophie');
+        $userSophie->setPassword('$argon2id$v=19$m=65536,t=4,p=1$MAKauNm7fk+YSHVYLJ7M/Q$2DihOORBeSlzJ/7QPbZxfmsclLHHNdZPTFwrJSndwuo');
         $userSophie->setEmail('sophie@gmail.com');
-        $userSophie->setRole('member');
+        $userSophie->setRoles(["ROLE_ADMIN"]);
         $manager->persist($userSophie);
 
         $userMarion = new User();
         $userMarion->setUsername('Marion');
-        $userMarion->setPassword('Marion');
+        $userMarion->setPassword('$argon2id$v=19$m=65536,t=4,p=1$/qTIksT9KrWxc6Lb9OLxHw$1DsyArw8r+WilUR0xH03z+GiGR/i0xylMjAA7RTnoAI');
         $userMarion->setEmail('marion@gmail.com');
-        $userMarion->setRole('member');
+        $userMarion->setRoles(["ROLE_ADMIN"]);
         $manager->persist($userMarion);
 
         $userKevin = new User();
         $userKevin->setUsername('Kevin');
-        $userKevin->setPassword('Kevin');
+        $userKevin->setPassword('$argon2id$v=19$m=65536,t=4,p=1$GjKp7k04g0qpk5Ear0BIUg$IH+zOtG70uRbio6uJLAX3BIVloV0nZP1+K1md8VG3P4');
         $userKevin->setEmail('kevin@gmail.com');
-        $userKevin->setRole('member');
+        $userKevin->setRoles(["ROLE_ADMIN"]);
         $manager->persist($userKevin);
 
 
         $userMaxime = new User();
         $userMaxime->setUsername('Maxime');
-        $userMaxime->setPassword('Maxime');
+        $userMaxime->setPassword('$argon2id$v=19$m=65536,t=4,p=1$SH+NwJIx0LQeZYgLX0TyBA$3wsslaJguOXaIYDkT0p2A8mixI2eYeDAfF6PDpc0Aag');
         $userMaxime->setEmail('maxime@gmail.com');
-        $userMaxime->setRole('member');
+        $userMaxime->setRoles(["ROLE_ADMIN"]);
         $manager->persist($userMaxime);
 
 
