@@ -19,11 +19,13 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
+     * @Groups("api_v1_user")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups("api_v1_user")
      */
     private $email;
 
@@ -42,6 +44,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
+     * @Groups("api_v1_user")
      */
     private $username;
 
@@ -177,6 +180,7 @@ class User implements UserInterface
 
     /**
      * @return Collection|Comment[]
+     * @Groups("api_v1_user")
      */
     public function getComments(): Collection
     {

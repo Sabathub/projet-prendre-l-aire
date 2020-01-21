@@ -18,6 +18,7 @@ class Comment
      * @ORM\Column(type="integer")
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
+     * @Groups("api_v1_user")
      */
     private $id;
 
@@ -25,6 +26,7 @@ class Comment
      * @ORM\Column(type="text")
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
+     * @Groups("api_v1_user")
      */
     private $description;
 
@@ -32,6 +34,7 @@ class Comment
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
+     * @Groups("api_v1_user")
      */
     private $picture;
 
@@ -39,6 +42,7 @@ class Comment
      * @ORM\Column(type="smallint", nullable=true)
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
+     * @Groups("api_v1_user")
      */
     private $rate;
 
@@ -139,6 +143,7 @@ class Comment
 
     /**
      * @Groups("api_v1_comment")
+     * @Groups("api_v1_user")
      */
     public function getArea(): ?Area
     {
