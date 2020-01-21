@@ -9,9 +9,9 @@ import ajaxMiddleware from './ajaxMiddleware';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-    applyMiddleware(
-      ajaxMiddleware,
-    ),
+  applyMiddleware(
+    ajaxMiddleware,
+  ),
 );
 
 const store = createStore(
