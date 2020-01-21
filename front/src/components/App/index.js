@@ -20,7 +20,7 @@ class App extends React.Component {
   render () {
     return (
       <div id="app">
-        <Header />
+        <Header logged={false} />
         <Route exact path="/">
           <Home />
         </Route>
@@ -39,7 +39,7 @@ class App extends React.Component {
         <Route path="/profile">
           <Profile user={users[1]} />
         </Route>
-        <Footer />
+        <Footer logged={false} />
       </div>
     );
   }
