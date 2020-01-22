@@ -61,7 +61,7 @@ const Contact = () => (
         <label className="label">Votre message :</label>
         <textarea placeholder="..." />
       </Form.Field>
-      <Button type="submit">Envoyer</Button>
+      <Button type="submit" color="teal">Envoyer</Button>
     </Form>
   </div>
 );
