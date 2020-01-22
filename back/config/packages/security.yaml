@@ -30,13 +30,7 @@ security:
                     - lexik_jwt_authentication.jwt_token_authenticator
         main:
             anonymous: true
-            # guard:
-                # authenticators:
-                    # - App\Security\UserLoginAuthenticator
-            # logout:
-                # path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+            
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

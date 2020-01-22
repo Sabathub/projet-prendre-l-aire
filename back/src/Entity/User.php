@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -74,6 +76,9 @@ class User implements UserInterface
         return $this->id;
     }
 
+    /**
+     * @SerializedName("username")
+     */
     public function getEmail(): ?string
     {
         return $this->email;
@@ -90,6 +95,7 @@ class User implements UserInterface
      * A visual identifier that represents this user.
      *
      * @see UserInterface
+     * @SerializedName("email")
      */
     public function getUsername(): string
     {
