@@ -6,6 +6,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from 'src/containers/Home';
 import Signup from 'src/containers/Signup';
 import Login from 'src/containers/Login';
+import Area from 'src/components/Area';
 import Team from 'src/components/Team';
 import Profile from 'src/containers/Profile';
 import Contact from 'src/components/Contact';
@@ -16,6 +17,9 @@ const Page = ({ logged }) => (
   <Switch>
     <Route exact path="/">
       <Home />
+    </Route>
+    <Route path="/areas"> {/* // <= Ajouter le slug dans l'url */}
+      <Area />
     </Route>
     <Route path="/signup">
       <Signup />
