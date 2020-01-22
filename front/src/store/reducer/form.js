@@ -1,19 +1,21 @@
 // --- initial state
 const initialState = {
-  // la valeur courante de l'input
   inputValue: '',
+  pseudo: '',
+  email: '',
+  password: '',
   // la valeur du token après submit
-  tokenValue: '',
+  // tokenValue: '',
 };
 
 // --- action types
-const CHANGE_INPUT = 'CHANGE_INPUT';
-export const CONNECT_USER = 'CONNECT_USER';
+const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
+// export const CONNECT_USER = 'CONNECT_USER';
 
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case CHANGE_INPUT:
+    case CHANGE_INPUT_VALUE:
       return {
         ...state,
         inputValue: action.value,
@@ -25,13 +27,13 @@ const reducer = (state = initialState, action = {}) => {
 
 // --- action creators
 export const changeInput = (value) => ({
-  type: CHANGE_INPUT,
+  type: CHANGE_INPUT_VALUE,
   value,
 });
 
-export const connectUser = () => ({
+/* export const connectUser = () => ({
   type: CONNECT_USER,
-});
+}); */
 
 // --- export
 export default reducer;
