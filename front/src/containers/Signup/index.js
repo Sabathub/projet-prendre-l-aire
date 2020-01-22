@@ -2,17 +2,23 @@ import { connect } from 'react-redux';
 
 import Signup from 'src/components/Signup';
 
-import { changeInput } from 'src/store/reducer/form';
+import { changeInput, doConnect } from 'src/store/actions';
 
 
 const mapStateToProps = (state) => ({
-  value: state.form.inputValue,
+  usernameValue: state.form.username,
+  emailValue: state.form.email,
+  passwordValue: state.form.password,
+  passwordVerifyValue: state.form.passwordVerify,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeInputValue: (value) => {
-    console.log('changeInputValue', value);
-    dispatch(changeInput(value));
+  changeInputValue: (value, name) => {
+    console.log('changeInputValue', name, value);
+    dispatch(changeInput(value, name));
+  },
+  doSignup: () => {
+    dispatch(doConnect());
   },
 });
 
