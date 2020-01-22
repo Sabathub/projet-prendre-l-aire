@@ -3,23 +3,14 @@ import PropTypes from 'prop-types';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Home from 'src/components/Home';
-import Signup from 'src/components/Signup';
-import Login from 'src/components/Login';
+import Home from 'src/containers/Home';
+import Signup from 'src/containers/Signup';
+import Login from 'src/containers/Login';
 import Team from 'src/components/Team';
-import Profile from 'src/components/Profile';
+import Profile from 'src/containers/Profile';
 import Contact from 'src/components/Contact';
 
 import users from 'src/data/users';
-
-/*
-Si on est deconnecté :
-- une page affichant un formulaire de connexion
-
-Si on est connecté :
-- une page affichant un message de bienvenue avec le nom de l'utilisateur et son avatar
-- une page de présentation (une image + un texte en lorem ipsum)
-*/
 
 const Page = ({ logged }) => (
   <Switch>

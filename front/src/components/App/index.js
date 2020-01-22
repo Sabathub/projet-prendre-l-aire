@@ -13,8 +13,8 @@ class App extends React.Component {
   render () {
     return (
       <div id="app">
-        <Header logged={false} />
-        <Page logged={false} />        
+        <Header />
+        <Page />        
         <Footer />
       </div>
     );

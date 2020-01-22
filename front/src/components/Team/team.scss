@@ -6,6 +6,7 @@
 
 #pageTitle {
   margin: 0em .8em .9em;
+  padding: .4em;
 }
 
 .cards {
@@ -42,7 +43,7 @@ p.description {
 
   //hover management
   &:hover {
-    font-size: 130%;
+    transform: scale(1.2);
     color: $primary-color;
   }
 }
