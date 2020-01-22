@@ -3,8 +3,14 @@ import { connect } from 'react-redux';
 import Profile from 'src/components/Profile';
 
 
-const mapStateToProps = () => ({
-});
+const mapStateToProps = (state) => {
+  return {
+    username: state.user.username,
+    avatar: state.user.avatar,
+    name: state.user.name,
+    email: state.user.email,
+  };
+};
 
 const mapDispatchToProps = () => ({
 });

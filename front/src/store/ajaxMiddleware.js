@@ -1,29 +1,29 @@
 import axios from 'axios';
 
-import { SWITCH_OFF } from './reducer';
+import { logUser, LOG_USER } from 'src/store/reducer/user';
 
 const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case SWITCH_OFF:
+    case LOG_USER:
       // appel axios
-      axios.get('https://raw.githubusercontent.com/raywenderlich/recipes/master/Recipes.json')
+      axios.get('https://api.github.com/users/kevin-dubuy')
         .then((response) => {
-          const switchOfAction = switchOf(response.data);
-          store.dispatch(switchOfAction);
+          // on veut mettre logged à true et stocker les infos de l'utilisateur
+          const actionLogUser = logUser(
+            response.data.login,
+            response.data.avatar_url,
+            response.data.name,
+            response.email,
+          );
+          store.dispatch(actionLogUser);
         })
         .catch((error) => {
-          // console.error permet d'afficher une erreur dans la console
+          // eslint-disable-next-line no-console
           console.error(error);
-        })
-        .finally(() => {
-          // voir https://github.com/o-clock-wave/react-e16-challenge-solo-recipes-api-cecileb-oclock/blob/master/src/store/ajaxMiddleware.js
-          const stopLoadingAction = stopLoading();
-          store.dispatch(stopLoadingAction);
         });
       break;
-
     default:
-      // je laisse passer les autres actions
+      // par défaut, je laisse passer l'action
       next(action);
   }
 };

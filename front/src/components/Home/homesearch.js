@@ -1,5 +1,5 @@
-import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import React from 'react';
+import { Dropdown } from 'semantic-ui-react';
 
 const areaOptions = [
   {
@@ -32,15 +32,15 @@ const areaOptions = [
     text: 'A43',
     value: 'A43',
   },
-]
+];
 
 const Homesearch = () => (
   <Dropdown
-    placeholder='Selectionner une autoroute'
+    placeholder="Selectionner une autoroute"
     fluid
     selection
     options={areaOptions}
   />
-)
+);
 
 export default Homesearch;
