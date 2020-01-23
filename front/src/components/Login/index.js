@@ -27,15 +27,37 @@ const Login = ({ emailValue, passwordValue, changeInputValue, doConnect, redirec
     <div id="container">
       <Form id="form" onSubmit={handleSubmit}>
         <h1>Formulaire de connexion</h1>
-        <Form.Field className="field">
-          <label className="label">Adresse e-mail :</label>
-          <input placeholder="mail" id="email" value={emailValue} onChange={handleChange} />
+        <Form.Field>
+          <label htmlFor="email">
+          Saisissez votre email
+            <Form.Input
+              type="email"
+              icon="mail"
+              iconPosition="left"
+              placeholder="Votre email"
+              id="email"
+              name="email"
+              value={emailValue}
+              onChange={handleChange}
+            />
+          </label>
         </Form.Field>
-        <Form.Field className="field">
-          <label className="label">Mot de passe :</label>
-          <input placeholder="password" id="password" value={passwordValue} onChange={handleChange} />
+        <Form.Field>
+          <label htmlFor="password">
+          Saisissez votre mot de passe
+            <Form.Input
+              type="password"
+              icon="lock"
+              iconPosition="left"
+              placeholder="Votre mot de passe"
+              id="password"
+              name="password"
+              value={passwordValue}
+              onChange={handleChange}
+            />
+          </label>
         </Form.Field>
-        <Button type="submit" color="teal">Envoyer</Button>
+        <Button type="submit" color="teal">Connectez-vous</Button>
       </Form>
     </div>
 
