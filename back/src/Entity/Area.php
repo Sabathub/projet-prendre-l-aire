@@ -83,7 +83,7 @@ class Area
 
     /**
 
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="area")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="area", orphanRemoval=true)
      * @Groups("api_v1")
      */
     private $comments;
