@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { DO_LOGIN, logUser } from 'src/store/actions';
 
+
 const loginMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_LOGIN: {

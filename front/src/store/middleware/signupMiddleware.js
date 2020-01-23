@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { DO_SIGNUP } from 'src/store/actions';
+import { DO_SIGNUP, logUser } from 'src/store/actions';
 
 const signupMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -23,6 +23,7 @@ const signupMiddleware = (store) => (next) => (action) => {
         // Dispatch d'une action pour changer le user
         // store.dispatch(changeUserName(response.data));
           console.log('Response', response);
+          store.dispatch(logUser(response.data.logged));
         })
       // Erreur
         .catch((error) => {
