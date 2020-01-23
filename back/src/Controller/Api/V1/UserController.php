@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -148,6 +147,22 @@ class UserController extends AbstractController
 
         // return JSON if not a success
         return $this->json('failed to change password');
+    }
+
+    /**
+     * Delete a user
+     * @Route("/{id}/delete", name="delete", methods={"DELETE"})
+     */
+    public function delete(User $user)
+    {
+        // we find the user by the id and remove it
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+
+        // return JSON 
+        return $this->json('user deleted');
+
     }
    
 }

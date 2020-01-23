@@ -12,7 +12,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-
 /**
 * @Route("/api/v1/comments", name="api_v1_comments_")
 */
@@ -43,16 +42,33 @@ class CommentController extends AbstractController
      */
     public function new(Request $request, ImageUploader $imageUploader, SerializerInterface $serializer)
     {
+        // first action we get the Json content
+        $newComment = $request->getContent();
+
+        // then decode Json
+        $data = json_decode($newComment, true);
+
+        // and replace this into the request with parameters in array shape
+        $request->request->replace(is_array($data) ? $data : array());
+        //dd($newComment, $request->request);
+
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment, ['csrf_protection' => false]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() ) {
 
-            // upload of the picture 
-            $fileName = $imageUploader->moveFile($form['picture']->getData(), 'images');
-            $comment->setPicture($fileName);
- 
+            if ($form['picture']->getData() !== null) {
+                // upload of the picture 
+                $fileName = $imageUploader->moveFile($form['picture']->getData(), 'images');
+                $comment->setPicture($fileName);
+            }
+            
+            if ($form['rate']->getData() !== null) {
+            
+                $comment->setRate($form['rate']->getData());
+            }
+
             // add comment to bdd
             $comment->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
