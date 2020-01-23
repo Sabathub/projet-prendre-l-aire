@@ -1,20 +1,16 @@
-// --- initial state
-const initialState = {
-  inputValue: '',
-  username: '',
-  email: '',
-  password: '',
-  passwordVerify: '',
-  // la valeur du token après submit
-  // tokenValue: '',
-};
-
 // --- action types
 import {
   CHANGE_INPUT_VALUE,
   DO_CONNECT,
 } from '../actions';
-// export const CONNECT_USER = 'CONNECT_USER';
+
+// --- initial state
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  passwordVerify: '',
+};
 
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -33,12 +29,6 @@ const reducer = (state = initialState, action = {}) => {
   }
 };
 
-// --- action creators
-
-
-/* export const connectUser = () => ({
-  type: CONNECT_USER,
-}); */
 
 // --- export
 export default reducer;

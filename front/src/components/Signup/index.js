@@ -45,12 +45,12 @@ const Signup = ({
 };
 
 Signup.propTypes = {
-  usernameValue: PropTypes.string,
-  emailValue: PropTypes.string,
-  passwordValue: PropTypes.string,
-  passwordVerifyValue: PropTypes.string,
-  changeInputValue: PropTypes.func,
-  doSignup: PropTypes.func,
+  usernameValue: PropTypes.string.isRequired,
+  emailValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
+  passwordVerifyValue: PropTypes.string.isRequired,
+  changeInputValue: PropTypes.func.isRequired,
+  doSignup: PropTypes.func.isRequired,
 };
 
 export default Signup;
