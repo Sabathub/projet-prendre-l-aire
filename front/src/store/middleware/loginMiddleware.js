@@ -6,10 +6,8 @@ const loginMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_CONNECT: {
       const user = {
-
         email: (store.getState().form.email),
         password: (store.getState().form.password),
-
       };
       console.log(user);
 
