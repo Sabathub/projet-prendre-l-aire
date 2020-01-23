@@ -9,9 +9,8 @@ const Signup = ({
 }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
-    name = evt.target.id;
-    console.log('Je change la valeur du champ', name, fieldValue);
-    changeInputValue(fieldValue, name);
+    const fieldName = evt.target.id;
+    changeInputValue(fieldValue, fieldName);
   };
 
   const handleSubmit = (evt) => {
