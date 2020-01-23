@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Menu, Icon, Button } from 'semantic-ui-react';
 
 const areaOptions = [
   {
@@ -35,12 +35,19 @@ const areaOptions = [
 ];
 
 const Homesearch = () => (
-  <Dropdown
-    placeholder="Selectionner une autoroute"
-    fluid
-    selection
-    options={areaOptions}
-  />
+  <Menu secondary>
+    <Dropdown
+      placeholder="Selectionner une autoroute"
+      fluid
+      selection
+      options={areaOptions}
+      id="highwayslist"
+    />
+    <Menu.Menu position="right">
+      <Button id="crosshair" icon="crosshairs" color="teal" title="Trouver les aires à proximité de ma position" />
+    </Menu.Menu>
+  </Menu>
+
 );
 
 export default Homesearch;

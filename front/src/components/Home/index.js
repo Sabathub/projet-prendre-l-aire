@@ -42,11 +42,8 @@ export default class Home extends Component {
             </p>
           </Accordion.Content>
         </Accordion>
-        <Homesearch id="dropdown" />
+        <Homesearch />
         <HomeMap />
-        <MdMyLocation id="geolocalisation" title="Trouver les aires à proximité de ma position" />
-
-
       </>
     );
   }

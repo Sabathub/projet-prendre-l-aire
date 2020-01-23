@@ -5,36 +5,39 @@ import { DO_CONNECT } from 'src/store/actions';
 const signupMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_CONNECT: {
-      const { username, email, password } = store.getState();
+      const user = {
+
+        username: (store.getState().form.username),
+        email: (store.getState().form.email),
+        password: (store.getState().form.password),
+
+      };
+      console.log(user);
 
       // Ouvrir une connexion avec le serveur
-      axios.post('http://localhost:3001/login', {
-      username,
-      email,
-      password,
+      axios.post('http://marion-polomeni.vpnuser.lan/apoth%C3%A9ose/journalPersonnel/projet-prendre-l-aire/back/public/index.php/api/v1/users/register', {
+        user,
       })
       // succès
-      .then((response) => {
+        .then((response) => {
         // Dispatch d'une action pour changer le user
-        //store.dispatch(changeUserName(response.data));
-        console.log('Response', response);
-      })
+        // store.dispatch(changeUserName(response.data));
+          console.log('Response', response);
+        })
       // Erreur
-      .catch((error) => {
-        console.log('Error', error);
-      })
+        .catch((error) => {
+          console.log('Error', error);
+        })
       // Dans tous les cas
-      .finally();
+        .finally();
 
       break;
-  }
+    }
 
     default:
-    next(action);
-    break;
-
-}
-
+      next(action);
+      break;
+  }
 };
 
 export default signupMiddleware;

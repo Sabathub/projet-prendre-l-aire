@@ -14,7 +14,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeInputValue: (value, name) => {
-    console.log('changeInputValue', name, value);
     dispatch(changeInput(value, name));
   },
   doSignup: () => {

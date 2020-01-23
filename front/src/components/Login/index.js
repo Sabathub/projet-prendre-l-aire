@@ -15,7 +15,7 @@ const Login = () => (
       <label className="label">Mot de passe :</label>
       <input placeholder='password' />
     </Form.Field>
-    <Button type='submit'>Envoyer</Button>
+    <Button type='submit' color="teal">Envoyer</Button>
   </Form>
   </div>
   
