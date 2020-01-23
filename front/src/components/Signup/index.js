@@ -22,23 +22,67 @@ const Signup = ({
     <div id="container">
       <Form id="form" onSubmit={handleSubmit}>
         <h1>Formulaire d'inscription</h1>
-        <Form.Field className="field">
-          <label className="label">Saisissez un pseudonyme :</label>
-          <input type="text" placeholder="Votre pseudonyme" id="username" value={usernameValue} onChange={handleChange} />
+        <Form.Field>
+          <label htmlFor="username">
+          Choisissez un pseudonyme
+            <Form.Input
+              type="text"
+              icon="user"
+              iconPosition="left"
+              placeholder="Votre pseudonyme"
+              id="username"
+              name="username"
+              value={usernameValue}
+              onChange={handleChange}
+            />
+          </label>
         </Form.Field>
-        <Form.Field className="field">
-          <label className="label">Saisissez une adresse e-mail valide :</label>
-          <input type="email" placeholder="e-mail" id="email" value={emailValue} onChange={handleChange} />
+        <Form.Field>
+          <label htmlFor="email">
+          Saisissez votre email
+            <Form.Input
+              type="email"
+              icon="mail"
+              iconPosition="left"
+              placeholder="Votre email"
+              id="email"
+              name="email"
+              value={emailValue}
+              onChange={handleChange}
+            />
+          </label>
         </Form.Field>
-        <Form.Field className="field">
-          <label className="label">Saisissez un mot de passe :</label>
-          <input type="password" placeholder="password" id="password" value={passwordValue} onChange={handleChange} />
+        <Form.Field>
+          <label htmlFor="password">
+          Saisissez votre mot de passe
+            <Form.Input
+              type="password"
+              icon="lock"
+              iconPosition="left"
+              placeholder="Votre mot de passe"
+              id="password"
+              name="password"
+              value={passwordValue}
+              onChange={handleChange}
+            />
+          </label>
         </Form.Field>
-        <Form.Field className="field">
-          <label className="label">Confirmer le mot de passe :</label>
-          <input type="password" placeholder="password" id="passwordVerify" value={passwordVerifyValue} onChange={handleChange} />
+        <Form.Field>
+          <label htmlFor="password">
+          Confirmez votre mot de passe
+            <Form.Input
+              type="password"
+              icon="lock"
+              iconPosition="left"
+              placeholder="Confirmez votre mot de passe"
+              id="passwordVerify"
+              name="passwordVerify"
+              value={passwordVerifyValue}
+              onChange={handleChange}
+            />
+          </label>
         </Form.Field>
-        <Button type="submit" color="teal">Envoyer</Button>
+        <Button type="submit" color="teal">Inscrivez-vous</Button>
       </Form>
     </div>
   );
