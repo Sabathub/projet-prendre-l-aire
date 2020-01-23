@@ -30,11 +30,20 @@ class UserController extends AbstractController
 
     /**
      * Create a new user
-     * @Route("/new", name="register", methods={"POST"})
+     * @Route("/register", name="register", methods={"POST"})
      */
     public function register(Request $request, SerializerInterface $serializer, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        // first create new object user and a form associated
+        // first action we get the Json content
+        $newUser = $request->getContent();
+
+        // then decode Json
+        $data = json_decode($newUser, true);
+
+        // and replace this into the request with parameters in array shape
+        $request->request->replace(is_array($data) ? $data : array());
+
+        // second action is to create a new object user and a UserType form associated that we fill with the request
         $user = new User();
         $form = $this->createForm(UserType::class, $user, ['csrf_protection' => false]);
         $form->handleRequest($request);
@@ -59,10 +68,11 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             // return user in JSON
-            $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
-            return $this->json($data);
+            // $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
+            return $this->json('user registered');
         }
         
+        return $this->json('failed to register');
     }
 
    
