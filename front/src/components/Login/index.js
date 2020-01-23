@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'semantic-ui-react';
 
+import { Redirect } from 'react-router-dom';
+
 import './login.scss';
 
-const Login = ({ emailValue, passwordValue, changeInputValue, doConnect }) => {
+const Login = ({ emailValue, passwordValue, changeInputValue, doConnect, redirection }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
     const fieldName = evt.target.id;
@@ -15,6 +17,11 @@ const Login = ({ emailValue, passwordValue, changeInputValue, doConnect }) => {
     evt.preventDefault();
     doConnect();
   };
+
+  if (redirection) {
+    // Affichage de la redirection
+    return <Redirect to="/" />;
+  }
 
   return (
     <div id="container">
@@ -40,6 +47,7 @@ Login.propTypes = {
   passwordValue: PropTypes.string.isRequired,
   changeInputValue: PropTypes.func.isRequired,
   doConnect: PropTypes.func.isRequired,
+  redirection: PropTypes.bool.isRequired,
 };
 
 export default Login;

@@ -20,7 +20,8 @@ export const doLogin = () => ({
   type: DO_LOGIN,
 });
 
-export const logUser = (logged) => ({
+export const logUser = (logged, redirection) => ({
   type: LOG_USER,
   logged,
+  redirection,
 });

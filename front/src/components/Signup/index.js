@@ -5,7 +5,7 @@ import { Button, Form } from 'semantic-ui-react';
 import './signup.scss';
 
 const Signup = ({
-  usernameValue, emailValue, passwordValue, passwordVerifyValue, changeInputValue, newUser,
+  usernameValue, emailValue, passwordValue, passwordVerifyValue, changeInputValue, newUser
 }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
