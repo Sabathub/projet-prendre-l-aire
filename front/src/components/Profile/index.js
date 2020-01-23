@@ -16,11 +16,10 @@ const Profile = ({
       <Grid columns={3} stackable centered>
         <Grid.Row verticalAlign="middle">
           <Grid.Column width={3} textAlign="center">
-            <Image className="avatar" src={avatar} centered circular />
+            <Image className="avatar" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" centered circular />
           </Grid.Column>
           <Grid.Column id="info" width={5} textAlign="left">
             <p>Bonjour {username} !</p>
-            <p>{name}</p>
             <p>{email}</p>
           </Grid.Column>
           <Grid.Column width={4} textAlign="center">
