@@ -15,7 +15,7 @@ const signupMiddleware = (store) => (next) => (action) => {
       console.log(user);
 
       // Ouvrir une connexion avec le serveur
-      axios.post('http://marion-polomeni.vpnuser.lan/apoth%C3%A9ose/journalPersonnel/projet-prendre-l-aire/back/public/index.php/api/v1/users/register', {
+      axios.post('http://54.85.18.78/projet-prendre-l-aire/back/public/index.php/api/v1/users/register', {
         user,
       })
       // succès
