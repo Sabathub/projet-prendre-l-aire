@@ -3,7 +3,9 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\User;
+use App\Form\EditPasswordType;
 use App\Form\UserType;
+use App\Form\EditUserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,13 +69,85 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // return user in JSON
-            // $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
+            // return JSON
             return $this->json('user registered');
         }
-        
+
+        // return JSON if not a success
         return $this->json('failed to register');
     }
 
+     /**
+      * Change user datas (email or username)
+     * @Route("/{id}/edit", name="edit", methods="PATCH")
+     */
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        // first action we get the Json content
+        $editUser = $request->getContent();
+
+        // then decode Json
+        $data = json_decode($editUser, true);
+
+        // and replace this into the request with parameters in array shape
+        $request->request->replace(is_array($data) ? $data : array());
+        
+        // second action is to create a EditUserType form (PATCH method to be able to change username and/or email) associated that we fill with the request
+        $form = $this->createForm(EditUserType::class, $user, ['method' => 'PATCH', 'csrf_protection' => false]);
+        $form->handleRequest($request);      
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            // save in the database
+            $this->getDoctrine()->getManager()->flush();
+
+            // return JSON
+            return $this->json('username and/or email modified');
+        }
+
+        // return JSON if not a success
+        return $this->json('failed to edit');
+    }
+   
+     /**
+      * Change the password
+     * @Route("/{id}/edit/password", name="edit_password", methods="PUT")
+     */
+    public function editPassword(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        // first action we get the Json content
+        $editPwd = $request->getContent();
+
+        // then decode Json
+        $data = json_decode($editPwd, true);
+
+        // and replace this into the request with parameters in array shape
+        $request->request->replace(is_array($data) ? $data : array());
+        
+        // second action is to create a EditPasswordType form (PUT method) associated that we fill with the request
+        $form = $this->createForm(EditPasswordType::class, $user, ['method' => 'PUT', 'csrf_protection' => false]);
+        $form->handleRequest($request);         
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            // get plain password 
+            $plainPassword = $user->getPassword();
+
+            // encode password
+            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
+            
+            // replace plain password by the hashed password
+            $user->setPassword($encodedPassword);
+            
+            // save in the database
+            $this->getDoctrine()->getManager()->flush();
+
+            // return JSON
+            return $this->json('password modified');
+        }
+
+        // return JSON if not a success
+        return $this->json('failed to change password');
+    }
    
 }
