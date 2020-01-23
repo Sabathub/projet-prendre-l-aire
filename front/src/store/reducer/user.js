@@ -1,18 +1,18 @@
 // reducer pour gérer les données relatives à l'utilisateur
 
+// --- action types
+import {
+  LOG_USER,
+} from '../actions';
+
 // --- initial state
 const initialState = {
   username: '',
-  avatar: '',
-  name: '',
-  // firstName: '',
-  // lastName: '',
   email: '',
+  password: '',
   logged: false,
 };
 
-// --- action types
-export const LOG_USER = 'LOG_USER';
 
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -20,10 +20,6 @@ const reducer = (state = initialState, action = {}) => {
     case LOG_USER:
       return {
         ...state,
-        username: action.username,
-        avatar: action.avatar,
-        name: action.name,
-        email: action.email,
         logged: true,
       };
 
@@ -31,14 +27,6 @@ const reducer = (state = initialState, action = {}) => {
   }
 };
 
-// --- action creators
-export const logUser = (username, avatar, name, email) => ({
-  type: LOG_USER,
-  username,
-  avatar,
-  name,
-  email,
-});
 
 // --- export
 export default reducer;

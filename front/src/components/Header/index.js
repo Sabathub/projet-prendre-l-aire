@@ -1,8 +1,10 @@
 // Import NPM
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import Logo from '../../assets/logo_contour.svg';
+
 
 // Import local
 import './header.scss';
@@ -73,6 +75,10 @@ const Header = ({ logged }) => {
       </Navbar>
     </>
   );
+};
+
+Header.propTypes = {
+  logged: PropTypes.bool.isRequired,
 };
 
 export default Header;

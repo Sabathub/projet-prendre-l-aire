@@ -2,6 +2,7 @@
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
+export const LOG_USER = 'LOG_USER';
 
 
 // == action creators
@@ -17,4 +18,9 @@ export const doSignup = () => ({
 
 export const doLogin = () => ({
   type: DO_LOGIN,
+});
+
+export const logUser = (logged) => ({
+  type: LOG_USER,
+  logged,
 });
