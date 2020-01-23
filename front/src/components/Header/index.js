@@ -9,7 +9,11 @@ import Logo from '../../assets/logo_contour.svg';
 // Import local
 import './header.scss';
 
-const Header = ({ logged }) => {
+const Header = ({ logged, disconnect }) => {
+  const handleClick = () => {
+    disconnect();
+  };
+
   return (
     <>
       <Navbar id="navbar" className="navbar-dark" expand="lg">
@@ -65,6 +69,7 @@ const Header = ({ logged }) => {
                   to="/logout"
                   className="navigation-item"
                   activeClassName="navigation-item-active"
+                  onClick={handleClick}
                 >
                   Déconnexion
                 </NavLink>
@@ -79,6 +84,7 @@ const Header = ({ logged }) => {
 
 Header.propTypes = {
   logged: PropTypes.bool.isRequired,
+  disconnect: PropTypes.func.isRequired,
 };
 
 export default Header;

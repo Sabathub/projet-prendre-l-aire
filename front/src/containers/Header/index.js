@@ -2,15 +2,19 @@ import { connect } from 'react-redux';
 
 import Header from 'src/components/Header';
 
+import { logoutUser } from 'src/store/actions';
+
 
 const mapStateToProps = (state) => {
-
   return {
     logged: state.user.logged,
   };
 };
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch) => ({
+  disconnect: () => {
+    dispatch(logoutUser());
+  },
 });
 
 const HeaderContainer = connect(
