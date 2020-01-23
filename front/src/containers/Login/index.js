@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Login from 'src/components/Login';
 
-import { changeInput, doConnect } from 'src/store/actions';
+import { changeInput, doLogin } from 'src/store/actions';
 
 
 const mapStateToProps = (state) => ({
@@ -14,8 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeInputValue: (value, name) => {
     dispatch(changeInput(value, name));
   },
-  doSignup: () => {
-    dispatch(doConnect());
+  doConnect: () => {
+    dispatch(doLogin());
   },
 });
 

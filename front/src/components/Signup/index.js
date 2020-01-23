@@ -5,7 +5,7 @@ import { Button, Form } from 'semantic-ui-react';
 import './signup.scss';
 
 const Signup = ({
-  usernameValue, emailValue, passwordValue, passwordVerifyValue, changeInputValue, doSignup,
+  usernameValue, emailValue, passwordValue, passwordVerifyValue, changeInputValue, newUser,
 }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
@@ -15,7 +15,7 @@ const Signup = ({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    doSignup();
+    newUser();
   };
 
   return (
@@ -50,7 +50,7 @@ Signup.propTypes = {
   passwordValue: PropTypes.string.isRequired,
   passwordVerifyValue: PropTypes.string.isRequired,
   changeInputValue: PropTypes.func.isRequired,
-  doSignup: PropTypes.func.isRequired,
+  newUser: PropTypes.func.isRequired,
 };
 
 export default Signup;

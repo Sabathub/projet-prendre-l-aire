@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { DO_CONNECT } from 'src/store/actions';
+import { DO_SIGNUP } from 'src/store/actions';
 
 const signupMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case DO_CONNECT: {
+    case DO_SIGNUP: {
       const user = {
 
         username: (store.getState().form.username),

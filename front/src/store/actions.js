@@ -1,6 +1,7 @@
 // == action types
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
-export const DO_CONNECT = 'DO_CONNECT';
+export const DO_SIGNUP = 'DO_SIGNUP';
+export const DO_LOGIN = 'DO_LOGIN';
 
 
 // == action creators
@@ -10,6 +11,10 @@ export const changeInput = (value, name) => ({
   name,
 });
 
-export const doConnect = () => ({
-  type: DO_CONNECT,
+export const doSignup = () => ({
+  type: DO_SIGNUP,
+});
+
+export const doLogin = () => ({
+  type: DO_LOGIN,
 });

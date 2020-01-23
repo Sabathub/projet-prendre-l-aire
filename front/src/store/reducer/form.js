@@ -1,7 +1,8 @@
 // --- action types
 import {
   CHANGE_INPUT_VALUE,
-  DO_CONNECT,
+  DO_SIGNUP,
+  DO_LOGIN,
 } from '../actions';
 
 // --- initial state
@@ -20,7 +21,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case DO_CONNECT:
+    case DO_SIGNUP:
+      return {
+        ...state,
+      };
+    case DO_LOGIN:
       return {
         ...state,
       };
