@@ -3,6 +3,7 @@
 // --- action types
 import {
   LOG_USER,
+  LOGOUT_USER,
 } from '../actions';
 
 // --- initial state
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         logged: true,
         redirection: true,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        logged: false,
       };
 
     default: return state;
