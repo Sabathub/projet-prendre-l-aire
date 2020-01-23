@@ -27,7 +27,8 @@ export const logUser = (logged, redirection) => ({
   redirection,
 });
 
-export const logoutUser = (logged) => ({
+export const logoutUser = (logged, redirection) => ({
   type: LOGOUT_USER,
   logged,
+  redirection,
 });

@@ -29,6 +29,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: false,
+        redirection: false,
       };
 
     default: return state;

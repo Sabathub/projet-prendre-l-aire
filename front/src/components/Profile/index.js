@@ -7,7 +7,7 @@ import {
 import './profile.scss';
 
 const Profile = ({
-  username, avatar, name, email,
+  username, email,
 }) => (
   <Container>
     <h1>Mon profil</h1>
