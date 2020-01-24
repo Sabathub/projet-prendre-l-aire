@@ -29,7 +29,7 @@ const Maparea = ({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {!loading && areas.map((area) => (
-          <Marker position={[area.latitude, area.longitude]}>
+          <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
             Nom de l'aire : {area.name} <br />
             Nom de l'autoroute : {area.highway.name} <br />
@@ -44,13 +44,17 @@ const Maparea = ({
 };
 
 Maparea.propTypes = {
-  lat: PropTypes.number.isRequired,
-  lng: PropTypes.number.isRequired,
+  lat: PropTypes.string.isRequired,
+  lng: PropTypes.string.isRequired,
   zoom: PropTypes.number.isRequired,
-  markerlat: PropTypes.number.isRequired,
-  markerlng: PropTypes.number.isRequired,
   areas: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    latitude: PropTypes.string.isRequired,
+    longitude: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    highway: PropTypes.PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   })).isRequired,
   loading: PropTypes.bool.isRequired,
 };
