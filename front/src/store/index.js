@@ -1,16 +1,19 @@
-// == Import : npm
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
-// == Import : local
-import reducer from 'src/store/reducer';
-import ajaxMiddleware from './ajaxMiddleware';
+import signupMiddleware from 'src/store/middleware/signupMiddleware';
+import loginMiddleware from 'src/store/middleware/loginMiddleware';
+import areaMiddleware from 'src/store/middleware/areaMiddleware';
 
-// == Store
+// on importe le reducer qui combine les autres
+import reducer from './reducer';
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
   applyMiddleware(
-    ajaxMiddleware,
+    signupMiddleware,
+    loginMiddleware,
+    areaMiddleware,
   ),
 );
 
@@ -19,5 +22,4 @@ const store = createStore(
   enhancers,
 );
 
-// == Export
 export default store;

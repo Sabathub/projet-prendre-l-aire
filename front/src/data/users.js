@@ -5,7 +5,7 @@ const users = [
     firstName: 'Kevin',
     lastName: 'Dubuy',
     email: 'kevin.dubuy@gmail.com',
-    imageURL: 'https://react.semantic-ui.com/images/avatar/large/matthew.png',
+    avatar: 'https://react.semantic-ui.com/images/avatar/large/matthew.png',
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const users = [
     firstName: 'firstName2',
     lastName: 'lastName2',
     email: 'user2@email.com',
-    imageURL: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg',
+    avatar: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg',
   },
 ];
 

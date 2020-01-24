@@ -6,9 +6,12 @@
 }
 
 #mapid {
-    height: 60vh;
-    width: 100%;
-    z-index: -100;
+  height: 60vh;
+  width: 100%;
+}
+
+#highwayslist {
+  z-index: 1100;
 }
 
 #geolocalisation {
@@ -16,12 +19,6 @@
     margin: 0.5em 0 0.5em 0;
 }
 
-h1 {
-    font-size: 36px;
-    background-color: $beige;
-    font-weight: bold;
-    border: 1px solid $beige;
-    border-radius: 5px;
-    padding: 1em;
-    margin-bottom: 1.5em;
-} 
+#crosshair {
+  margin: 0 .3em 0 1em;
+}

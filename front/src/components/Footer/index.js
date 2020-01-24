@@ -17,7 +17,7 @@ export default class Footer extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Menu stackable>
+      <Menu stackable id="footer">
         <Menu.Item
           as={Link}
           to="/"
