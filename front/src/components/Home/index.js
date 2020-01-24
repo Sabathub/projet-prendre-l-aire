@@ -4,7 +4,7 @@ import { Accordion, Icon } from 'semantic-ui-react';
 // Import local
 import './home.scss';
 import Maparea from 'src/containers/Maparea';
-import Homesearch from './homesearch';
+import Homesearch from 'src/containers/Home/Homesearch';
 
 
 export default class Home extends Component {

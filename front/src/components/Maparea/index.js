@@ -4,7 +4,7 @@ import {
   Map, TileLayer, Marker, Popup,
 } from 'react-leaflet';
 import {
-  Dimmer, Loader, Segment, Button, Header,
+  Dimmer, Loader, Button, Header,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Maparea = ({
   const position = [lat, lng];
 
   return (
-    <Segment>
+    <>
       {loading && (
       <Dimmer active inverted>
         <Loader inverted content="Chargement" />
@@ -38,7 +38,7 @@ const Maparea = ({
           </Marker>
         ))}
       </Map>
-    </Segment>
+    </>
 
   );
 };
