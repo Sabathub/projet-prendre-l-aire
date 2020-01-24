@@ -7,8 +7,6 @@ const mapStateToProps = (state) => ({
   lat: state.map.position.lat,
   lng: state.map.position.lng,
   zoom: state.map.position.zoom,
-  markerlat: state.map.marker.lat,
-  markerlng: state.map.marker.lng,
   areas: state.map.areas,
   loading: state.map.loading,
 });

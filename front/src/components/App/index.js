@@ -13,8 +13,9 @@ import Footer from 'src/containers/Footer';
 class App extends React.Component {
   componentDidMount() {
     // appel à l'API pour initialiser les données
-    const { fetchAreas } = this.props;
+    const { fetchAreas, fetchHighways } = this.props;
     fetchAreas();
+    fetchHighways();
   }
 
   render() {
@@ -30,6 +31,7 @@ class App extends React.Component {
 
 App.propTypes = {
   fetchAreas: PropTypes.func.isRequired,
+  fetchHighways: PropTypes.func.isRequired,
 };
 
 // == Export

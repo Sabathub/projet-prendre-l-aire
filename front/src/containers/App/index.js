@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import App from 'src/components/App';
 
-import { fetchAreasData } from 'src/store/actions';
+import { fetchAreasData, fetchHighwaysData } from 'src/store/actions';
 
 
 const mapStateToProps = () => ({
@@ -11,6 +11,10 @@ const mapStateToProps = () => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchAreas: () => {
     const action = fetchAreasData();
+    dispatch(action);
+  },
+  fetchHighways: () => {
+    const action = fetchHighwaysData();
     dispatch(action);
   },
 });
