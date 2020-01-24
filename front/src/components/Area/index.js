@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Image, Reveal, Header, Segment } from 'semantic-ui-react';
 import { FaStar, FaRegStar, FaGasPump, FaShoppingCart, FaWifi, FaUtensils, FaAccessibleIcon, FaBaby, FaTableTennis } from 'react-icons/fa';
-import HomeMap from 'src/components/Home/homemap';
+import Maparea from 'src/containers/Maparea';
 
 import './area.scss';
 
@@ -13,7 +13,7 @@ const Area = () => (
     <Grid celled stackable>
       <Grid.Row>
         <Grid.Column width={6}>
-          <HomeMap />
+          <Maparea />
         </Grid.Column>
         <Grid.Column width={9}>
           <FaStar className="stars" /> <FaStar className="stars" /> <FaStar className="stars" /> <FaStar className="stars" /> <FaRegStar className="stars" />

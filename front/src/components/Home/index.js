@@ -1,11 +1,11 @@
 // Import NPM
 import React, { Component } from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
-import { MdMyLocation } from 'react-icons/md';
 // Import local
 import './home.scss';
-import Homesearch from './homesearch.js';
-import HomeMap from './homemap.js';
+import Maparea from 'src/containers/Maparea';
+import Homesearch from './homesearch';
+
 
 export default class Home extends Component {
   state = {
@@ -43,7 +43,7 @@ export default class Home extends Component {
           </Accordion.Content>
         </Accordion>
         <Homesearch />
-        <HomeMap />
+        <Maparea />
       </>
     );
   }

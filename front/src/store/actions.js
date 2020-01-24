@@ -4,6 +4,11 @@ export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
 export const LOG_USER = 'LOG_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const NEW_POSITION = 'NEW_POSITION';
+export const NEW_MARKER = 'NEW_MARKER';
+export const FETCH_AREAS_DATA = 'FETCH_AREAS_DATA';
+export const RECEIVE_AREAS_DATA = 'RECEIVE_AREAS_DATA';
+export const STOP_LOADING = 'STOP_LOADING';
 
 
 // == action creators
@@ -29,4 +34,25 @@ export const logUser = (logged) => ({
 export const logoutUser = (logged) => ({
   type: LOGOUT_USER,
   logged,
+});
+
+export const newPosition = () => ({
+  type: NEW_POSITION,
+});
+
+export const newMarker = () => ({
+  type: NEW_MARKER,
+});
+
+export const fetchAreasData = () => ({
+  type: FETCH_AREAS_DATA,
+});
+
+export const receiveData = (areas) => ({
+  type: RECEIVE_AREAS_DATA,
+  areas,
+});
+
+export const stopLoading = () => ({
+  type: STOP_LOADING,
 });
