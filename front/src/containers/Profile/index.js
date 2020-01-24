@@ -7,8 +7,10 @@ import Profile from 'src/components/Profile';
 // Ici, on gère les datas
 const mapStateToProps = (state) => {
   return {
-    username: state.user.username,
-    email: state.user.email,
+    // username: state.user.username,
+    // email: state.user.email,
+    email: state.form.email,
+    username: 'Username à mettre en dynamique',
   };
 };
 

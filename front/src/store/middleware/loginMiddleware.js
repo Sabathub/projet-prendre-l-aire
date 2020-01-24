@@ -18,7 +18,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         // Dispatch d'une action pour changer le user
         // store.dispatch(changeUserName(response.data));
           console.log('Response', response);
-          store.dispatch(logUser(response.data.logged, response.data.redirection));
+          store.dispatch(logUser(response.data.logged));
         })
       // Erreur
         .catch((error) => {

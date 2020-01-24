@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 import './signup.scss';
 
 const Signup = ({
-  usernameValue, emailValue, passwordValue, passwordVerifyValue, changeInputValue, newUser, redirection,
+  usernameValue, emailValue, passwordValue, passwordVerifyValue, changeInputValue, newUser, logged,
 }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
@@ -20,7 +20,7 @@ const Signup = ({
     newUser();
   };
 
-  if (redirection) {
+  if (logged) {
     // Affichage de la redirection
     return <Redirect to="/" />;
   }
@@ -102,7 +102,7 @@ Signup.propTypes = {
   passwordVerifyValue: PropTypes.string.isRequired,
   changeInputValue: PropTypes.func.isRequired,
   newUser: PropTypes.func.isRequired,
-  redirection: PropTypes.bool.isRequired,
+  logged: PropTypes.bool.isRequired,
 };
 
 export default Signup;

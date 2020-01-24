@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
   emailValue: state.form.email,
   passwordValue: state.form.password,
   passwordVerifyValue: state.form.passwordVerify,
-  redirection: state.user.redirection,
+  logged: state.user.logged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

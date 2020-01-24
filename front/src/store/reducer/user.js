@@ -12,7 +12,6 @@ const initialState = {
   email: '',
   password: '',
   logged: false,
-  redirection: false,
 };
 
 
@@ -23,13 +22,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: true,
-        redirection: true,
       };
     case LOGOUT_USER:
       return {
         ...state,
         logged: false,
-        redirection: false,
       };
 
     default: return state;

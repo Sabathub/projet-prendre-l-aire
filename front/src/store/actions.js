@@ -21,14 +21,12 @@ export const doLogin = () => ({
   type: DO_LOGIN,
 });
 
-export const logUser = (logged, redirection) => ({
+export const logUser = (logged) => ({
   type: LOG_USER,
   logged,
-  redirection,
 });
 
-export const logoutUser = (logged, redirection) => ({
+export const logoutUser = (logged) => ({
   type: LOGOUT_USER,
   logged,
-  redirection,
 });

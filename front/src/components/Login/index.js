@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 import './login.scss';
 
-const Login = ({ emailValue, passwordValue, changeInputValue, doConnect, redirection }) => {
+const Login = ({ emailValue, passwordValue, changeInputValue, doConnect, logged }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
     const fieldName = evt.target.id;
@@ -18,7 +18,7 @@ const Login = ({ emailValue, passwordValue, changeInputValue, doConnect, redirec
     doConnect();
   };
 
-  if (redirection) {
+  if (logged) {
     // Affichage de la redirection
     return <Redirect to="/" />;
   }
@@ -69,7 +69,7 @@ Login.propTypes = {
   passwordValue: PropTypes.string.isRequired,
   changeInputValue: PropTypes.func.isRequired,
   doConnect: PropTypes.func.isRequired,
-  redirection: PropTypes.bool.isRequired,
+  logged: PropTypes.bool.isRequired,
 };
 
 export default Login;

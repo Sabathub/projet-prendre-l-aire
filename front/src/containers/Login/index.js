@@ -8,7 +8,7 @@ import { changeInput, doLogin } from 'src/store/actions';
 const mapStateToProps = (state) => ({
   emailValue: state.form.email,
   passwordValue: state.form.password,
-  redirection: state.user.redirection,
+  logged: state.user.logged,
 });
 
 const mapDispatchToProps = (dispatch) => ({
