@@ -9,6 +9,8 @@ const mapStateToProps = (state) => ({
   zoom: state.map.position.zoom,
   markerlat: state.map.marker.lat,
   markerlng: state.map.marker.lng,
+  areas: state.map.areas,
+  loading: state.map.loading,
 });
 
 const mapDispatchToProps = () => ({

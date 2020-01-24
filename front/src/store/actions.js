@@ -49,11 +49,13 @@ export const fetchAreasData = () => ({
   type: FETCH_AREAS_DATA,
 });
 
+
 export const fetchHighwaysData = () => ({
   type: FETCH_HIGHWAYS_DATA,
 });
 
-export const receiveData = (areas) => ({
+
+export const receiveAreasData = (areas) => ({
   type: RECEIVE_AREAS_DATA,
   areas,
 });
