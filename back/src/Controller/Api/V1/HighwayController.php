@@ -24,7 +24,7 @@ class HighwayController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/{id}", name="show", requirements={"id": "\d+"}, methods={"GET"})
      */
     public function show(Highway $highway, SerializerInterface $serializer)
     {

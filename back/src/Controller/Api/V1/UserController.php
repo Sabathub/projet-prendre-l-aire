@@ -20,7 +20,7 @@ class UserController extends AbstractController
 {
     /**
      * Show single user's information
-     * @Route("/{username}", name="show", requirements={"id": "\d+"}, methods={"GET"})
+     * @Route("/{username}", name="show", methods={"GET"})
      */
     public function show(User $user, SerializerInterface $serializer)
     {
@@ -78,7 +78,7 @@ class UserController extends AbstractController
 
      /**
       * Change user datas (email or username)
-     * @Route("/{id}/edit", name="edit", methods="PATCH")
+     * @Route("/{id}/edit", name="edit", requirements={"id": "\d+"}, methods="PATCH")
      */
     public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -110,7 +110,7 @@ class UserController extends AbstractController
    
      /**
       * Change the password
-     * @Route("/{id}/edit/password", name="edit_password", methods="PUT")
+     * @Route("/{id}/edit/password", name="edit_password", requirements={"id": "\d+"}, methods="PUT")
      */
     public function editPassword(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -151,7 +151,7 @@ class UserController extends AbstractController
 
     /**
      * Delete a user
-     * @Route("/{id}/delete", name="delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
     public function delete(User $user)
     {
