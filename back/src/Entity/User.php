@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -47,6 +48,7 @@ class User implements UserInterface
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
+     * @Assert\Type(type={"alnum"})
      */
     private $username;
 
@@ -76,12 +78,10 @@ class User implements UserInterface
         return $this->id;
     }
 
-    /**
-     * @SerializedName("username")
-     */
+  
     public function getEmail(): ?string
     {
-        return $this->username;
+        return $this->email;
     }
 
     public function setEmail(string $email): self
@@ -95,11 +95,10 @@ class User implements UserInterface
      * A visual identifier that represents this user.
      *
      * @see UserInterface
-     * @SerializedName("email")
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
     /**

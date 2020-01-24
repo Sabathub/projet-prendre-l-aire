@@ -20,7 +20,7 @@ class UserController extends AbstractController
 {
     /**
      * Show single user's information
-     * @Route("/{id}", name="show", requirements={"id": "\d+"}, methods={"GET"})
+     * @Route("/{username}", name="show", requirements={"id": "\d+"}, methods={"GET"})
      */
     public function show(User $user, SerializerInterface $serializer)
     {
