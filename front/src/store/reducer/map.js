@@ -9,8 +9,8 @@ import {
 // --- initial state
 const initialState = {
   position: {
-    lat: 46.1314298,
-    lng: 1.5424725,
+    lat: '46.1314298',
+    lng: '1.5424725',
     zoom: 5,
   },
 
@@ -20,6 +20,7 @@ const initialState = {
   },
 
   areas: [],
+  loading: true,
 };
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
