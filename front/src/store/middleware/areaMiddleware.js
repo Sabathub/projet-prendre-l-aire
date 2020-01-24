@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { FETCH_AREAS_DATA, FETCH_HIGHWAYS_DATA receiveAreasData, stopLoading  } from '../actions';
+import {
+  FETCH_AREAS_DATA,
+  FETCH_HIGHWAYS_DATA,
+  receiveAreasData,
+  stopLoading,
+} from '../actions';
 
 
 const areaMiddleware = (store) => (next) => (action) => {
@@ -24,9 +29,9 @@ const areaMiddleware = (store) => (next) => (action) => {
 
     case FETCH_HIGHWAYS_DATA:
       // appel axios
-      axios.get('https://raw.githubusercontent.com/raywenderlich/recipes/master/Recipes.json')
+      axios.get('http://54.85.18.78/projet-prendre-l-aire/back/public/index.php/api/v1/highways/')
         .then((response) => {
-          const receiveDataAction = receiveData(response.data);
+          const receiveDataAction = receiveAreasData(response.data);
           store.dispatch(receiveDataAction);
         })
         .catch((error) => {

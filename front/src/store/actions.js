@@ -10,7 +10,7 @@ export const FETCH_AREAS_DATA = 'FETCH_AREAS_DATA';
 export const FETCH_HIGHWAYS_DATA = 'FETCH_HIGHWAYS_DATA';
 export const RECEIVE_AREAS_DATA = 'RECEIVE_AREAS_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
-
+export const CHANGE_INDEX = 'CHANGE_INDEX';
 
 // == action creators
 export const changeInput = (value, name) => ({
@@ -62,4 +62,9 @@ export const receiveAreasData = (areas) => ({
 
 export const stopLoading = () => ({
   type: STOP_LOADING,
+});
+
+export const changeIndex = (activeIndex) => ({
+  type: CHANGE_INDEX,
+  activeIndex,
 });
