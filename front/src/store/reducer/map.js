@@ -20,7 +20,11 @@ const initialState = {
   },
 
   areas: [],
+
+  highways: [],
+
   loading: true,
+
 };
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {

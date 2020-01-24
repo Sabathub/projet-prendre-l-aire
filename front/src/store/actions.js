@@ -7,6 +7,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const NEW_POSITION = 'NEW_POSITION';
 export const NEW_MARKER = 'NEW_MARKER';
 export const FETCH_AREAS_DATA = 'FETCH_AREAS_DATA';
+export const FETCH_HIGHWAYS_DATA = 'FETCH_HIGHWAYS_DATA';
 export const RECEIVE_AREAS_DATA = 'RECEIVE_AREAS_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
 
@@ -47,6 +48,12 @@ export const newMarker = () => ({
 export const fetchAreasData = () => ({
   type: FETCH_AREAS_DATA,
 });
+
+
+export const fetchHighwaysData = () => ({
+  type: FETCH_HIGHWAYS_DATA,
+});
+
 
 export const receiveAreasData = (areas) => ({
   type: RECEIVE_AREAS_DATA,

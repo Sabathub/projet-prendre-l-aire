@@ -5,11 +5,9 @@ import Header from 'src/components/Header';
 import { logoutUser } from 'src/store/actions';
 
 
-const mapStateToProps = (state) => {
-  return {
-    logged: state.user.logged,
-  };
-};
+const mapStateToProps = (state) => ({
+  logged: state.user.logged,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   disconnect: () => {
