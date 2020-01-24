@@ -4,7 +4,7 @@ import {
   Map, TileLayer, Marker, Popup,
 } from 'react-leaflet';
 import {
-  Dimmer, Loader, Segment, Button,
+  Dimmer, Loader, Segment, Button, Header,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -31,8 +31,8 @@ const Maparea = ({
         {!loading && areas.map((area) => (
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
-            Nom de l'aire : {area.name} <br />
-            Nom de l'autoroute : {area.highway.name} <br />
+              <Header as="h3">{area.name}</Header>
+              <p className="direction">{area.highway.name} > {area.direction}</p>
               <Button as={Link} to="/areas" size="mini" color="teal">Fiche détaillée</Button>
             </Popup>
           </Marker>

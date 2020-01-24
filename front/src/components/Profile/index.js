@@ -23,14 +23,14 @@ const Profile = ({
             <p>{email}</p>
           </Grid.Column>
           <Grid.Column width={4} textAlign="center">
-            <Button animated color="red">
-              <Button.Content visible>Modifier mon profil</Button.Content>
+            <Button animated color="teal">
+              <Button.Content visible>Modifiez mon profil</Button.Content>
               <Button.Content hidden>
                 <Icon name="pencil alternate" />
               </Button.Content>
             </Button>
-            <Button animated color="teal">
-              <Button.Content visible>Supprimer mon compte</Button.Content>
+            <Button animated color="red">
+              <Button.Content visible>Supprimez mon compte</Button.Content>
               <Button.Content hidden>
                 <Icon name="trash" />
               </Button.Content>
