@@ -20,6 +20,7 @@ const initialState = {
   },
 
   areas: [],
+  loading: true,
 };
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
