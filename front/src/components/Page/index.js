@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
-
 import Home from 'src/containers/Home';
 import Signup from 'src/containers/Signup';
 import Login from 'src/containers/Login';
