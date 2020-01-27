@@ -17,7 +17,7 @@ const Page = ({ logged }) => (
     <Route exact path="/">
       <Home />
     </Route>
-    <Route path="/areas/:id">
+    <Route path="/areas/:slug">
       <Area />
     </Route>
     <Route path="/signup">
