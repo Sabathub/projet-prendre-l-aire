@@ -40,7 +40,7 @@ class RegisterController extends AbstractController
 
             // get plain password 
             $plainPassword = $user->getPassword();
-
+            $currentEmail = $user->getEmail();
             // encode password
             $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
 
@@ -51,10 +51,12 @@ class RegisterController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
-            // return JSON
-            $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
-            return $this->json($data);
+            //$datatest = $request->request->all();
+            //$ouf = json_encode($datatest);
+            //dd($ouf);
+            //dd($request->request->all());
+            return $this->redirectToRoute('api_login_check', ["email"=> $currentEmail, "password"=> $plainPassword]);
+            
         }
 
         // return JSON if not a success
