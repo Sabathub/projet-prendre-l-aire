@@ -7,13 +7,14 @@ import {
   Dimmer, Loader, Button, Header,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import slugify from 'slugify';
 import LocateControl from './locatecontrol';
 
 
 import './maparea.scss';
 
 const Maparea = ({
-  lat, lng, zoom, areas, loading,
+  lat, lng, zoom, areas, loading, areaData,
 }) => {
   const position = [lat, lng];
 
@@ -41,7 +42,7 @@ const Maparea = ({
             <Popup>
               <p className="popup-area-name">{area.name}</p>
               <p className="direction">{area.highway.name} > {area.direction}</p>
-              <Button as={Link} to={'/areas/' + area.id} size="mini" color="teal">Fiche détaillée</Button>
+              <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
             </Popup>
           </Marker>
         ))}
