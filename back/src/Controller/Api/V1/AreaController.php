@@ -21,7 +21,7 @@ class AreaController extends AbstractController
     public function list(AreaRepository $areaRepository, SerializerInterface $serializer)
     {
         $areas = $areaRepository->findAll();
-        $data = $serializer->normalize($areas, null, ['groups' => 'api_v1']);
+        $data = $serializer->normalize($areas, null, ['groups' => 'api_v1_areas']);
         return $this->json($data);
     }
 
@@ -30,7 +30,7 @@ class AreaController extends AbstractController
      */
     public function show(Area $area, SerializerInterface $serializer)
     {
-        $data = $serializer->normalize($area, null, ['groups' => 'api_v1']);
+        $data = $serializer->normalize($area, null, ['groups' => 'api_v1_areas']);
         return $this->json($data);
     }
 }

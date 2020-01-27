@@ -18,13 +18,13 @@ class GasType
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $name;
 
