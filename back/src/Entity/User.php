@@ -49,7 +49,6 @@ class User implements UserInterface
      * @Groups("api_v1")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
-     * @Assert\Type(type={"alnum"})
      */
     private $username;
 
@@ -79,10 +78,12 @@ class User implements UserInterface
         return $this->id;
     }
 
-  
+    /**
+     * @SerializedName("username")
+     */
     public function getEmail(): ?string
     {
-        return $this->email;
+        return $this->username;
     }
 
     public function setEmail(string $email): self
@@ -96,10 +97,18 @@ class User implements UserInterface
      * A visual identifier that represents this user.
      *
      * @see UserInterface
+     * @SerializedName("email")
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string) $this->email;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
@@ -151,13 +160,6 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface

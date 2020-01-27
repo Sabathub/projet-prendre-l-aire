@@ -2,9 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
-use App\Entity\User;
 use App\Form\EditPasswordType;
-use App\Form\UserType;
 use App\Form\EditUserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,74 +12,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/api/v1/users", name="api_v1_users_")
+ * @Route("/api/v1/secured/users", name="api_v1_secured_users_")
  */
 class UserController extends AbstractController
 {
     /**
      * Show single user's information
-     * @Route("/{username}", name="show", methods={"GET"})
+     * @Route("/profile", name="show", methods={"GET"})
      */
-    public function show(User $user, SerializerInterface $serializer)
+    public function show(SerializerInterface $serializer)
     {
+        // get the current user connected with the Jwt Token
+        $user = $this->getUser();
+
         // return single user's informations in JSON
         $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
         return $this->json($data);
     }
 
-    /**
-     * Create a new user
-     * @Route("/register", name="register", methods={"POST"})
-     */
-    public function register(Request $request, SerializerInterface $serializer, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
-        // first action we get the Json content
-        $newUser = $request->getContent();
-
-        // then decode Json
-        $data = json_decode($newUser, true);
-
-        // and replace this into the request with parameters in array shape
-        $request->request->replace(is_array($data) ? $data : array());
-
-        // second action is to create a new object user and a UserType form associated that we fill with the request
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user, ['csrf_protection' => false]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            // attribute role user
-            $user->setRoles(['ROLE_USER']);
-            
-            // get plain password 
-            $plainPassword = $user->getPassword();
-
-            // encode password
-            $encodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
-            
-            // replace plain password by the hashed password
-            $user->setPassword($encodedPassword);
-
-            // save in database
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // return JSON
-            return $this->json('user registered');
-        }
-
-        // return JSON if not a success
-        return $this->json('failed to register');
-    }
-
      /**
       * Change user datas (email or username)
-     * @Route("/{id}/edit", name="edit", requirements={"id": "\d+"}, methods="PATCH")
+     * @Route("/edit", name="edit", requirements={"id": "\d+"}, methods="PATCH")
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function edit(Request $request): Response
     {
+        // get the current user connected with the Jwt Token
+        $user = $this->getUser();
+
         // first action we get the Json content
         $editUser = $request->getContent();
 
@@ -93,7 +50,7 @@ class UserController extends AbstractController
         
         // second action is to create a EditUserType form (PATCH method to be able to change username and/or email) associated that we fill with the request
         $form = $this->createForm(EditUserType::class, $user, ['method' => 'PATCH', 'csrf_protection' => false]);
-        $form->handleRequest($request);      
+        $form->handleRequest($request);    
 
         if ($form->isSubmitted() && $form->isValid()) {
             
@@ -110,10 +67,13 @@ class UserController extends AbstractController
    
      /**
       * Change the password
-     * @Route("/{id}/edit/password", name="edit_password", requirements={"id": "\d+"}, methods="PUT")
+     * @Route("/edit/password", name="edit_password", requirements={"id": "\d+"}, methods="PUT")
      */
-    public function editPassword(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function editPassword(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        // get the current user connected with the Jwt Token
+        $user = $this->getUser();
+
         // first action we get the Json content
         $editPwd = $request->getContent();
 
@@ -151,10 +111,13 @@ class UserController extends AbstractController
 
     /**
      * Delete a user
-     * @Route("/{id}/delete", name="delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/delete", name="delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
-    public function delete(User $user)
+    public function delete()
     {
+        // get the current user connected with the Jwt Token
+        $user = $this->getUser();
+
         // we find the user by the id and remove it
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
@@ -162,7 +125,6 @@ class UserController extends AbstractController
 
         // return JSON 
         return $this->json('user deleted');
-
     }
    
 }
