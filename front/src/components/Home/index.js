@@ -26,7 +26,6 @@ export default class Home extends Component {
     return (
       <>
         {/* // Composant Accordéon de Semantic UI pour la description */}
-        <h1>Page d'accueil</h1>
         <Accordion fluid styled id="description">
           <Accordion.Title
             active={activeIndex === 0}

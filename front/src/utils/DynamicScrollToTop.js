@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const DynamicScrollToTop = (props) => {
   useEffect(() => {
-    console.log(props);
     // Keep default behavior of restoring scroll position when user:
     // - clicked back button
     // - clicked on a link that programmatically calls `history.goBack()`
@@ -14,6 +14,7 @@ const DynamicScrollToTop = (props) => {
     }
     // In all other cases, check fragment/scroll to top
     const { hash } = props.location;
+
     if (hash) {
       const element = document.querySelector(hash);
       if (element) {
@@ -28,6 +29,11 @@ const DynamicScrollToTop = (props) => {
   return (
     <div />
   );
+};
+
+DynamicScrollToTop.propTypes = {
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default withRouter(DynamicScrollToTop);

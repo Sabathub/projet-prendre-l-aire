@@ -15,6 +15,8 @@ const Homesearch = ({
     value: highway.name,
   }));
 
+  console.log(highways);
+
   return (
     <>
       {loading && (
