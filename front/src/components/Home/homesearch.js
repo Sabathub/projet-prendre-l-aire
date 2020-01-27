@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Dropdown, Menu, Button, Dimmer, Loader,
+  Dropdown, Dimmer, Loader,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -24,18 +24,13 @@ const Homesearch = ({
         <Loader inverted content="Chargement" />
       </Dimmer>
       )}
-      <Menu secondary>
-        <Dropdown
-          placeholder="Selectionner une autoroute"
-          fluid
-          selection
-          options={areaOptions}
-          id="highwayslist"
-        />
-        <Menu.Menu position="right">
-          <Button id="crosshair" icon="crosshairs" color="teal" title="Trouver les aires à proximité de ma position" />
-        </Menu.Menu>
-      </Menu>
+      <Dropdown
+        placeholder="Selectionner une autoroute"
+        fluid
+        selection
+        options={areaOptions}
+        id="highwayslist"
+      />
     </>
   );
 };
