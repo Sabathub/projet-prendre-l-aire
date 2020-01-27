@@ -28,14 +28,16 @@ export const doLogin = () => ({
   type: DO_LOGIN,
 });
 
-export const logUser = (logged) => ({
+export const logUser = (logged, token) => ({
   type: LOG_USER,
   logged,
+  token,
 });
 
-export const logoutUser = (logged) => ({
+export const logoutUser = (logged, token) => ({
   type: LOGOUT_USER,
   logged,
+  token,
 });
 
 export const fetchAreasData = () => ({
