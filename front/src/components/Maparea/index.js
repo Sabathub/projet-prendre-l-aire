@@ -7,6 +7,7 @@ import {
   Dimmer, Loader, Button, Header,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import LocateControl from './locatecontrol';
 
 
 import './maparea.scss';
@@ -15,6 +16,13 @@ const Maparea = ({
   lat, lng, zoom, areas, loading,
 }) => {
   const position = [lat, lng];
+
+  const locateOptions = {
+    position: 'topright',
+    strings: {
+      title: 'Show me where I am, yo!',
+    },
+  };
 
   return (
     <>
@@ -37,6 +45,7 @@ const Maparea = ({
             </Popup>
           </Marker>
         ))}
+        <LocateControl options={locateOptions} startDirectly />
       </Map>
     </>
 
