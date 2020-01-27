@@ -7,6 +7,7 @@ import './app.scss';
 import Header from 'src/containers/Header';
 import Page from 'src/containers/Page';
 import Footer from 'src/containers/Footer';
+import DynamicScrollToTop from 'src/utils/DynamicScrollToTop';
 
 
 // == Composant
@@ -21,6 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="app">
+        <DynamicScrollToTop />
         <Header />
         <Page />
         <Footer />
