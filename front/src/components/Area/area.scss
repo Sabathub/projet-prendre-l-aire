@@ -37,6 +37,11 @@
   margin: 0 auto 1em;
 }
 
+#rating {
+  font-size: .8em;
+  margin-top: .5em;
+}
+
 h3.ui.header {
   color: white;
 }
@@ -61,4 +66,12 @@ h3.ui.header {
 .iconlabelled {
   margin: .3em .5em;
   flex: 0 28%;
+}
+
+.carousel .slide {
+  background-color: white;
+}
+
+.carousel.carousel-slider .control-arrow {
+  color: teal;
 }

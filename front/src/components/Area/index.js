@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-  Grid, Image, Reveal, Header, Segment, Rating,
+  Grid, Image, Header, Segment, Rating,
 } from 'semantic-ui-react';
 import {
-  FaGasPump, FaShoppingCart, FaWifi, FaUtensils, FaAccessibleIcon, FaBaby, FaTableTennis,
+  FaGasPump, FaShoppingCart, FaWifi, FaUtensils, FaAccessibleIcon, FaBaby,
 } from 'react-icons/fa';
 import Zoomarea from 'src/containers/Zoomarea';
+// import Carousel component
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 
 import './area.scss';
-
-const square = { width: 3, height: 1 };
 
 const Area = () => (
   <>
@@ -19,12 +20,13 @@ const Area = () => (
 
     <Grid centered stackable>
       <Grid.Row>
-        <Grid.Column width={6}>
+        <Grid.Column width={5}>
           <Zoomarea />
         </Grid.Column>
-        <Grid.Column width={4} textAlign="center" verticalAlign="middle">
+        <Grid.Column width={5} textAlign="center" verticalAlign="middle">
           <Segment basic>
-            <Rating icon="star" defaultRating={3} maxRating={5} />
+            <Rating icon="star" defaultRating={3} maxRating={5} disabled />
+            <p id="rating">Note moyenne de 12 avis utilisateurs</p>
           </Segment>
           <Segment>
             <p id="highway">Autoroute A10</p>
@@ -83,6 +85,25 @@ const Area = () => (
           </Segment>
         </Grid.Column>
       </Grid.Row>
+      <Grid.Row>
+        <Grid.Column width={8} textAlign="center">
+          <Segment className="services">
+            <Header as="h3">Galerie d'images</Header>
+          </Segment>
+          <Carousel infiniteLoop useKeyboardArrows dynamicHeight>
+            <div>
+              <img alt="image1" src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
+            </div>
+            <div>
+              <img alt="image2" src="https://images.unsplash.com/photo-1580125311881-fd485603cc42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
+            </div>
+            <div>
+              <img alt="image3" src="https://images.unsplash.com/photo-1580125350380-ee0d38f38a0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
+            </div>
+          </Carousel>
+        </Grid.Column>
+      </Grid.Row>
+
     </Grid>
   </>
 );
