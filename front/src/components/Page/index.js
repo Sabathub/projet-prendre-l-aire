@@ -17,7 +17,7 @@ const Page = ({ logged }) => (
     <Route exact path="/">
       <Home />
     </Route>
-    <Route path="/areas"> {/* // <= Ajouter le slug dans l'url */}
+    <Route path="/areas/:id">
       <Area />
     </Route>
     <Route path="/signup">

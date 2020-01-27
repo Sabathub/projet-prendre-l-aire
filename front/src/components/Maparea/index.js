@@ -20,7 +20,7 @@ const Maparea = ({
   const locateOptions = {
     position: 'topright',
     strings: {
-      title: 'Show me where I am, yo!',
+      title: 'Montre moi les aires d\'autoroute à proximité de ma postition',
     },
   };
 
@@ -41,7 +41,7 @@ const Maparea = ({
             <Popup>
               <Header as="h3">{area.name}</Header>
               <p className="direction">{area.highway.name} > {area.direction}</p>
-              <Button as={Link} to="/areas" size="mini" color="teal">Fiche détaillée</Button>
+              <Button as={Link} to={'/areas/' + area.id} size="mini" color="teal">Fiche détaillée</Button>
             </Popup>
           </Marker>
         ))}
