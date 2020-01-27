@@ -13,11 +13,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 /**
-* @Route("/api/v1/comments", name="api_v1_comments_")
+* @Route("/api/v1/secured/comments", name="api_v1_secured_comments_")
 */
 class CommentController extends AbstractController
 {
     /**
+     * show all comments
      * @Route("/", name="list", methods={"GET"})
      */
     public function list(CommentRepository $commentRepository, SerializerInterface $serializer)
@@ -28,6 +29,7 @@ class CommentController extends AbstractController
     }
 
     /**
+     * Show comments by id
      * @Route("/{id}", name="show", requirements={"id": "\d+"}, methods={"GET"})
      */
     public function show(Comment $comment, SerializerInterface $serializer)
@@ -57,15 +59,15 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() ) {
-
+            // if the user actually fill the picture data, then we upload it
             if ($form['picture']->getData() !== null) {
                 // upload of the picture 
                 $fileName = $imageUploader->moveFile($form['picture']->getData(), 'images');
                 $comment->setPicture($fileName);
             }
             
+            // if the user fill the rate data, then we set it
             if ($form['rate']->getData() !== null) {
-            
                 $comment->setRate($form['rate']->getData());
             }
 
@@ -79,8 +81,8 @@ class CommentController extends AbstractController
             $data = $serializer->normalize($comment, null, ['groups' => 'api_v1_comment']);
             return $this->json($data);
         }
-        
-        throw new \Exception('Form invalid');
+
+        return $this->json('Form invalid');
     }
 }
 

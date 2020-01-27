@@ -157,6 +157,9 @@ class Comment
         return $this;
     }
 
+    /**
+     * @Groups("api_v1")
+     */
     public function getUser(): ?User
     {
         return $this->user;
