@@ -14,7 +14,7 @@ import LocateControl from './locatecontrol';
 import './maparea.scss';
 
 const Maparea = ({
-  lat, lng, zoom, areas, loading, areaData,
+  lat, lng, zoom, areas, loading,
 }) => {
   const position = [lat, lng];
 
