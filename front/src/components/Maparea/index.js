@@ -41,7 +41,7 @@ const Maparea = ({
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
               <Header as="h3">{area.name}</Header>
-              <p className="direction">{area.highway.name} > {area.direction}</p>
+              <p className="direction">{area.destinations.highways.name} > {area.destinations.name}</p>
               <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
             </Popup>
           </Marker>
@@ -59,12 +59,45 @@ Maparea.propTypes = {
   zoom: PropTypes.number.isRequired,
   areas: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    zipcode: PropTypes.number.isRequired,
+    city: PropTypes.string.isRequired,
+    kilometers: PropTypes.string.isRequired,
     latitude: PropTypes.string.isRequired,
     longitude: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    highway: PropTypes.PropTypes.shape({
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      rate: PropTypes.number.isRequired,
+    })).isRequired,
+    gasstation: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
     }).isRequired,
+    gasprices: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      price: PropTypes.string.isRequired,
+      gastype: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
+    restaurants: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    services: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    destinations: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      highways: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
   })).isRequired,
   loading: PropTypes.bool.isRequired,
 };

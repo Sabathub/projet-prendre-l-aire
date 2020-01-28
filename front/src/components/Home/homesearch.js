@@ -39,11 +39,14 @@ Homesearch.propTypes = {
   highways: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    /* areas: PropTypes.PropTypes.shape({
+    areas: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      direction: PropTypes.string.isRequired,
-    }).isRequired, */
+    })).isRequired,
+    highways: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   })).isRequired,
   loading: PropTypes.bool.isRequired,
 };

@@ -92,21 +92,17 @@ const Area = ({ areaData, loading, found }) => (
 
 Area.propTypes = {
   areaData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     zipcode: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
     kilometers: PropTypes.string.isRequired,
-    direction: PropTypes.string.isRequired,
     comments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
       rate: PropTypes.number.isRequired,
     })).isRequired,
     gasstation: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    highway: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
     }).isRequired,
@@ -125,6 +121,14 @@ Area.propTypes = {
     services: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
+    })).isRequired,
+    destinations: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      highways: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
     })).isRequired,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
