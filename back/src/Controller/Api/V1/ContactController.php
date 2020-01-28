@@ -45,7 +45,7 @@ class ContactController extends AbstractController
             // send message
             $mailer->send($message);
 
-            return $this->json('mail envoyé');
+            return $this->json('mail sent');
         }
         
         return $this->json('failed to send the message');
