@@ -53,8 +53,7 @@ class RegisterController extends AbstractController
             $entityManager->flush();
 
             // return JSON
-            $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
-            return $this->json($data);
+            return $this->json('user registered');
         }
 
         // return JSON if not a success
