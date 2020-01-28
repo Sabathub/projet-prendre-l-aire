@@ -17,6 +17,9 @@ import {
   FaBaby,
 } from 'react-icons/fa';
 import Zoomarea from 'src/containers/Zoomarea';
+// import Carousel component
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 
 
 import './area.scss';
@@ -31,7 +34,7 @@ const Area = ({ areaData, loading, found }) => (
           <Header as="h2">{areaData.name}</Header>
         </Segment>
 
-        <Grid centered stackable>
+    <Grid centered stackable>
           <Grid.Row>
             <Grid.Column width={6}>
               <Zoomarea />
