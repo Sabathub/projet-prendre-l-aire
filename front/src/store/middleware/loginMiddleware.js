@@ -9,7 +9,7 @@ const loginMiddleware = (store) => (next) => (action) => {
       // console.log(user);
 
       // Ouvrir une connexion avec le serveur
-      axios.post('http://54.85.18.78/projet-prendre-l-aire/back/public/index.php/api/v1/login_check', {
+      axios.post('http://54.85.18.78/api/v1/login_check', {
         email: (store.getState().form.email),
         password: (store.getState().form.password),
       })

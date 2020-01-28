@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { DO_SIGNUP, logUser } from 'src/store/actions';
+import { DO_SIGNUP, submitUser } from 'src/store/actions';
 
 const signupMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -15,7 +15,7 @@ const signupMiddleware = (store) => (next) => (action) => {
       console.log(user);
 
       // Ouvrir une connexion avec le serveur
-      axios.post('http://54.85.18.78/projet-prendre-l-aire/back/public/index.php/api/v1/register', {
+      axios.post('http://54.85.18.78/api/v1/register', {
         user,
       })
       // succès
@@ -23,7 +23,8 @@ const signupMiddleware = (store) => (next) => (action) => {
         // Dispatch d'une action pour changer le user
         // store.dispatch(changeUserName(response.data));
           console.log('Response', response);
-          store.dispatch(logUser(response.data.logged));
+          store.dispatch(submitUser(response.data.submited));
+          alert('Félicitations, votre inscription a été validée. Vous pouvez à présent vous connecter :)');
         })
       // Erreur
         .catch((error) => {
