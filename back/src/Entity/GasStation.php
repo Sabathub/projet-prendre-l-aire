@@ -43,6 +43,11 @@ class GasStation
      */
     private $areas;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $brandPicture;
+
     public function __construct()
     {
         $this->areas = new ArrayCollection();
@@ -117,6 +122,18 @@ class GasStation
                 $area->setGasStation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBrandPicture(): ?string
+    {
+        return $this->brandPicture;
+    }
+
+    public function setBrandPicture(?string $brandPicture): self
+    {
+        $this->brandPicture = $brandPicture;
 
         return $this;
     }

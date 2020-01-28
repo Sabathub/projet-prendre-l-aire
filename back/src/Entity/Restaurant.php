@@ -43,6 +43,11 @@ class Restaurant
      */
     private $areas;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $brandPicture;
+
     public function __construct()
     {
         $this->areas = new ArrayCollection();
@@ -113,6 +118,18 @@ class Restaurant
         if ($this->areas->contains($area)) {
             $this->areas->removeElement($area);
         }
+
+        return $this;
+    }
+
+    public function getBrandPicture(): ?string
+    {
+        return $this->brandPicture;
+    }
+
+    public function setBrandPicture(?string $brandPicture): self
+    {
+        $this->brandPicture = $brandPicture;
 
         return $this;
     }
