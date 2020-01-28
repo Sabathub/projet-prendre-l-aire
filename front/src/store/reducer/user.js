@@ -2,6 +2,7 @@
 
 // --- action types
 import {
+  SUBMIT_USER,
   LOG_USER,
   LOGOUT_USER,
 } from '../actions';
@@ -12,6 +13,7 @@ const initialState = {
   username: '',
   email: '',
   password: '',
+  submited: false,
   logged: false,
 };
 
@@ -19,6 +21,11 @@ const initialState = {
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SUBMIT_USER:
+      return {
+        ...state,
+        submited: true,
+      };
     case LOG_USER:
       return {
         ...state,
