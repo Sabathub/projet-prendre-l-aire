@@ -4,7 +4,7 @@ import {
   Map, TileLayer, Marker, Popup,
 } from 'react-leaflet';
 import {
-  Dimmer, Loader, Button, Header,
+  Dimmer, Loader, Button,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import slugify from 'slugify';
@@ -41,7 +41,7 @@ const Maparea = ({
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
               <p className="popup-area-name">{area.name}</p>
-              <p className="direction">{area.destinations.highways.name} > {area.destinations.name}</p>
+              <p className="direction">{area.destinations.name}  {area.destinations.name}</p>
 
               <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
             </Popup>
@@ -61,7 +61,7 @@ Maparea.propTypes = {
   areas: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    zipcode: PropTypes.number.isRequired,
+    zipCode: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
     kilometers: PropTypes.string.isRequired,
     latitude: PropTypes.string.isRequired,
@@ -71,14 +71,14 @@ Maparea.propTypes = {
       description: PropTypes.string.isRequired,
       rate: PropTypes.number.isRequired,
     })).isRequired,
-    gasstation: PropTypes.shape({
+    /* gasStation: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-    }).isRequired,
-    gasprices: PropTypes.arrayOf(PropTypes.shape({
+    }).isRequired, */
+    gasPrices: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       price: PropTypes.string.isRequired,
-      gastype: PropTypes.shape({
+      gasType: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
       }).isRequired,

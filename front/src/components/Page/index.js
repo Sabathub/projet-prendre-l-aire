@@ -32,16 +32,21 @@ const Page = ({ logged }) => (
     <Route path="/contact">
       <Contact />
     </Route>
-    {/* Switch => on s'arrête à la première route qui a "path" qui correspond à l'URL. La ligne suivante protège toutes nos routes privées */}
+    {/* Switch => on s'arrête à la première route qui a "path" qui correspond à l'URL.
+      La ligne suivante protège toutes nos routes privées */}
     {!logged && <Redirect to="/" />}
-    {/* "logged &&" est important ici, sinon l'utilisateur non connecté a accès à cette page à partir de l'URL (n'est pas indispensable si on a Redirect au-dessus, mais évitera des problèmes de sécurité si on enlève Redirect) */}
+    {/* "logged &&" est important ici, sinon l'utilisateur non connecté a accès à cette page à
+    partir de l'URL (n'est pas indispensable si on a Redirect au-dessus,
+    mais évitera des problèmes de sécurité si on enlève Redirect) */}
     {logged && (
     <Route path="/profile">
       <Profile user={users[0]} />
     </Route>
     )}
-    <Route>
-      <div>Page non trouvée</div>
+    <Route path="/not-found">
+      <div>
+        <h1>Page non trouvée</h1>
+      </div>
     </Route>
   </Switch>
 );
