@@ -43,6 +43,11 @@ class Service
      */
     private $areas;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $icon;
+
     public function __construct()
     {
         $this->areas = new ArrayCollection();
@@ -113,6 +118,18 @@ class Service
         if ($this->areas->contains($area)) {
             $this->areas->removeElement($area);
         }
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }
