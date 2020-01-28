@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
   loading: state.map.loading,
 });
 
+
 const mapDispatchToProps = () => ({
 });
 

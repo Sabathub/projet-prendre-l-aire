@@ -4,9 +4,10 @@ import {
   Map, TileLayer, Marker, Popup,
 } from 'react-leaflet';
 import {
-  Dimmer, Loader, Button, Header,
+  Dimmer, Loader, Button,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import slugify from 'slugify';
 import LocateControl from './locatecontrol';
 
 
@@ -40,8 +41,9 @@ const Maparea = ({
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
               <p className="popup-area-name">{area.name}</p>
-              <p className="direction">{area.highway.name} > {area.direction}</p>
-              <Button as={Link} to={'/areas/' + area.id} size="mini" color="teal">Fiche détaillée</Button>
+              <p className="direction">{area.destinations.name}  {area.destinations.name}</p>
+
+              <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
             </Popup>
           </Marker>
         ))}
@@ -58,12 +60,45 @@ Maparea.propTypes = {
   zoom: PropTypes.number.isRequired,
   areas: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    zipCode: PropTypes.number.isRequired,
+    city: PropTypes.string.isRequired,
+    kilometers: PropTypes.string.isRequired,
     latitude: PropTypes.string.isRequired,
     longitude: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    highway: PropTypes.PropTypes.shape({
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      rate: PropTypes.number.isRequired,
+    })).isRequired,
+    /* gasStation: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-    }).isRequired,
+    }).isRequired, */
+    gasPrices: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      price: PropTypes.string.isRequired,
+      gasType: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
+    restaurants: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    services: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    destinations: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      highways: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
   })).isRequired,
   loading: PropTypes.bool.isRequired,
 };

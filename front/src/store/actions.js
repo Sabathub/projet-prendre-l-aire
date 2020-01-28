@@ -3,6 +3,7 @@ export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
 export const LOG_USER = 'LOG_USER';
+export const SUBMIT_USER = 'SUBMIT_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const NEW_POSITION = 'NEW_POSITION';
 export const NEW_MARKER = 'NEW_MARKER';
@@ -28,14 +29,21 @@ export const doLogin = () => ({
   type: DO_LOGIN,
 });
 
-export const logUser = (logged) => ({
+export const logUser = (logged, token) => ({
   type: LOG_USER,
   logged,
+  token,
 });
 
-export const logoutUser = (logged) => ({
+export const logoutUser = (logged, token) => ({
   type: LOGOUT_USER,
   logged,
+  token,
+});
+
+export const submitUser = (submited) => ({
+  type: SUBMIT_USER,
+  submited,
 });
 
 export const fetchAreasData = () => ({

@@ -9,8 +9,8 @@ const loginMiddleware = (store) => (next) => (action) => {
       // console.log(user);
 
       // Ouvrir une connexion avec le serveur
-      axios.post('http://54.85.18.78/projet-prendre-l-aire/back/public/index.php/api/v1/login_check', {
-        username: (store.getState().form.email),
+      axios.post('http://54.85.18.78/api/v1/login_check', {
+        email: (store.getState().form.email),
         password: (store.getState().form.password),
       })
       // succès
@@ -18,7 +18,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         // Dispatch d'une action pour changer le user
         // store.dispatch(changeUserName(response.data));
           console.log('Response', response);
-          store.dispatch(logUser(response.data.logged));
+          store.dispatch(logUser(response.data.logged, response.data.token));
         })
       // Erreur
         .catch((error) => {
