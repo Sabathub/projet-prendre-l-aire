@@ -19,36 +19,32 @@ class Contact
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Length(min=2, max=100)
-     * 
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Length(min=2, max=100)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Email()
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
     private $subject;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\Length(min=10)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
     private $content;
