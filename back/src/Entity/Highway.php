@@ -6,8 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\SerializedName;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HighwayRepository")
@@ -18,15 +16,15 @@ class Highway
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
      * @Groups("api_v1_highways")
+     * @Groups("api_v1_areas")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_v1")
      * @Groups("api_v1_highways")
+     * @Groups("api_v1_areas")
      */
     private $name;
 
@@ -40,15 +38,18 @@ class Highway
      */
     private $updatedAt;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Area", mappedBy="highway", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Destination", mappedBy="highways", orphanRemoval=true)
+     * 
      */
-    private $areas;
+    private $destinations;
 
     public function __construct()
     {
         $this->areas = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->destinations = new ArrayCollection();
 
     }
 
@@ -93,32 +94,32 @@ class Highway
         return $this;
     }
 
+
     /**
-     * @return Collection|Area[]
-     * @Groups("api_v1_highways")
+     * @return Collection|Destination[]
      */
-    public function getAreas(): Collection
+    public function getDestinations(): Collection
     {
-        return $this->areas;
+        return $this->destinations;
     }
 
-    public function addArea(Area $area): self
+    public function addDestination(Destination $destination): self
     {
-        if (!$this->areas->contains($area)) {
-            $this->areas[] = $area;
-            $area->setHighway($this);
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+            $destination->setHighways($this);
         }
 
         return $this;
     }
 
-    public function removeArea(Area $area): self
+    public function removeDestination(Destination $destination): self
     {
-        if ($this->areas->contains($area)) {
-            $this->areas->removeElement($area);
+        if ($this->destinations->contains($destination)) {
+            $this->destinations->removeElement($destination);
             // set the owning side to null (unless already changed)
-            if ($area->getHighway() === $this) {
-                $area->setHighway(null);
+            if ($destination->getHighways() === $this) {
+                $destination->setHighways(null);
             }
         }
 

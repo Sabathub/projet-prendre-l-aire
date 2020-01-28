@@ -16,7 +16,7 @@ class Comment
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */
@@ -24,7 +24,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */
@@ -32,7 +32,7 @@ class Comment
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */
@@ -40,7 +40,7 @@ class Comment
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */
@@ -53,6 +53,7 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * 
      */
     private $updatedAt;
 
@@ -157,6 +158,9 @@ class Comment
         return $this;
     }
 
+    /**
+     * @Groups("api_v1_areas")
+     */
     public function getUser(): ?User
     {
         return $this->user;

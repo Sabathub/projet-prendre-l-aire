@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -19,7 +20,7 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */
@@ -28,6 +29,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("api_v1_user")
+     * @Assert\Email
      */
     private $email;
 
@@ -43,8 +45,8 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("api_v1")
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */
@@ -61,7 +63,7 @@ class User implements UserInterface
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user", orphanRemoval=true)
      */
     private $comments;
 
@@ -100,6 +102,13 @@ class User implements UserInterface
     public function getUsername(): string
     {
         return (string) $this->email;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
@@ -151,13 +160,6 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface

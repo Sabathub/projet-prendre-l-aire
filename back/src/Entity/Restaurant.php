@@ -18,13 +18,13 @@ class Restaurant
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $name;
 
@@ -42,6 +42,11 @@ class Restaurant
      * @ORM\ManyToMany(targetEntity="App\Entity\Area", inversedBy="restaurants")
      */
     private $areas;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $brandPicture;
 
     public function __construct()
     {
@@ -113,6 +118,18 @@ class Restaurant
         if ($this->areas->contains($area)) {
             $this->areas->removeElement($area);
         }
+
+        return $this;
+    }
+
+    public function getBrandPicture(): ?string
+    {
+        return $this->brandPicture;
+    }
+
+    public function setBrandPicture(?string $brandPicture): self
+    {
+        $this->brandPicture = $brandPicture;
 
         return $this;
     }

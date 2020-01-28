@@ -18,7 +18,7 @@ class Area
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_highways")
      * @Groups("api_v1_user")
@@ -27,7 +27,7 @@ class Area
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_highways")
      * @Groups("api_v1_user")
@@ -36,38 +36,31 @@ class Area
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $city;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $kilometers;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups("api_v1")
-     * @Groups("api_v1_highways")
-     */
-    private $direction;
-
-    /**
      * @ORM\Column(type="decimal", precision=10, scale=6)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $latitude;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=6)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $longitude;
 
@@ -83,41 +76,40 @@ class Area
 
     /**
 
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="area")
-     * @Groups("api_v1")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="area", orphanRemoval=true)
+     * @Groups("api_v1_areas")
+     * @ORM\OrderBy({"createdAt" = "ASC"})
      */
     private $comments;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\GasStation", inversedBy="areas")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $gasStation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Highway", inversedBy="areas")
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups("api_v1")
-     */
-    private $highway;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\GasPrice", mappedBy="area", orphanRemoval=true)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $gasPrices;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="areas")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $restaurants;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Service", mappedBy="areas")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $services;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="areas")
+     */
+    private $destinations;
 
     public function __construct()
     {
@@ -126,6 +118,7 @@ class Area
         $this->gasPrices = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->destinations = new ArrayCollection();
     }
     
     public function getId(): ?int
@@ -177,18 +170,6 @@ class Area
     public function setKilometers(string $kilometers): self
     {
         $this->kilometers = $kilometers;
-
-        return $this;
-    }
-
-    public function getDirection(): ?string
-    {
-        return $this->direction;
-    }
-
-    public function setDirection(string $direction): self
-    {
-        $this->direction = $direction;
 
         return $this;
     }
@@ -283,18 +264,6 @@ class Area
         return $this;
     }
 
-    public function getHighway(): ?Highway
-    {
-        return $this->highway;
-    }
-
-    public function setHighway(?Highway $highway): self
-    {
-        $this->highway = $highway;
-
-        return $this;
-    }
-
     /**
      * @return Collection|GasPrice[]
      */
@@ -374,6 +343,35 @@ class Area
         if ($this->services->contains($service)) {
             $this->services->removeElement($service);
             $service->removeArea($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Destination[]
+     * @Groups("api_v1_areas")
+     */
+    public function getDestinations(): Collection
+    {
+        return $this->destinations;
+    }
+
+    public function addDestination(Destination $destination): self
+    {
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+            $destination->addArea($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destination $destination): self
+    {
+        if ($this->destinations->contains($destination)) {
+            $this->destinations->removeElement($destination);
+            $destination->removeArea($this);
         }
 
         return $this;

@@ -16,13 +16,13 @@ class GasPrice
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $id;
 
     /**
      * @ORM\Column(type="decimal", precision=4, scale=3)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $price;
 
@@ -45,7 +45,7 @@ class GasPrice
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\GasType", inversedBy="gasPrices")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      */
     private $gasType;
 

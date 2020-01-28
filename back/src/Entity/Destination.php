@@ -6,53 +6,44 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\SerializedName;
-use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DestinationRepository")
  */
-class Service
+class Destination
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("api_v1_highways")
      * @Groups("api_v1_areas")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_v1_highways")
      * @Groups("api_v1_areas")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Area", inversedBy="services")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Area", inversedBy="destinations")
+     * @Groups("api_v1_highways")
      */
     private $areas;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Highway", inversedBy="destinations")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $icon;
+    private $highways;
 
     public function __construct()
     {
         $this->areas = new ArrayCollection();
-        $this->createdAt = new \DateTime();
-
     }
 
     public function getId(): ?int
@@ -72,32 +63,9 @@ class Service
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Area[]
+     * 
      */
     public function getAreas(): Collection
     {
@@ -122,14 +90,18 @@ class Service
         return $this;
     }
 
-    public function getIcon(): ?string
+    /**
+     * @Groups("api_v1_areas")
+     * @Groups("api_v1_highways")
+     */
+    public function getHighways(): ?Highway
     {
-        return $this->icon;
+        return $this->highways;
     }
 
-    public function setIcon(?string $icon): self
+    public function setHighways(?Highway $highways): self
     {
-        $this->icon = $icon;
+        $this->highways = $highways;
 
         return $this;
     }

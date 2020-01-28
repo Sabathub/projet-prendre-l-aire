@@ -3,14 +3,15 @@
 namespace App\DataFixtures;
 
 use App\Entity\Area;
+use App\Entity\User;
 use App\Entity\Comment;
+use App\Entity\GasType;
+use App\Entity\Highway;
+use App\Entity\Service;
 use App\Entity\GasPrice;
 use App\Entity\GasStation;
-use App\Entity\User;
-use App\Entity\GasType;
 use App\Entity\Restaurant;
-use App\Entity\Service;
-use App\Entity\Highway;
+use App\Entity\Destination;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -27,6 +28,26 @@ class AppFixtures extends Fixture
         $highway6->setName('A6');
         $manager->persist($highway6);
 
+        // create some destinations
+        $destinationParisLyon = new Destination;
+        $destinationParisLyon->setName('Paris - Lyon');
+        $destinationParisLyon->setHighways($highway6);
+        $manager->persist($destinationParisLyon);
+
+        $destinationLyonParis = new Destination;
+        $destinationLyonParis->setName('Lyon - Paris');
+        $destinationLyonParis->setHighways($highway6);
+        $manager->persist($destinationLyonParis);
+        
+        $destinationParisBordeaux = new Destination;
+        $destinationParisBordeaux->setName('Paris - Bordeaux');
+        $destinationParisBordeaux->setHighways($highway10);
+        $manager->persist($destinationParisBordeaux);
+        
+        $destinationBordeauxParis = new Destination;
+        $destinationBordeauxParis->setName('Bordeaux - Paris');
+        $destinationBordeauxParis->setHighways($highway10);
+        $manager->persist($destinationBordeauxParis);
 
 
         // Create type of gas
@@ -175,10 +196,9 @@ class AppFixtures extends Fixture
         $area1->setZipCode(91100);
         $area1->setCity('Corbeil Essonnes');
         $area1->setKilometers('26');
-        $area1->setDirection('Lyon');
         $area1->setLatitude('48.594189');
         $area1->setLongitude('2.442461');
-        $area1->setHighway($highway6);
+        $area1->addDestination($destinationParisLyon);
         $area1->setGasStation($total);
         $area1->addRestaurant($autogrill);
         $area1->addService($restauration);
@@ -191,10 +211,9 @@ class AppFixtures extends Fixture
         $area2->setZipCode(37380);
         $area2->setCity('Monnaie');
         $area2->setKilometers('196');
-        $area2->setDirection('Paris');
         $area2->setLatitude('47.473369');
         $area2->setLongitude('0.775936');
-        $area2->setHighway($highway10);
+        $area2->addDestination($destinationBordeauxParis);
         $area2->setGasStation($total);
         $area2->addRestaurant($autogrill);
         $area2->addService($restauration);
@@ -207,10 +226,9 @@ class AppFixtures extends Fixture
         $area3->setZipCode(28140);
         $area3->setCity('Dambron');
         $area3->setKilometers('75');
-        $area3->setDirection('Paris');
         $area3->setLatitude('48.1092');
         $area3->setLongitude('1.8508');
-        $area3->setHighway($highway10);
+        $area3->addDestination($destinationBordeauxParis);
         $area3->addService($toilettesPubliques);
         $manager->persist($area3);
 
@@ -219,17 +237,16 @@ class AppFixtures extends Fixture
         $area4->setZipCode(89290);
         $area4->setCity('Venoy');
         $area4->setKilometers('167');
-        $area4->setDirection('Lyon');
         $area4->setLatitude('47.7882');
         $area4->setLongitude('3.6721');
-        $area4->setHighway($highway6);
+        $area4->addDestination($destinationLyonParis);
         $area4->setGasStation($total);
-        $area2->addService($toilettesPubliques);
-        $area2->addService($aireDeJeux);
-        $area2->addService($restauration);
-        $area2->addService($dab);
-        $area2->addRestaurant($arche);
-        $area2->addRestaurant($pomme);
+        $area4->addService($toilettesPubliques);
+        $area4->addService($aireDeJeux);
+        $area4->addService($restauration);
+        $area4->addService($dab);
+        $area4->addRestaurant($arche);
+        $area4->addRestaurant($pomme);
         $manager->persist($area4);
 
         // Create prices
