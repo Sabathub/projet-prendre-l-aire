@@ -5,6 +5,15 @@
   border-radius: 5px;
 }
 
-.leaflet-popup-content-wrapper {
+.leaflet-popup-content {
   text-align: center;
+  &>p{
+    margin: .2em 0em;
+    font-size: 1.2em;
+  }
+}
+
+.popup-area-name {
+  font-size: 1.8em;
+  font-weight: bolder;
 }

@@ -40,8 +40,9 @@ const Maparea = ({
         {!loading && areas.map((area) => (
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
-              <Header as="h3">{area.name}</Header>
+              <p className="popup-area-name">{area.name}</p>
               <p className="direction">{area.destinations.highways.name} > {area.destinations.name}</p>
+
               <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
             </Popup>
           </Marker>
