@@ -11,8 +11,8 @@ const Homesearch = ({
 }) => {
   const areaOptions = highways.map((highway) => ({
     key: highway.id,
-    text: highway.name,
-    value: highway.name,
+    text: highway.highways.name + highway.name,
+    value: highway.highways.name + highway.name,
   }));
 
   return (

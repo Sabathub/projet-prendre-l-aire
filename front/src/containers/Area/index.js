@@ -4,7 +4,7 @@ import Area from 'src/components/Area';
 
 
 const mapStateToProps = (state, ownProps) => {
-  const area = getAreaBySlug(ownProps.match.params.slug, state.map.areas);
+  const area = getAreaBySlug(ownProps.match.params.slug, state.area.areas);
 
   return ({
     areaData: area,
