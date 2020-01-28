@@ -6,48 +6,44 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\SerializedName;
-use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RestaurantRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DestinationRepository")
  */
-class Restaurant
+class Destination
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("api_v1_highways")
      * @Groups("api_v1_areas")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_v1_highways")
      * @Groups("api_v1_areas")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Area", inversedBy="restaurants")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Area", inversedBy="destinations")
+     * @Groups("api_v1_highways")
      */
     private $areas;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Highway", inversedBy="destinations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $highways;
 
     public function __construct()
     {
         $this->areas = new ArrayCollection();
-        $this->createdAt = new \DateTime();
-
     }
 
     public function getId(): ?int
@@ -67,32 +63,9 @@ class Restaurant
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Area[]
+     * 
      */
     public function getAreas(): Collection
     {
@@ -113,6 +86,22 @@ class Restaurant
         if ($this->areas->contains($area)) {
             $this->areas->removeElement($area);
         }
+
+        return $this;
+    }
+
+    /**
+     * @Groups("api_v1_areas")
+     * @Groups("api_v1_highways")
+     */
+    public function getHighways(): ?Highway
+    {
+        return $this->highways;
+    }
+
+    public function setHighways(?Highway $highways): self
+    {
+        $this->highways = $highways;
 
         return $this;
     }

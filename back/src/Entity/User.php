@@ -20,7 +20,7 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */
@@ -46,7 +46,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Groups("api_v1")
+     * @Groups("api_v1_areas")
      * @Groups("api_v1_comment")
      * @Groups("api_v1_user")
      */

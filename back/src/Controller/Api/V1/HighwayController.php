@@ -3,7 +3,7 @@
 namespace App\Controller\Api\V1;
 
 use App\Entity\Highway;
-use App\Repository\HighwayRepository;
+use App\Repository\DestinationRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,9 +16,9 @@ class HighwayController extends AbstractController
     /**
      * @Route("/", name="list", methods={"GET"})
      */
-    public function list(HighwayRepository $highwayRepository, SerializerInterface $serializer)
+    public function list(DestinationRepository $destinationRepository, SerializerInterface $serializer)
     {
-        $highways = $highwayRepository->findAll();
+        $highways = $destinationRepository->findAll();
         $data = $serializer->normalize($highways, null, ['groups' => 'api_v1_highways']);
         return $this->json($data);
     }
