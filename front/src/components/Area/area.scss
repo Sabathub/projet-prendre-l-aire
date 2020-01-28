@@ -23,3 +23,42 @@
     margin: 3em 1em;
 }
 
+.segments>.segment.gasname {
+  width:60%;
+}
+
+.segments>.segment.gasprice {
+  width:40%;
+}
+
+#areaname {
+  background-color: $beige;
+  border-radius: 5px;
+  margin: 0 auto 1em;
+}
+
+h3.ui.header {
+  color: white;
+}
+
+.segment.services {
+  background-color: $secondary-color;
+  border:none;
+  border-radius: 30px;
+}
+
+.servicesIcon {
+  font-size: 2em;
+  margin: .3em;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.iconlabelled {
+  margin: .3em .5em;
+  flex: 0 28%;
+}

@@ -8,6 +8,7 @@ import {
 
 // --- initial state
 const initialState = {
+  token: '',
   username: '',
   email: '',
   password: '',
@@ -22,11 +23,13 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: true,
+        token: action.token,
       };
     case LOGOUT_USER:
       return {
         ...state,
         logged: false,
+        token: '',
       };
 
     default: return state;

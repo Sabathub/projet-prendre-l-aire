@@ -7,10 +7,9 @@ import {
   Reveal,
   Header,
   Segment,
+  Rating,
 } from 'semantic-ui-react';
 import {
-  FaStar,
-  FaRegStar,
   FaGasPump,
   FaShoppingCart,
   FaWifi,
@@ -20,6 +19,8 @@ import {
   FaTableTennis,
 } from 'react-icons/fa';
 import Maparea from 'src/containers/Maparea';
+import Zoomarea from 'src/containers/Zoomarea';
+
 
 import './area.scss';
 
@@ -30,60 +31,77 @@ const Area = ({ areaData, loading, found }) => (
   <>
     {!loading && found && (
       <>
-        <h1>{areaData.name}</h1>
-        <Grid celled stackable>
+        <Segment id="areaname" compact>
+          <Header as="h2">{areaData.name}</Header>
+        </Segment>
+  
+        <Grid centered stackable>
           <Grid.Row>
             <Grid.Column width={6}>
-              <Maparea />
+              <Zoomarea />
             </Grid.Column>
-            <Grid.Column width={9}>
-              <FaStar className="stars" /> <FaStar className="stars" /> <FaStar className="stars" /> <FaStar className="stars" /> <FaRegStar className="stars" />
-              <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod repellat itaque nobis dignissimos officiis possimus, facere sit minima quis? Quas necessitatibus ex voluptas enim expedita optio est cumque, pariatur consectetur. Omnis magnam culpa dolorum temporibus, nobis tempore reprehenderit. Ducimus, mollitia? Libero quia odit quas quo quos quam vitae ab laboriosam dolorum fugit voluptas obcaecati a itaque recusandae reprehenderit expedita, eveniet, voluptates veniam! Minima nihil dolore sunt eaque! Dicta totam harum aut. Optio assumenda voluptatum quod iure ipsa expedita cum eos suscipit atque, dicta, velit consequatur explicabo. Beatae velit totam asperiores veniam. Excepturi quidem reiciendis accusantium neque illo delectus voluptatum ratione laboriosam vero deserunt nemo iure culpa praesentium molestiae quibusdam beatae animi dolorum, eius quasi optio error laudantium dolores sapiente earum? Amet, nemo impedit.</p>
+            <Grid.Column width={4} textAlign="center" verticalAlign="middle">
+              <Segment basic>
+                <Rating icon="star" defaultRating={3} maxRating={5} />
+              </Segment>
+              <Segment>
+                <p id="highway">Autoroute A10</p>
+                <p id="direction">Direction : Lyon</p>
+                <p id="km">243 km</p>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={5}>
-              <Reveal animated="move up">
-                <Reveal.Content visible>
-                  <Header className="title" as="h2">Station service</Header>
-                </Reveal.Content>
-                <Reveal.Content id="gas" hidden>
-                  <Segment circular style={square}>
-                    <Header as="h5">
-                      Sans Plomb 95
-                    </Header>
-                  </Segment>
-                  <Segment circular inverted style={square}>
-                    <Header as="h5">
-                      Sans Plomb 98
-                    </Header>
-                  </Segment>
-                </Reveal.Content>
-              </Reveal>
-            </Grid.Column>
-            <Grid.Column width={6}>
-              <Reveal animated="move up">
-                <Reveal.Content visible>
-                  <Header className="title" as="h2">Services Proposés</Header>
-                </Reveal.Content>
-                <Reveal.Content hidden>
-                  <FaGasPump className="services" /> <FaShoppingCart className="services" /> <FaWifi className="services" /> <FaUtensils className="services" /> <FaAccessibleIcon className="services" /> <FaBaby className="services" /> <FaTableTennis className="services" />
-                </Reveal.Content>
-              </Reveal>
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Reveal animated="move up">
-                <Reveal.Content visible>
-                  <Header className="title" as="h2">Les Restaurants</Header>
-                </Reveal.Content>
-                <Reveal.Content hidden>
-                  <Image src="https://www.agrociwf.fr/media/6251389/autogrill-logo-research-thumb.jpg?mode=min&width=600&height=315&rnd=130619991200000000" size="small" />
-                </Reveal.Content>
-              </Reveal>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+          <Grid.Column width={5}>
+            <Segment className="services" textAlign="center">
+              <Header as="h3">Station service</Header>
+            </Segment>
+            <Segment.Group>
+              <Segment>
+                <Image centered src="https://upload.wikimedia.org/wikipedia/fr/d/dd/TOTAL_SA_logo.svg" size="small" />
+              </Segment>
+              <Segment.Group horizontal>
+                <Segment textAlign="center" className="gasname">Gazole</Segment>
+                <Segment textAlign="center" className="gasprice">1,644 €</Segment>
+              </Segment.Group>
+              <Segment.Group horizontal>
+                <Segment textAlign="center" className="gasname">E85</Segment>
+                <Segment textAlign="center" className="gasprice">0,839 €</Segment>
+              </Segment.Group>
+              <Segment.Group horizontal>
+                <Segment textAlign="center" className="gasname">E85</Segment>
+                <Segment textAlign="center" className="gasprice">0,839 €</Segment>
+              </Segment.Group>
+              <Segment.Group horizontal>
+                <Segment textAlign="center" className="gasname">E85</Segment>
+                <Segment textAlign="center" className="gasprice">0,839 €</Segment>
+              </Segment.Group>
+            </Segment.Group>
+          </Grid.Column>
+          <Grid.Column width={6}>
+            <Segment className="services" textAlign="center">
+              <Header as="h3">Services proposés</Header>
+            </Segment>
+            <Segment textAlign="center" className="flex">
+              <div className="iconlabelled"><FaGasPump className="servicesIcon" /><p>station service</p></div>
+              <div className="iconlabelled"><FaShoppingCart className="servicesIcon" /><p>commerce</p></div>
+              <div className="iconlabelled"><FaWifi className="servicesIcon" /><p>Wifi</p></div>
+              <div className="iconlabelled"><FaUtensils className="servicesIcon" /><p>Restaurant</p></div>
+              <div className="iconlabelled"><FaAccessibleIcon className="servicesIcon" /><p>Accès handicap</p></div>
+              <div className="iconlabelled"><FaBaby className="servicesIcon" /><p>Nurserie</p></div>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <Segment className="services" textAlign="center">
+              <Header as="h3">Restaurants</Header>
+            </Segment>
+            <Segment>
+              <Image centered src="https://www.agrociwf.fr/media/6251389/autogrill-logo-research-thumb.jpg?mode=min&width=600&height=315&rnd=130619991200000000" size="small" />
+            </Segment>
+          </Grid.Column>
+      </Grid.Row>
+    </Grid>
       </>
     )}
     {!found && <Redirect to="/not-found" />}
