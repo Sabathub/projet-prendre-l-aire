@@ -11,7 +11,7 @@ const areaMiddleware = (store) => (next) => (action) => {
       // appel axios
       axios.get('http://54.85.18.78/api/v1/areas/')
         .then((response) => {
-          console.log("on a la reponse des aires");
+          console.log("on a la reponse des aires", response);
           const receiveDataAction = receiveAreasData(response.data);
           store.dispatch(receiveDataAction);
         })

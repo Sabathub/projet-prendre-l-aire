@@ -6,9 +6,7 @@ import {
 
 import './profile.scss';
 
-const Profile = ({
-  username, email,
-}) => (
+const Profile = ({ user }) => (
   <Container>
     <h1>Mon profil</h1>
     <Segment>
@@ -19,8 +17,8 @@ const Profile = ({
             <Image className="avatar" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" centered circular />
           </Grid.Column>
           <Grid.Column id="info" width={5} textAlign="left">
-            <p>Bonjour {username} !</p>
-            <p>{email}</p>
+            <p>Bonjour {user.username} !</p>
+            <p>{user.email}</p>
           </Grid.Column>
           <Grid.Column width={4} textAlign="center">
             <Button animated color="teal">
@@ -69,10 +67,20 @@ const Profile = ({
 );
 
 Profile.propTypes = {
-  username: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
+  user: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      rate: PropTypes.number.isRequired,
+      area: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
+  })).isRequired,
 };
 
 export default Profile;

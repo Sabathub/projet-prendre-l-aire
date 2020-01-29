@@ -9,9 +9,12 @@ import Logo from '../../assets/logo_contour.svg';
 // Import local
 import './header.scss';
 
-const Header = ({ logged, disconnect }) => {
+const Header = ({ logged, disconnect, doToken }) => {
   const handleClick = () => {
     disconnect();
+  };
+  const loadUserData = () => {
+    doToken();
   };
 
   return (
@@ -62,6 +65,7 @@ const Header = ({ logged, disconnect }) => {
                   to="/profile"
                   className="navigation-item"
                   activeClassName="navigation-item-active"
+                  onClick={loadUserData}
                 >
                   Profil
                 </NavLink>
@@ -85,6 +89,7 @@ const Header = ({ logged, disconnect }) => {
 Header.propTypes = {
   logged: PropTypes.bool.isRequired,
   disconnect: PropTypes.func.isRequired,
+  doToken: PropTypes.func.isRequired,
 };
 
 export default Header;
