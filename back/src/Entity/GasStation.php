@@ -45,6 +45,7 @@ class GasStation
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("api_v1_areas")
      */
     private $brandPicture;
 
