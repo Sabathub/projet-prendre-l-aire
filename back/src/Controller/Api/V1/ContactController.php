@@ -33,12 +33,12 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Let's set the message with form data
-            $message = (new \Swift_Message('Re : '.$form['subject']->getData()))
+            $message = (new \Swift_Message('Formulaire de contact : '.$form['subject']->getData()))
                 ->setFrom($form['email']->getData())
                 ->setTo('contact.prendrelaire@gmail.com')
                 ->setReplyTo($form['email']->getData())
                 ->setBody(
-                    $form['content']->getData(),
+                    '<h2>Message de '.$form['firstname']->getData().' '.$form['lastname']->getData().'</h2>'.'<h2>Contenu : </h2>'.$form['content']->getData(),
                     'text/html'
             );
 
