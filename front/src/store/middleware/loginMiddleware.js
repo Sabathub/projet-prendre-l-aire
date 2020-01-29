@@ -23,6 +23,7 @@ const loginMiddleware = (store) => (next) => (action) => {
       // Erreur
         .catch((error) => {
           console.log('Error', error);
+          alert('Une erreur s\'est produite, réesayez.');
         })
       // Dans tous les cas
         .finally();
