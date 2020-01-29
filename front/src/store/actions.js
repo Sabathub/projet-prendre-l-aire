@@ -2,8 +2,10 @@
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
+export const DO_CONTACT = 'DO_CONTACT';
 export const LOG_USER = 'LOG_USER';
 export const SUBMIT_USER = 'SUBMIT_USER';
+export const SUBMIT_CONTACT = 'SUBMIT_CONTACT';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const NEW_POSITION = 'NEW_POSITION';
 export const NEW_MARKER = 'NEW_MARKER';
@@ -30,10 +32,16 @@ export const doLogin = () => ({
   type: DO_LOGIN,
 });
 
-export const logUser = (logged, token) => ({
+export const doContact = () => ({
+  type: DO_CONTACT,
+});
+
+export const logUser = (logged, token, email, password) => ({
   type: LOG_USER,
   logged,
   token,
+  email,
+  password,
 });
 
 export const logoutUser = (logged, token) => ({
@@ -42,9 +50,21 @@ export const logoutUser = (logged, token) => ({
   token,
 });
 
-export const submitUser = (submited) => ({
+export const submitUser = (submited, username, email, password, passwordVerify) => ({
   type: SUBMIT_USER,
   submited,
+  username,
+  email,
+  password,
+  passwordVerify,
+});
+
+export const submitContact = (name, email, subject, content) => ({
+  type: SUBMIT_CONTACT,
+  name,
+  email,
+  subject,
+  content,
 });
 
 export const fetchAreasData = () => ({

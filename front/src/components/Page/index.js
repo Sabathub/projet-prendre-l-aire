@@ -6,9 +6,9 @@ import Home from 'src/containers/Home';
 import Signup from 'src/containers/Signup';
 import Login from 'src/containers/Login';
 import Area from 'src/containers/Area';
-import Team from 'src/components/Team';
+import Team from 'src/containers/Team';
 import Profile from 'src/containers/Profile';
-import Contact from 'src/components/Contact';
+import Contact from 'src/containers/Contact';
 
 import users from 'src/data/users';
 
