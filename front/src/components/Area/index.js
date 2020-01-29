@@ -1,9 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import {
-  Grid, Image, Header, Segment, Rating,
+  Grid,
+  Image,
+  Header,
+  Segment,
+  Rating,
 } from 'semantic-ui-react';
 import {
-  FaGasPump, FaShoppingCart, FaWifi, FaUtensils, FaAccessibleIcon, FaBaby,
+  FaGasPump,
+  FaShoppingCart,
+  FaWifi,
+  FaUtensils,
+  FaAccessibleIcon,
+  FaBaby,
 } from 'react-icons/fa';
 import Zoomarea from 'src/containers/Zoomarea';
 import CommentsArea from 'src/containers/CommentsArea';
@@ -11,13 +22,18 @@ import CommentsArea from 'src/containers/CommentsArea';
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 
+
 import './area.scss';
 
-const Area = () => (
+const Area = ({ areaData, loading, found }) => (
+
   <>
-    <Segment id="areaname" compact>
-      <Header as="h2">Nom_de_l_aire</Header>
-    </Segment>
+    {loading && <div>Veuillez patienter</div>}
+    {!loading && found && (
+      <>
+        <Segment id="areaname" compact>
+          <Header as="h2">{areaData.name}</Header>
+        </Segment>
 
     <Grid centered stackable>
       <Grid.Row>
@@ -106,7 +122,62 @@ const Area = () => (
       </Grid.Row>
     </Grid>
     <CommentsArea />
+      </>
+    )}
+    {!found && <Redirect to="/not-found" />}
   </>
 );
+
+Area.propTypes = {
+  areaData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    zipCode: PropTypes.number.isRequired,
+    city: PropTypes.string.isRequired,
+    kilometers: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      rate: PropTypes.number.isRequired,
+    })).isRequired,
+    gasStation: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    gasPrices: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      price: PropTypes.string.isRequired,
+      gasType: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
+    restaurants: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    services: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    destinations: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      highways: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
+  }),
+  loading: PropTypes.bool.isRequired,
+  found: PropTypes.bool.isRequired,
+};
+
+Area.defaultProps = {
+  // si on met "{}" (objet vide) on ne passe pas la validation, car chaque élement est obligatoire
+  // "null" => on ne fournit pas d'objet
+  // React commence par utiliser les defaultProps AVANT de valider les props
+  areaData: null,
+};
 
 export default Area;

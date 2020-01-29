@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import user from './user';
 import form from './form';
 import map from './map';
+import area from './area';
 
 // l'intérêt d'avoir plusieurs reducers est de classer les informations par catégorie,
 // plus facile pour s'y retrouver
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   user,
   form,
   map,
+  area,
 });
 
 export default reducer;
