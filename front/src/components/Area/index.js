@@ -111,10 +111,16 @@ Area.propTypes = {
     zipCode: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
     kilometers: PropTypes.string.isRequired,
+    latitude: PropTypes.string.isRequired,
+    longitude: PropTypes.string.isRequired,
     comments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
       rate: PropTypes.number.isRequired,
+      user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        email: PropTypes.string.isRequired,
+      }).isRequired,
     })).isRequired,
     gasStation: PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -153,7 +159,7 @@ Area.defaultProps = {
   // si on met "{}" (objet vide) on ne passe pas la validation, car chaque élement est obligatoire
   // "null" => on ne fournit pas d'objet
   // React commence par utiliser les defaultProps AVANT de valider les props
-  areaData: null,
+  areaData: {},
 };
 
 export default Area;

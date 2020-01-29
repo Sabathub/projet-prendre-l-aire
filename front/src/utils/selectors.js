@@ -5,8 +5,8 @@ import slugify from 'slugify';
 export const getAreaBySlug = (slug, areas) => {
   // find permet de rechercher le premier élément qui correspond à la condition
   // retourne un seul élément (alors que filter retourne un tableau)
-  const searchedRecipe = areas.find((area) => (
+  const searchedArea = areas.find((area) => (
     slugify(area.name) === slug
   ));
-  return searchedRecipe;
+  return searchedArea;
 };
