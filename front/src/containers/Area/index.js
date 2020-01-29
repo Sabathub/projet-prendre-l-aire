@@ -8,7 +8,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return ({
     areaData: area,
-    loading: state.area.loading,
+    arealoading: state.area.arealoading,
+    highwayloading: state.map.highwayloading,
     found: area !== undefined,
 
   });

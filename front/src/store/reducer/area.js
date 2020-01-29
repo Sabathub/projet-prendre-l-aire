@@ -8,7 +8,7 @@ import {
 const initialState = {
 
   areas: [],
-  loading: true,
+  arealoading: true,
 };
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -21,7 +21,7 @@ const reducer = (state = initialState, action = {}) => {
     case STOP_LOADING:
       return {
         ...state,
-        loading: false,
+        arealoading: false,
       };
     default: return state;
   }

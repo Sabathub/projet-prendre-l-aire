@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
   lng: state.map.position.lng,
   zoom: state.map.position.zoom,
   areas: state.map.areas,
-  loading: state.map.loading,
+  arealoading: state.map.arealoading,
 });
 
 

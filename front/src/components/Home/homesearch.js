@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const Homesearch = ({
   highways,
-  loading,
+  arealoading,
 }) => {
   const areaOptions = highways.map((highway) => ({
     key: highway.id,
@@ -17,7 +17,7 @@ const Homesearch = ({
 
   return (
     <>
-      {loading && (
+      {arealoading && (
       <Dimmer active inverted>
         <Loader inverted content="Chargement" />
       </Dimmer>
@@ -46,7 +46,7 @@ Homesearch.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
-  loading: PropTypes.bool.isRequired,
+  arealoading: PropTypes.bool.isRequired,
 };
 
 export default Homesearch;

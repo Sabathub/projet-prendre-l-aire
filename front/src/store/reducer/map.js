@@ -4,6 +4,7 @@ import {
   RECEIVE_AREAS_DATA,
   RECEIVE_HIGHWAYS_DATA,
   STOP_LOADING,
+  STOP_LOADING_HIGHWAYS,
 } from '../actions';
 // --- initial state
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
 
   highways: [],
 
-  loading: true,
+  arealoading: true,
+  highwayloading: true,
 
 };
 // --- Reducer
@@ -36,7 +38,12 @@ const reducer = (state = initialState, action = {}) => {
     case STOP_LOADING:
       return {
         ...state,
-        loading: false,
+        arealoading: false,
+      };
+    case STOP_LOADING_HIGHWAYS:
+      return {
+        ...state,
+        highwayloading: false,
       };
     default: return state;
   }

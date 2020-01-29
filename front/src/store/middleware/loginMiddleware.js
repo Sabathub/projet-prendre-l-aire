@@ -6,8 +6,6 @@ import { DO_LOGIN, logUser } from 'src/store/actions';
 const loginMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_LOGIN: {
-      // console.log(user);
-
       // Ouvrir une connexion avec le serveur
       axios.post('http://54.85.18.78/api/v1/login_check', {
         email: (store.getState().form.email),

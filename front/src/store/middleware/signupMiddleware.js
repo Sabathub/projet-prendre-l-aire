@@ -12,7 +12,6 @@ const signupMiddleware = (store) => (next) => (action) => {
         password: (store.getState().form.password),
 
       };
-      console.log(user);
 
       // Ouvrir une connexion avec le serveur
       axios.post('http://54.85.18.78/api/v1/register', {

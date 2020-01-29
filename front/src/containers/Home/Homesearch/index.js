@@ -5,7 +5,7 @@ import Homesearch from 'src/components/Home/homesearch';
 
 const mapStateToProps = (state) => ({
   highways: state.map.highways,
-  loading: state.map.loading,
+  arealoading: state.map.arealoading,
 });
 
 const mapDispatchToProps = () => ({

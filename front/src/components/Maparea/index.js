@@ -14,7 +14,7 @@ import LocateControl from './locatecontrol';
 import './maparea.scss';
 
 const Maparea = ({
-  lat, lng, zoom, areas, loading,
+  lat, lng, zoom, areas, arealoading,
 }) => {
   const position = [lat, lng];
 
@@ -25,9 +25,11 @@ const Maparea = ({
     },
   };
 
+  console.log(arealoading);
+
   return (
     <>
-      {loading && (
+      {arealoading && (
       <Dimmer active inverted>
         <Loader inverted content="Chargement" />
       </Dimmer>
@@ -37,7 +39,7 @@ const Maparea = ({
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {!loading && areas.map((area) => (
+        {!arealoading && areas.map((area) => (
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
               <p className="popup-area-name">{area.name}</p>
@@ -100,7 +102,7 @@ Maparea.propTypes = {
       }).isRequired,
     })).isRequired,
   })).isRequired,
-  loading: PropTypes.bool.isRequired,
+  arealoading: PropTypes.bool.isRequired,
 };
 
 export default Maparea;
