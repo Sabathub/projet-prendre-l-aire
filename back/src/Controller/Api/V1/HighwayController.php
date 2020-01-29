@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api\V1;
 
-use App\Entity\Highway;
+use App\Entity\Destination;
 use App\Repository\DestinationRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -26,9 +26,9 @@ class HighwayController extends AbstractController
     /**
      * @Route("/{id}", name="show", requirements={"id": "\d+"}, methods={"GET"})
      */
-    public function show(Highway $highway, SerializerInterface $serializer)
+    public function show(Destination $destination, SerializerInterface $serializer)
     {
-        $data = $serializer->normalize($highway, null, ['groups' => 'api_v1_highways']);
+        $data = $serializer->normalize($destination, null, ['groups' => 'api_v1_highways']);
         return $this->json($data);
     }
 }
