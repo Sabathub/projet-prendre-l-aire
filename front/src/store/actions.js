@@ -11,8 +11,10 @@ export const NEW_POSITION = 'NEW_POSITION';
 export const NEW_MARKER = 'NEW_MARKER';
 export const FETCH_AREAS_DATA = 'FETCH_AREAS_DATA';
 export const FETCH_HIGHWAYS_DATA = 'FETCH_HIGHWAYS_DATA';
+export const FETCH_PROFILE_DATA = 'FETCH_PROFILE_DATA';
 export const RECEIVE_AREAS_DATA = 'RECEIVE_AREAS_DATA';
 export const RECEIVE_HIGHWAYS_DATA = 'RECEIVE_HIGHWAYS_DATA';
+export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
 export const STOP_LOADING_HIGHWAYS = 'STOP_LOADING_HIGHWAYS';
 
@@ -75,6 +77,10 @@ export const fetchHighwaysData = () => ({
   type: FETCH_HIGHWAYS_DATA,
 });
 
+export const fetchProfileData = () => ({
+  type: FETCH_PROFILE_DATA,
+});
+
 export const receiveAreasData = (areas) => ({
   type: RECEIVE_AREAS_DATA,
   areas,
@@ -83,6 +89,11 @@ export const receiveAreasData = (areas) => ({
 export const receiveHighwaysData = (highways) => ({
   type: RECEIVE_HIGHWAYS_DATA,
   highways,
+});
+
+export const receiveProfileData = (user) => ({
+  type: FETCH_PROFILE_DATA,
+  user,
 });
 
 export const stopLoading = () => ({

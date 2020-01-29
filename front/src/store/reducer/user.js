@@ -5,6 +5,7 @@ import {
   SUBMIT_USER,
   LOG_USER,
   LOGOUT_USER,
+  RECEIVE_PROFILE_DATA,
 } from '../actions';
 
 // --- initial state
@@ -15,6 +16,7 @@ const initialState = {
   password: '',
   submited: false,
   logged: false,
+  user: [],
 };
 
 
@@ -37,6 +39,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         logged: false,
         token: '',
+      };
+    case RECEIVE_PROFILE_DATA:
+      return {
+        ...state,
+        user: action.user,
       };
 
     default: return state;
