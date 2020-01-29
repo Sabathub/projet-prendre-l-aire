@@ -38,7 +38,7 @@ class ContactController extends AbstractController
                 ->setTo('contact.prendrelaire@gmail.com')
                 ->setReplyTo($form['email']->getData())
                 ->setBody(
-                    '<h2>Message de '.$form['firstname']->getData().' '.$form['lastname']->getData().'</h2>'.'<h2>Contenu : </h2>'.$form['content']->getData(),
+                    '<h2>Message de '.$form['name']->getData() .'</h2>'.'<h2>Contenu : </h2>'.$form['content']->getData(),
                     'text/html'
             );
 

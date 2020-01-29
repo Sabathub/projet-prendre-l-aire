@@ -18,9 +18,9 @@ class UserController extends AbstractController
 {
     /**
      * Show single user's information
-     * @Route("/profile", name="show", methods={"GET"})
+     * @Route("/profile", name="profile", methods={"GET"})
      */
-    public function show(SerializerInterface $serializer)
+    public function profile(SerializerInterface $serializer)
     {
         // get the current user connected with the Jwt Token
         $user = $this->getUser();
@@ -32,7 +32,7 @@ class UserController extends AbstractController
 
      /**
       * Change user datas (email or username)
-     * @Route("/edit", name="edit", requirements={"id": "\d+"}, methods="PATCH")
+     * @Route("/edit", name="edit", methods="PATCH")
      */
     public function edit(Request $request): Response
     {
@@ -67,7 +67,7 @@ class UserController extends AbstractController
    
      /**
       * Change the password
-     * @Route("/edit/password", name="edit_password", requirements={"id": "\d+"}, methods="PUT")
+     * @Route("/edit/password", name="edit_password", methods="PUT")
      */
     public function editPassword(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -111,7 +111,7 @@ class UserController extends AbstractController
 
     /**
      * Delete a user
-     * @Route("/delete", name="delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/delete", name="delete", methods={"DELETE"})
      */
     public function delete()
     {
