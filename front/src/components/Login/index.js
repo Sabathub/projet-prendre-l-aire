@@ -26,7 +26,6 @@ const Login = ({ emailValue, passwordValue, changeInputValue, doConnect, logged 
   return (
     <div id="container">
       <Form id="form" onSubmit={handleSubmit}>
-        <h1>Formulaire de connexion</h1>
         <Form.Field>
           <label htmlFor="email">
           Saisissez votre email

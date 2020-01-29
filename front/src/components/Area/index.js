@@ -6,6 +6,7 @@ import {
   FaGasPump, FaShoppingCart, FaWifi, FaUtensils, FaAccessibleIcon, FaBaby,
 } from 'react-icons/fa';
 import Zoomarea from 'src/containers/Zoomarea';
+import CommentsArea from 'src/containers/CommentsArea';
 // import Carousel component
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -26,9 +27,9 @@ const Area = () => (
         <Grid.Column width={5} textAlign="center" verticalAlign="middle">
           <Segment basic>
             <Rating icon="star" defaultRating={3} maxRating={5} disabled />
-            <p id="rating">Note moyenne de 12 avis utilisateurs</p>
+            <p id="rating">Note moyenne de 12 avis</p>
           </Segment>
-          <Segment>
+          <Segment id="area-infos">
             <p id="highway">Autoroute A10</p>
             <p id="direction">Direction : Lyon</p>
             <p id="km">243 km</p>
@@ -103,8 +104,8 @@ const Area = () => (
           </Carousel>
         </Grid.Column>
       </Grid.Row>
-
     </Grid>
+    <CommentsArea />
   </>
 );
 

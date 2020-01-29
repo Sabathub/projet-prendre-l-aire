@@ -28,7 +28,6 @@ const Signup = ({
   return (
     <div id="container">
       <Form id="form" onSubmit={handleSubmit}>
-        <h1>Formulaire d'inscription</h1>
         <Form.Field>
           <label htmlFor="username">
           Choisissez un pseudonyme
