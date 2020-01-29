@@ -32,9 +32,26 @@
 }
 
 #areaname {
-  background-color: $beige;
+  border: 2px solid $beige;
   border-radius: 5px;
   margin: 0 auto 1em;
+  background-color: $primary-color;  
+}
+
+h2.ui.header {
+  color: $beige;
+}
+
+#rating {
+  font-size: .8em;
+  color: white;
+  margin-top: .5em;
+}
+
+#area-infos {
+  background-color: $primary-color;
+  color: white;
+  border: thin solid white;
 }
 
 h3.ui.header {
@@ -61,4 +78,16 @@ h3.ui.header {
 .iconlabelled {
   margin: .3em .5em;
   flex: 0 28%;
+}
+
+.carousel .slide {
+  background-color: white;
+}
+
+.carousel.carousel-slider .control-arrow {
+  color: teal;
+}
+
+.ui.segments>.horizontal.segments {
+  background-color: white;
 }

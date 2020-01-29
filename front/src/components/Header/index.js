@@ -21,10 +21,10 @@ const Header = ({ logged, disconnect }) => {
           <img
             alt=""
             src={Logo}
-            height="80"
+            id="home-logo"
             className="d-inline-block align-middle"
           />{' '}
-          <div className="d-inline-block text-wrap align-middle text-left" id="title">&nbsp;Prendre l'aire</div>
+          <div className="d-inline-block text-wrap align-middle text-left" id="title">&nbsp;Prendre<br />l'aire</div>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
