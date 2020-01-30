@@ -67,7 +67,7 @@ const Profile = ({ profileData }) => (
 );
 
 Profile.propTypes = {
-  profileData: PropTypes.arrayOf(PropTypes.shape({
+  profileData: PropTypes.shape({
     id: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
@@ -80,7 +80,7 @@ Profile.propTypes = {
         name: PropTypes.string.isRequired,
       }).isRequired,
     })).isRequired,
-  })).isRequired,
+  }).isRequired,
 };
 
 export default Profile;

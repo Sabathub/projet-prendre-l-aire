@@ -15,7 +15,7 @@ const initialState = {
   password: '',
   submited: false,
   logged: false,
-  profile: [],
+  profile: {},
 };
 
 
