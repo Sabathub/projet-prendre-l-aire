@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { DO_SIGNUP, submitUser } from 'src/store/actions';
+import {
+  DO_SIGNUP,
+  logUser,
+  submitUser,
+  receiveProfileData,
+} from 'src/store/actions';
 
 const signupMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -18,16 +23,42 @@ const signupMiddleware = (store) => (next) => (action) => {
         user,
       })
       // succès
-        .then((response) => {
+        .then((response1) => {
         // Dispatch d'une action pour changer le user
         // store.dispatch(changeUserName(response.data));
-          console.log('Response', response);
-          store.dispatch(submitUser(response.data));
-          alert('Félicitations, votre inscription a été validée. Vous pouvez à présent vous connecter :)');
+          console.log('Response', response1);
+          store.dispatch(submitUser(response1.data.submited));
+          axios.post('http://54.85.18.78/api/v1/login_check', {
+            email: (store.getState().form.email),
+            password: (store.getState().form.password),
+          })
+            .then((response2) => {
+              console.log('Response', response2);
+              store.dispatch(logUser(response2.logged));
+              const { token } = response2.data;
+              axios.get('http://54.85.18.78/api/v1/secured/users/profile', {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+                .then((response3) => {
+                  console.log('Response', response3);
+                  alert('Félicitations, votre inscription a été validée. Vous êtes maintenant connecté :)');
+                  store.dispatch(receiveProfileData(response3.data));
+                })
+                .catch((error3) => {
+                  console.log('Error', error3);
+                  alert('Une erreur s\'est produite, réesayez.');
+                });
+            })
+            .catch((error2) => {
+              console.log('Error', error2);
+              alert('Une erreur s\'est produite, réesayez.');
+            });
         })
       // Erreur
-        .catch((error) => {
-          console.log('Error', error);
+        .catch((error1) => {
+          console.log('Error', error1);
           alert('Une erreur s\'est produite, réesayez.');
         })
       // Dans tous les cas
