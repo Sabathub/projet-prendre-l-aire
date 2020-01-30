@@ -27,7 +27,7 @@ const Signup = ({
   };
 
   if (submited) {
-    return <Redirect to="/signin" />;
+    return <Redirect to="/" />;
   }
 
 

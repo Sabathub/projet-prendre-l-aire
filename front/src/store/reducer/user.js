@@ -36,6 +36,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: false,
+        submited: false,
       };
     case RECEIVE_PROFILE_DATA:
       return {

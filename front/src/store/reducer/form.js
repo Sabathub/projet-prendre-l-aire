@@ -50,8 +50,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         username: '',
-        email: '',
-        password: '',
         passwordVerify: '',
       };
     case SUBMIT_CONTACT:

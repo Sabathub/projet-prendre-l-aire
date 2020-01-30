@@ -24,6 +24,7 @@ const loginMiddleware = (store) => (next) => (action) => {
             },
           })
             .then((response2) => {
+              console.log('Response', response2);
               store.dispatch(receiveProfileData(response2.data));
             })
             .catch((error2) => {
