@@ -10,8 +10,12 @@ import {
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_EDIT_USERNAME: {
+      const token = window.localStorage.getItem('token');
       // appel axios
       axios.patch('http://54.85.18.78/api/v1/secured/users/edit', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         username: (store.getState().form.username),
       })
         .then((response) => {
@@ -25,8 +29,12 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
     case DO_EDIT_PASSWORD: {
-    // appel axios
+      const token = window.localStorage.getItem('token');
+      // appel axios
       axios.put('http://54.85.18.78/api/v1/secured/users/edit/password', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         password: (store.getState().form.password),
       })
         .then((response) => {
@@ -40,8 +48,12 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
     case DO_DELETE_USER: {
-    // appel axios
+      const token = window.localStorage.getItem('token');
+      // appel axios
       axios.delete('http://54.85.18.78/api/v1/secured/users/delete', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         password: (store.getState().form.password),
       })
         .then((response) => {
