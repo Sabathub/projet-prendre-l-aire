@@ -5,6 +5,9 @@ import {
   DO_SIGNUP,
   DO_LOGIN,
   DO_CONTACT,
+  DO_EDIT_USERNAME,
+  DO_EDIT_PASSWORD,
+  DO_DELETE_USER,
   SUBMIT_USER,
   SUBMIT_CONTACT,
 } from '../actions';
@@ -43,6 +46,18 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
     case DO_CONTACT:
+      return {
+        ...state,
+      };
+    case DO_EDIT_USERNAME:
+      return {
+        ...state,
+      };
+    case DO_EDIT_PASSWORD:
+      return {
+        ...state,
+      };
+    case DO_DELETE_USER:
       return {
         ...state,
       };
