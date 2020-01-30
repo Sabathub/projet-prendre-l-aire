@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container, Image, Segment, Grid, Button, Icon,
+  Container, Image, Segment, Grid, Button, Icon, Header, Modal,
 } from 'semantic-ui-react';
 
 import './profile.scss';
@@ -21,18 +21,86 @@ const Profile = ({ profileData }) => (
             <p>{profileData.email}</p>
           </Grid.Column>
           <Grid.Column width={4} textAlign="center">
-            <Button animated color="teal">
-              <Button.Content visible>Modifiez mon profil</Button.Content>
-              <Button.Content hidden>
-                <Icon name="pencil alternate" />
-              </Button.Content>
-            </Button>
-            <Button animated color="red">
-              <Button.Content visible>Supprimez mon compte</Button.Content>
-              <Button.Content hidden>
-                <Icon name="trash" />
-              </Button.Content>
-            </Button>
+            <Modal
+              trigger={(
+                <Button animated color="teal">
+                  <Button.Content visible>Modifier mon pseudo</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="pencil alternate" />
+                  </Button.Content>
+                </Button>
+              )}
+              basic
+              size="small"
+            >
+              <Modal.Header>Select a Photo</Modal.Header>
+              <Modal.Content image>
+                <Image wrapped size='medium' src='/images/avatar/large/rachel.png' />
+                <Modal.Description>
+                  <Header>Default Profile Image</Header>
+                  <p>
+                    We've found the following gravatar image associated with your e-mail
+                    address.
+                  </p>
+                  <p>Is it okay to use this photo?</p>
+                </Modal.Description>
+              </Modal.Content>
+            </Modal>
+
+            <Modal
+              trigger={(
+                <Button animated color="yellow">
+                  <Button.Content visible>Modifier mon mot de passe</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="pencil alternate" />
+                  </Button.Content>
+                </Button>
+              )}
+              basic
+              size="small"
+            >
+              <Modal.Header>Select a Photo</Modal.Header>
+              <Modal.Content image>
+                <Image wrapped size='medium' src='/images/avatar/large/rachel.png' />
+                <Modal.Description>
+                  <Header>Default Profile Image</Header>
+                  <p>
+                    We've found the following gravatar image associated with your e-mail
+                    address.
+                  </p>
+                  <p>Is it okay to use this photo?</p>
+                </Modal.Description>
+              </Modal.Content>
+            </Modal>
+
+            <Modal
+              trigger={(
+                <Button animated color="red">
+                  <Button.Content visible>Supprimez mon compte</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="trash" />
+                  </Button.Content>
+                </Button>
+              )}
+              basic
+              size="small"
+            >
+              <Header icon='archive' content='Archive Old Messages' />
+              <Modal.Content>
+                <p>
+                  Your inbox is getting full, would you like us to enable automatic
+                  archiving of old messages?
+                </p>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button basic color='red' inverted>
+                  <Icon name='remove' /> No
+                </Button>
+                <Button color='green' inverted>
+                  <Icon name='checkmark' /> Yes
+                </Button>
+              </Modal.Actions>
+            </Modal>
           </Grid.Column>
         </Grid.Row>
       </Grid>
