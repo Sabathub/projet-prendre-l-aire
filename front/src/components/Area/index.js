@@ -75,6 +75,7 @@ const Area = ({
             </Grid.Row>
 
             <Grid.Row>
+              {areaData.gasStation != null && (
               <Grid.Column width={5}>
                 <Segment className="services" textAlign="center">
                   <Header as="h3">Station service</Header>
@@ -91,6 +92,8 @@ const Area = ({
                   ))}
                 </Segment.Group>
               </Grid.Column>
+              )}
+              {areaData.services.length !== 0 && (
               <Grid.Column width={6}>
                 <Segment className="services" textAlign="center">
                   <Header as="h3">Services proposés</Header>
@@ -163,6 +166,8 @@ const Area = ({
                   })}
                 </Segment>
               </Grid.Column>
+              )}
+              {areaData.restaurants.length !== 0 && (
               <Grid.Column width={5}>
                 <Segment className="services" textAlign="center">
                   <Header as="h3">Restaurants</Header>
@@ -173,6 +178,7 @@ const Area = ({
                   ))}
                 </Segment>
               </Grid.Column>
+              )}
             </Grid.Row>
             <Grid.Row>
               <Grid.Column width={8} textAlign="center">
