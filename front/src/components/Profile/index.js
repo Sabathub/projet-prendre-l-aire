@@ -6,7 +6,7 @@ import {
 
 import './profile.scss';
 
-const Profile = ({ user }) => (
+const Profile = ({ profileData }) => (
   <Container>
     <h1>Mon profil</h1>
     <Segment>
@@ -17,8 +17,8 @@ const Profile = ({ user }) => (
             <Image className="avatar" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" centered circular />
           </Grid.Column>
           <Grid.Column id="info" width={5} textAlign="left">
-            <p>Bonjour {user.username} !</p>
-            <p>{user.email}</p>
+            <p>Bonjour {profileData.username} !</p>
+            <p>{profileData.email}</p>
           </Grid.Column>
           <Grid.Column width={4} textAlign="center">
             <Button animated color="teal">
@@ -67,7 +67,7 @@ const Profile = ({ user }) => (
 );
 
 Profile.propTypes = {
-  user: PropTypes.arrayOf(PropTypes.shape({
+  profileData: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,

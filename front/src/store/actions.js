@@ -11,7 +11,6 @@ export const NEW_POSITION = 'NEW_POSITION';
 export const NEW_MARKER = 'NEW_MARKER';
 export const FETCH_AREAS_DATA = 'FETCH_AREAS_DATA';
 export const FETCH_HIGHWAYS_DATA = 'FETCH_HIGHWAYS_DATA';
-export const FETCH_PROFILE_DATA = 'FETCH_PROFILE_DATA';
 export const RECEIVE_AREAS_DATA = 'RECEIVE_AREAS_DATA';
 export const RECEIVE_HIGHWAYS_DATA = 'RECEIVE_HIGHWAYS_DATA';
 export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
@@ -38,18 +37,16 @@ export const doContact = () => ({
   type: DO_CONTACT,
 });
 
-export const logUser = (logged, token, email, password) => ({
+export const logUser = (logged, email, password) => ({
   type: LOG_USER,
   logged,
-  token,
   email,
   password,
 });
 
-export const logoutUser = (logged, token) => ({
+export const logoutUser = (logged) => ({
   type: LOGOUT_USER,
   logged,
-  token,
 });
 
 export const submitUser = (submited, username, email, password, passwordVerify) => ({
@@ -77,10 +74,6 @@ export const fetchHighwaysData = () => ({
   type: FETCH_HIGHWAYS_DATA,
 });
 
-export const fetchProfileData = () => ({
-  type: FETCH_PROFILE_DATA,
-});
-
 export const receiveAreasData = (areas) => ({
   type: RECEIVE_AREAS_DATA,
   areas,
@@ -91,9 +84,9 @@ export const receiveHighwaysData = (highways) => ({
   highways,
 });
 
-export const receiveProfileData = (user) => ({
-  type: FETCH_PROFILE_DATA,
-  user,
+export const receiveProfileData = (profile) => ({
+  type: RECEIVE_PROFILE_DATA,
+  profile,
 });
 
 export const stopLoading = () => ({
