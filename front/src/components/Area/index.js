@@ -258,7 +258,7 @@ Area.defaultProps = {
   // si on met "{}" (objet vide) on ne passe pas la validation, car chaque élement est obligatoire
   // "null" => on ne fournit pas d'objet
   // React commence par utiliser les defaultProps AVANT de valider les props
-  areaData: {},
+  areaData: null,
 };
 
 export default Area;
