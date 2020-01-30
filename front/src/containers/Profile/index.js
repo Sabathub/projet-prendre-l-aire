@@ -6,7 +6,7 @@ import Profile from 'src/components/Profile';
 // Grâce à connect, on a accès au state
 // Ici, on gère les datas
 const mapStateToProps = (state) => ({
-  user: state.user.user,
+  profileData: state.user.profile,
 });
 
 // Ici, on gère les actions

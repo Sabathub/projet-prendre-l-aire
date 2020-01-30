@@ -10,13 +10,12 @@ import {
 
 // --- initial state
 const initialState = {
-  token: '',
   username: '',
   email: '',
   password: '',
   submited: false,
   logged: false,
-  user: [],
+  profile: {},
 };
 
 
@@ -32,18 +31,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: true,
-        token: action.token,
       };
     case LOGOUT_USER:
       return {
         ...state,
         logged: false,
-        token: '',
       };
     case RECEIVE_PROFILE_DATA:
       return {
         ...state,
-        user: action.user,
+        profile: action.profile,
       };
 
     default: return state;
