@@ -15,7 +15,14 @@ import {
   FaUtensils,
   FaAccessibleIcon,
   FaBaby,
+  FaShower,
+  FaRestroom,
+  FaFutbol,
+  FaEuroSign,
 } from 'react-icons/fa';
+import {
+  GiFlatTire,
+} from 'react-icons/gi';
 import Zoomarea from 'src/containers/Zoomarea';
 import CommentsArea from 'src/containers/CommentsArea';
 // import Carousel component
@@ -31,12 +38,12 @@ const Area = ({
   highwayloading,
   // found,
 }) => {
-  console.log(arealoading ,highwayloading);
+  console.log(arealoading, highwayloading);
   if (arealoading === false && highwayloading === false) {
     console.log('on a tout');
-    console.log(areaData.destinations[0].name);
+    console.log(areaData.destinations[0].highways.name);
   }
-  
+
 
   return (
 
@@ -60,9 +67,9 @@ const Area = ({
                   <p id="rating">Note moyenne de 12 avis</p>
                 </Segment>
                 <Segment id="area-infos">
-                  <p id="highway">Autoroute A10</p>
-                  <p id="direction">Direction : Lyon</p>
-                  <p id="km">243 km</p>
+                  <p id="highway">Autoroute {areaData.destinations[0].highways.name}</p>
+                  <p id="direction">Direction : {areaData.destinations[0].name}</p>
+                  <p id="km">{Math.round(areaData.kilometers)} km</p>
                 </Segment>
               </Grid.Column>
             </Grid.Row>
@@ -74,24 +81,14 @@ const Area = ({
                 </Segment>
                 <Segment.Group>
                   <Segment>
-                    <Image centered src="https://upload.wikimedia.org/wikipedia/fr/d/dd/TOTAL_SA_logo.svg" size="small" />
+                    <Image centered src={areaData.gasStation.brandPicture} alt={areaData.gasStation.name} size="small" />
                   </Segment>
-                  <Segment.Group horizontal>
-                    <Segment textAlign="center" className="gasname">Gazole</Segment>
-                    <Segment textAlign="center" className="gasprice">1,644 €</Segment>
-                  </Segment.Group>
-                  <Segment.Group horizontal>
-                    <Segment textAlign="center" className="gasname">E85</Segment>
-                    <Segment textAlign="center" className="gasprice">0,839 €</Segment>
-                  </Segment.Group>
-                  <Segment.Group horizontal>
-                    <Segment textAlign="center" className="gasname">E85</Segment>
-                    <Segment textAlign="center" className="gasprice">0,839 €</Segment>
-                  </Segment.Group>
-                  <Segment.Group horizontal>
-                    <Segment textAlign="center" className="gasname">E85</Segment>
-                    <Segment textAlign="center" className="gasprice">0,839 €</Segment>
-                  </Segment.Group>
+                  {areaData.gasPrices.map((gasPrice) => (
+                    <Segment.Group horizontal>
+                      <Segment textAlign="center" className="gasname">{gasPrice.gasType.name}</Segment>
+                      <Segment textAlign="center" className="gasprice">{gasPrice.price} €</Segment>
+                    </Segment.Group>
+                  ))}
                 </Segment.Group>
               </Grid.Column>
               <Grid.Column width={6}>
@@ -99,20 +96,81 @@ const Area = ({
                   <Header as="h3">Services proposés</Header>
                 </Segment>
                 <Segment textAlign="center" className="flex">
-                  <div className="iconlabelled"><FaGasPump className="servicesIcon" /><p>station service</p></div>
-                  <div className="iconlabelled"><FaShoppingCart className="servicesIcon" /><p>commerce</p></div>
-                  <div className="iconlabelled"><FaWifi className="servicesIcon" /><p>Wifi</p></div>
-                  <div className="iconlabelled"><FaUtensils className="servicesIcon" /><p>Restaurant</p></div>
-                  <div className="iconlabelled"><FaAccessibleIcon className="servicesIcon" /><p>Accès handicap</p></div>
-                  <div className="iconlabelled"><FaBaby className="servicesIcon" /><p>Nurserie</p></div>
+                  {areaData.services.map((service) => {
+                    const ServiceIcon = service.icon;
+                    if (service.icon === 'FaRestroom') {
+                      return (
+                        <div className="iconlabelled">
+                          <FaRestroom className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+                    if (service.icon === 'FaBaby') {
+                      return (
+                        <div className="iconlabelled">
+                          <FaBaby className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+                    if (service.icon === 'FaShower') {
+                      return (
+                        <div className="iconlabelled">
+                          <FaShower className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+                    if (service.icon === 'FaEuroSign') {
+                      return (
+                        <div className="iconlabelled">
+                          <FaEuroSign className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+                    if (service.icon === 'FaUtensils') {
+                      return (
+                        <div className="iconlabelled">
+                          <FaUtensils className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+                    if (service.icon === 'FaFutbol') {
+                      return (
+                        <div className="iconlabelled">
+                          <FaFutbol className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+                    if (service.icon === 'FaWifi') {
+                      return (
+                        <div className="iconlabelled">
+                          <FaWifi className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+                    if (service.icon === 'GiFlatTire') {
+                      return (
+                        <div className="iconlabelled">
+                          <GiFlatTire className="servicesIcon" /><p>{service.name}</p>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div className="iconlabelled">
+                        {ServiceIcon}
+                      </div>
+                    );
+                  })}
                 </Segment>
               </Grid.Column>
               <Grid.Column width={5}>
                 <Segment className="services" textAlign="center">
                   <Header as="h3">Restaurants</Header>
                 </Segment>
-                <Segment>
-                  <Image centered src="https://www.agrociwf.fr/media/6251389/autogrill-logo-research-thumb.jpg?mode=min&width=600&height=315&rnd=130619991200000000" size="small" />
+                <Segment className="flex">
+                  {areaData.restaurants.map((restaurant) => (
+                    <Image className="restaurant-brand" centered alt={restaurant.name} src={restaurant.brandPicture} />
+                  ))}
                 </Segment>
               </Grid.Column>
             </Grid.Row>
@@ -164,6 +222,7 @@ Area.propTypes = {
     gasStation: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
+      brandPicture: PropTypes.string.isRequired,
     }).isRequired,
     gasPrices: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -192,7 +251,7 @@ Area.propTypes = {
   }),
   arealoading: PropTypes.bool.isRequired,
   highwayloading: PropTypes.bool.isRequired,
-  found: PropTypes.bool.isRequired,
+  // found: PropTypes.bool.isRequired,
 };
 
 Area.defaultProps = {
