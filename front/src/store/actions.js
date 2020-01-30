@@ -3,6 +3,9 @@ export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
 export const DO_CONTACT = 'DO_CONTACT';
+export const DO_EDIT_USERNAME = 'DO_EDIT_USERNAME';
+export const DO_EDIT_PASSWORD = 'DO_EDIT_PASSWORD ';
+export const DO_DELETE_USER = 'DO_DELETE_USER';
 export const LOG_USER = 'LOG_USER';
 export const SUBMIT_USER = 'SUBMIT_USER';
 export const SUBMIT_CONTACT = 'SUBMIT_CONTACT';
@@ -35,6 +38,18 @@ export const doLogin = () => ({
 
 export const doContact = () => ({
   type: DO_CONTACT,
+});
+
+export const doEditUsername = () => ({
+  type: DO_EDIT_USERNAME,
+});
+
+export const doEditPassword = () => ({
+  type: DO_EDIT_PASSWORD,
+});
+
+export const doDeleteUser = () => ({
+  type: DO_DELETE_USER,
 });
 
 export const logUser = (logged, email, password) => ({
