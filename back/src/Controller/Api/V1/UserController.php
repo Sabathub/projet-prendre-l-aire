@@ -34,7 +34,7 @@ class UserController extends AbstractController
       * Change user datas (email or username)
      * @Route("/edit", name="edit", methods="PATCH")
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request, SerializerInterface $serializer): Response
     {
         // get the current user connected with the Jwt Token
         $user = $this->getUser();
@@ -58,7 +58,8 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             // return JSON
-            return $this->json('username and/or email modified');
+            $data = $serializer->normalize($user, null, ['groups' => 'api_v1_user']);
+            return $this->json($data);
         }
 
         // return JSON if not a success
