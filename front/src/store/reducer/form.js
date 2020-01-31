@@ -10,6 +10,8 @@ import {
   DO_DELETE_USER,
   SUBMIT_USER,
   SUBMIT_CONTACT,
+  SUBMIT_EDIT_USERNAME,
+  SUBMIT_EDIT_PASSWORD,
 } from '../actions';
 
 // --- initial state
@@ -21,6 +23,8 @@ const initialState = {
   name: '',
   subject: '',
   content: '',
+  submitedUsername: false,
+  submitedPassword: false,
 };
 
 // --- Reducer
@@ -74,6 +78,18 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         subject: '',
         content: '',
+      };
+    case SUBMIT_EDIT_USERNAME:
+      return {
+        ...state,
+        submitedUsername: true,
+        username: '',
+      };
+    case SUBMIT_EDIT_PASSWORD:
+      return {
+        ...state,
+        submitedPassword: true,
+        password: '',
       };
 
     default: return state;

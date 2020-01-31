@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Container, Image, Segment, Grid, Button, Icon, Header, Modal, Form,
 } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
 
 import './profile.scss';
 
@@ -14,6 +15,9 @@ const Profile = ({
   editUsername,
   editPassword,
   deleteUser,
+  submitedUsername,
+  submitedPassword,
+  logged,
 }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
@@ -33,6 +37,16 @@ const Profile = ({
     deleteUser();
   };
 
+  if (submitedUsername) {
+    window.location.reload(false);
+  }
+  if (submitedPassword) {
+    window.location.reload(false);
+  }
+  if (!logged) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <Container>
       <h1>Mon profil</h1>
@@ -49,6 +63,7 @@ const Profile = ({
             </Grid.Column>
             <Grid.Column width={4} textAlign="center">
               <Modal
+                id="modalUsername"
                 trigger={(
                   <Button animated color="teal">
                     <Button.Content visible>Modifier mon pseudo</Button.Content>
@@ -208,6 +223,9 @@ Profile.propTypes = {
   editUsername: PropTypes.func.isRequired,
   editPassword: PropTypes.func.isRequired,
   deleteUser: PropTypes.func.isRequired,
+  submitedUsername: PropTypes.bool.isRequired,
+  submitedPassword: PropTypes.bool.isRequired,
+  logged: PropTypes.bool.isRequired,
 };
 
 export default Profile;

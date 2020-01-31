@@ -14,9 +14,13 @@ import DynamicScrollToTop from 'src/utils/DynamicScrollToTop';
 class App extends React.Component {
   componentDidMount() {
     // appel à l'API pour initialiser les données
-    const { fetchAreas, fetchHighways } = this.props;
+    const { fetchAreas, fetchHighways, keepLogged } = this.props;
     fetchAreas();
     fetchHighways();
+    const localStorage = window.localStorage.getItem('token');
+    if (localStorage !== null) {
+      keepLogged();
+    }
   }
 
   render() {
@@ -34,6 +38,7 @@ class App extends React.Component {
 App.propTypes = {
   fetchAreas: PropTypes.func.isRequired,
   fetchHighways: PropTypes.func.isRequired,
+  keepLogged: PropTypes.func.isRequired,
 };
 
 // == Export
