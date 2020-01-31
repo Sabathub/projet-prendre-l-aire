@@ -42,7 +42,18 @@ const CommentsArea = ({ comments, logged }) => (
         </>
       );
     })}
-
+    {comments == null && (
+      <>
+        <Comment key="999">
+          <Comment.Content>
+            <Comment.Text>
+              Il n'existe aucun commentaire pour cette aire pour le moment
+            </Comment.Text>
+          </Comment.Content>
+        </Comment>
+        <Divider />
+      </>
+    )}
     {logged && (
     <Form reply>
       <Form.TextArea />

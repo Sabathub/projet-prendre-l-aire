@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container, Image, Segment, Grid, Button, Icon, Header, Modal, Form,
+  Container, Image, Segment, Grid, Button, Icon, Header, Modal, Form, Comment, Divider,
 } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 
@@ -175,26 +175,36 @@ const Profile = ({
         <h2 id="commentsTitle">Mes commentaires</h2>
 
         <Grid divided="vertically">
-          <Grid.Row columns={2}>
-            <Grid.Column>
-              <Image className="comment" src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
-            </Grid.Column>
-            <Grid.Column>
-              <Image className="comment" src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
-            </Grid.Column>
+          <Grid.Row columns={1}>
+            {profileData.comments != null && profileData.comments.map((comment) => (
+              <>
+                <Grid.Column>
+                  <Comment key={comment.id}>
+                    <Comment.Content>
+                      <Comment.Author as="a">{profileData.comments.username}</Comment.Author>
+                      <Comment.Metadata>
+                        <div>{comment.createdAt}</div>
+                      </Comment.Metadata>
+                      <Comment.Text>{comment.description}</Comment.Text>
+                    </Comment.Content>
+                  </Comment>
+
+                  <Divider />
+                </Grid.Column>
+              </>
+            ))}
+            {profileData.comments == null && (
+              <>
+                <Grid.Column>
+                  <div>
+                    <p>Vous n'avez posté aucun commentaire pour le moment.</p>
+                  </div>
+                </Grid.Column>
+              </>
+            )}
+
           </Grid.Row>
 
-          <Grid.Row columns={3}>
-            <Grid.Column>
-              <Image className="comment" src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
-            </Grid.Column>
-            <Grid.Column>
-              <Image className="comment" src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
-            </Grid.Column>
-            <Grid.Column>
-              <Image className="comment" src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
-            </Grid.Column>
-          </Grid.Row>
         </Grid>
 
       </Segment>
@@ -211,6 +221,7 @@ Profile.propTypes = {
       id: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
       rate: PropTypes.number.isRequired,
+      createdAt: PropTypes.string.isRequired,
       area: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
