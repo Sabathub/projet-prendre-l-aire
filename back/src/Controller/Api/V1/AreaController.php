@@ -8,8 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
-
 /**
 * @Route("/api/v1/areas", name="api_v1_areas_")
 */

@@ -111,6 +111,11 @@ class Area
      */
     private $destinations;
 
+    /**
+     * @ORM\Column(type="decimal", precision=2, scale=1, nullable=true)
+     */
+    private $averageRate;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
@@ -373,6 +378,18 @@ class Area
             $this->destinations->removeElement($destination);
             $destination->removeArea($this);
         }
+
+        return $this;
+    }
+
+    public function getAverageRate(): ?string
+    {
+        return $this->averageRate;
+    }
+
+    public function setAverageRate(?string $averageRate): self
+    {
+        $this->averageRate = $averageRate;
 
         return $this;
     }

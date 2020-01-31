@@ -37,14 +37,17 @@ class AreaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Area
+    public function findById($value): ?Area
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->getEntityManager()
+        ->createQuery('
+        SELECT *
+        FROM App\Entity\Area a
+        WHERE a.id = :val
+        ')
+        ->setParameter('val', $value)
+        ->getResult();
     }
     */
+    
 }
