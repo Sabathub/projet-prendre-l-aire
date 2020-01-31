@@ -10,8 +10,6 @@ import Team from 'src/containers/Team';
 import Profile from 'src/containers/Profile';
 import Contact from 'src/containers/Contact';
 
-import users from 'src/data/users';
-
 const Page = ({ logged }) => (
   <Switch>
     <Route exact path="/">
@@ -39,7 +37,7 @@ const Page = ({ logged }) => (
     mais évitera des problèmes de sécurité si on enlève Redirect) */}
     {logged && (
     <Route path="/profile">
-      <Profile user={users[0]} />
+      <Profile />
     </Route>
     )}
     <Route path="/not-found">

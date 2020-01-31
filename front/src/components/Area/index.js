@@ -23,13 +23,14 @@ import {
 import {
   GiFlatTire,
 } from 'react-icons/gi';
-import Zoomarea from 'src/containers/Zoomarea';
-import CommentsArea from 'src/containers/CommentsArea';
+
 // import Carousel component
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-// import Upload component
-import Upload from 'src/containers/Upload';
+// import Zoomarea component
+import Zoomarea from './Zoomarea';
+// import Zoomarea component
+import CommentsArea from './CommentsArea';
 
 
 import './area.scss';
@@ -39,6 +40,7 @@ const Area = ({
   arealoading,
   highwayloading,
   doImage,
+  logged,
   // found,
 }) => {
   const handleFile = (evt) => {
@@ -68,7 +70,7 @@ const Area = ({
           <Grid centered stackable>
             <Grid.Row>
               <Grid.Column width={5}>
-                <Zoomarea />
+                <Zoomarea latitude={areaData.latitude} longitude={areaData.longitude} />
               </Grid.Column>
               <Grid.Column width={5} textAlign="center" verticalAlign="middle">
                 <Segment basic>
@@ -216,7 +218,7 @@ const Area = ({
             <button type="submit">Upload</button>
           </form>
           {/* <Upload /> */}
-          <CommentsArea />
+          <CommentsArea comments={areaData.comments} logged={logged} />
         </>
       )}
       {/* {!found && <Redirect to="/not-found" />} */}
@@ -276,6 +278,7 @@ Area.propTypes = {
   highwayloading: PropTypes.bool.isRequired,
   // found: PropTypes.bool.isRequired,
   doImage: PropTypes.func.isRequired,
+  logged: PropTypes.bool.isRequired,
 };
 
 Area.defaultProps = {

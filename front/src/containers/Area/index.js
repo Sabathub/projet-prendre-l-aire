@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     highwayloading: state.map.highwayloading,
     found: area !== undefined,
     file: state.comment.file,
+    logged: state.user.logged,
   });
 };
 
