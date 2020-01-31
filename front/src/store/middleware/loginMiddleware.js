@@ -17,6 +17,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         // store.dispatch(changeUserName(response.data));
           console.log('Response', response1);
           store.dispatch(logUser(response1.data.logged));
+          window.localStorage.setItem('token', response1.data.token);
           const { token } = response1.data;
           axios.get('http://54.85.18.78/api/v1/secured/users/profile', {
             headers: {
