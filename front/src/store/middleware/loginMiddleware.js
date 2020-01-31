@@ -19,11 +19,8 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(logUser(response1.data.logged));
           window.localStorage.setItem('token', response1.data.token);
           const { token } = response1.data;
-          axios.get('http://54.85.18.78/api/v1/secured/users/profile', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
+          axios.defaults.headers.Authorization = `Bearer ${token}`;
+          axios.get('http://54.85.18.78/api/v1/secured/users/profile')
             .then((response2) => {
               console.log('Response', response2);
               store.dispatch(receiveProfileData(response2.data));

@@ -10,13 +10,12 @@ import {
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_EDIT_USERNAME: {
-      const token = window.localStorage.getItem('token');
+      const edituser = {
+        username: (store.getState().form.username),
+      };
       // appel axios
       axios.patch('http://54.85.18.78/api/v1/secured/users/edit', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        username: (store.getState().form.username),
+        edituser,
       })
         .then((response) => {
           console.log(response);
@@ -29,13 +28,12 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
     case DO_EDIT_PASSWORD: {
-      const token = window.localStorage.getItem('token');
+      const editpassword = {
+        password: (store.getState().form.password),
+      };
       // appel axios
       axios.put('http://54.85.18.78/api/v1/secured/users/edit/password', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        password: (store.getState().form.password),
+        editpassword,
       })
         .then((response) => {
           console.log(response);
@@ -48,14 +46,8 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
     case DO_DELETE_USER: {
-      const token = window.localStorage.getItem('token');
       // appel axios
-      axios.delete('http://54.85.18.78/api/v1/secured/users/delete', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        password: (store.getState().form.password),
-      })
+      axios.delete('http://54.85.18.78/api/v1/secured/users/delete')
         .then((response) => {
           console.log(response);
         })

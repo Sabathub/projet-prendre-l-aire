@@ -11,13 +11,10 @@ const signupMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_SIGNUP: {
       const user = {
-
         username: (store.getState().form.username),
         email: (store.getState().form.email),
         password: (store.getState().form.password),
-
       };
-
       // Ouvrir une connexion avec le serveur
       axios.post('http://54.85.18.78/api/v1/register', {
         user,
@@ -35,12 +32,10 @@ const signupMiddleware = (store) => (next) => (action) => {
             .then((response2) => {
               console.log('Response', response2);
               store.dispatch(logUser(response2.logged));
+              window.localStorage.setItem('token', response2.data.token);
               const { token } = response2.data;
-              axios.get('http://54.85.18.78/api/v1/secured/users/profile', {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              })
+              axios.defaults.headers.Authorization = `Bearer ${token}`;
+              axios.get('http://54.85.18.78/api/v1/secured/users/profile')
                 .then((response3) => {
                   console.log('Response', response3);
                   alert('Félicitations, votre inscription a été validée. Vous êtes maintenant connecté :)');
