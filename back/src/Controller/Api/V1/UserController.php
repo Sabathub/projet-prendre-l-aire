@@ -2,8 +2,8 @@
 
 namespace App\Controller\Api\V1;
 
-use App\Form\EditPasswordType;
-use App\Form\EditUserType;
+use App\Form\EditpasswordType;
+use App\Form\EdituserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,8 +48,8 @@ class UserController extends AbstractController
         // and replace this into the request with parameters in array shape
         $request->request->replace(is_array($data) ? $data : array());
         
-        // second action is to create a EditUserType form (PATCH method to be able to change username and/or email) associated that we fill with the request
-        $form = $this->createForm(EditUserType::class, $user, ['method' => 'PATCH', 'csrf_protection' => false]);
+        // second action is to create a EdituserType form (PATCH method to be able to change username and/or email) associated that we fill with the request
+        $form = $this->createForm(EdituserType::class, $user, ['method' => 'PATCH', 'csrf_protection' => false]);
         $form->handleRequest($request);    
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,8 +83,8 @@ class UserController extends AbstractController
         // and replace this into the request with parameters in array shape
         $request->request->replace(is_array($data) ? $data : array());
         
-        // second action is to create a EditPasswordType form (PUT method) associated that we fill with the request
-        $form = $this->createForm(EditPasswordType::class, $user, ['method' => 'PUT', 'csrf_protection' => false]);
+        // second action is to create a EditpasswordType form (PUT method) associated that we fill with the request
+        $form = $this->createForm(EditpasswordType::class, $user, ['method' => 'PUT', 'csrf_protection' => false]);
         $form->handleRequest($request);         
 
         if ($form->isSubmitted() && $form->isValid()) {
