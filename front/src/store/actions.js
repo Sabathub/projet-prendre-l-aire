@@ -19,6 +19,7 @@ export const RECEIVE_HIGHWAYS_DATA = 'RECEIVE_HIGHWAYS_DATA';
 export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
 export const STOP_LOADING_HIGHWAYS = 'STOP_LOADING_HIGHWAYS';
+export const STOCK_IMAGE = 'STOCK_IMAGE';
 
 
 // == action creators
@@ -110,4 +111,9 @@ export const stopLoading = () => ({
 
 export const stopLoadingHighways = () => ({
   type: STOP_LOADING_HIGHWAYS,
+});
+
+export const stockImageToState = (file) => ({
+  type: STOCK_IMAGE,
+  file,
 });
