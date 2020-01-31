@@ -7,8 +7,12 @@ export const DO_EDIT_USERNAME = 'DO_EDIT_USERNAME';
 export const DO_EDIT_PASSWORD = 'DO_EDIT_PASSWORD ';
 export const DO_DELETE_USER = 'DO_DELETE_USER';
 export const LOG_USER = 'LOG_USER';
+export const USER_IS_CONNECT = 'USER_IS_CONNECT';
 export const SUBMIT_USER = 'SUBMIT_USER';
 export const SUBMIT_CONTACT = 'SUBMIT_CONTACT';
+export const SUBMIT_EDIT_USERNAME = 'SUBMIT_EDIT_USERNAME';
+export const SUBMIT_EDIT_PASSWORD = 'SUBMIT_EDIT_PASSWORD';
+export const SUBMIT_DELETE_USER = 'SUBMIT_DELETE_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const NEW_POSITION = 'NEW_POSITION';
 export const NEW_MARKER = 'NEW_MARKER';
@@ -65,6 +69,11 @@ export const logoutUser = (logged) => ({
   logged,
 });
 
+export const userIsConnect = (logged) => ({
+  type: USER_IS_CONNECT,
+  logged,
+});
+
 export const submitUser = (submited, username, email, password, passwordVerify) => ({
   type: SUBMIT_USER,
   submited,
@@ -80,6 +89,23 @@ export const submitContact = (name, email, subject, content) => ({
   email,
   subject,
   content,
+});
+
+export const submitEditUsername = (submitedUsername, username) => ({
+  type: SUBMIT_EDIT_USERNAME,
+  submitedUsername,
+  username,
+});
+
+export const submitEditPassword = (submitedPassword, password) => ({
+  type: SUBMIT_EDIT_PASSWORD,
+  submitedPassword,
+  password,
+});
+
+export const submitDeleteUser = (logged) => ({
+  type: SUBMIT_DELETE_USER,
+  logged,
 });
 
 export const fetchAreasData = () => ({

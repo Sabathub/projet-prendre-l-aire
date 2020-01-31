@@ -16,6 +16,9 @@ const mapStateToProps = (state) => ({
   profileData: state.user.profile,
   usernameValue: state.form.username,
   passwordValue: state.form.password,
+  submitedUsername: state.form.submitedUsername,
+  submitedPassword: state.form.submitedPassword,
+  logged: state.user.logged,
 });
 
 // Ici, on gère les actions

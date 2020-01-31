@@ -6,6 +6,8 @@ import {
   LOG_USER,
   LOGOUT_USER,
   RECEIVE_PROFILE_DATA,
+  SUBMIT_DELETE_USER,
+  USER_IS_CONNECT,
 } from '../actions';
 
 // --- initial state
@@ -27,12 +29,23 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         submited: true,
       };
+    case SUBMIT_DELETE_USER:
+      return {
+        ...state,
+        logged: false,
+      };
     case LOG_USER:
       return {
         ...state,
         logged: true,
       };
+    case USER_IS_CONNECT:
+      return {
+        ...state,
+        logged: true,
+      };
     case LOGOUT_USER:
+      window.localStorage.clear();
       return {
         ...state,
         logged: false,
