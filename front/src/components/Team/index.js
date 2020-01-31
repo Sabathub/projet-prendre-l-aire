@@ -1,27 +1,29 @@
-import React from 'react'
-import { Container, Card, Header, Image } from 'semantic-ui-react'
-import Kevin from './../../assets/team/team_kevin_dubuy.png'
-import Laetitia from './../../assets/team/team_laetitia_lez.jpg'
-import Marion from './../../assets/team/team_marion_polomeni.jpg'
-import Sophie from './../../assets/team/team_sophie_verger.jpg'
-import Maxime from './../../assets/team/team_maxime_julien.jpg'
-import { FaLinkedinIn, FaTwitter, FaGithub } from 'react-icons/fa';
+import React from 'react';
+import {
+  Container, Card, Header, Image,
+} from 'semantic-ui-react';
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
+import Kevin from '../../assets/team/team_kevin_dubuy.png';
+import Laetitia from '../../assets/team/team_laetitia_lez.jpg';
+import Marion from '../../assets/team/team_marion_polomeni.jpg';
+import Sophie from '../../assets/team/team_sophie_verger.jpg';
+import Maxime from '../../assets/team/team_maxime_julien.jpg';
 
 import './team.scss';
 
 const Team = () => (
-  <Container id='team'>
-    <Header id='pageTitle' as='h1'>Qui sommes-nous ?</Header>
-    <Card.Group id='cards'>
+  <Container id="team">
+    <Header id="pageTitle" as="h1">Qui sommes-nous ?</Header>
+    <Card.Group id="cards">
       {/* Team member card */}
       <Card className="card">
         <Image src={Laetitia} wrapped ui={false} />
         <Card.Content>
           <Card.Header>Laetitia Lez</Card.Header>
           <Card.Description>
-            <p className='job'>Développeuse web Full Stack</p>
-            <p className='role'>Scrum Master</p>
-            <p className='description'>Spécialisation Symfony</p>
+            <p className="job">Développeuse Web Full Stack</p>
+            <p className="role">Scrum Master</p>
+            <p className="description">Spécialisation Symfony</p>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -37,9 +39,9 @@ const Team = () => (
         <Card.Content>
           <Card.Header>Marion Polomeni</Card.Header>
           <Card.Description>
-            <p className='job'>Développeuse web Full Stack</p>
-            <p className='role'>Lead developer back</p>
-            <p className='description'>Spécialisation Symfony</p>
+            <p className="job">Développeuse Web Full Stack</p>
+            <p className="role">Lead Developer Back</p>
+            <p className="description">Spécialisation Symfony</p>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -55,9 +57,9 @@ const Team = () => (
         <Card.Content>
           <Card.Header>Sophie Verger</Card.Header>
           <Card.Description>
-            <p className='job'>Développeuse web Full Stack</p>
-            <p className='role'>Git master</p>
-            <p className='description'>Spécialisation Symfony</p>
+            <p className="job">Développeuse Web Full Stack</p>
+            <p className="role">Git Master</p>
+            <p className="description">Spécialisation Symfony</p>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -73,9 +75,9 @@ const Team = () => (
         <Card.Content>
           <Card.Header>Maxime Julien</Card.Header>
           <Card.Description>
-            <p className='job'>Développeur web Full Stack</p>
-            <p className='role'>Lead developer front</p>
-            <p className='description'>Spécialisation React</p>
+            <p className="job">Développeur Web Full Stack</p>
+            <p className="role">Lead Developer Front</p>
+            <p className="description">Spécialisation React</p>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -91,9 +93,9 @@ const Team = () => (
         <Card.Content>
           <Card.Header>Kevin Dubuy</Card.Header>
           <Card.Description>
-            <p className='job'>Développeur web Full Stack</p>
-            <p className='role'>Product Owner</p>
-            <p className='description'>Spécialisation React</p>
+            <p className="job">Développeur Web Full Stack</p>
+            <p className="role">Product Owner</p>
+            <p className="description">Spécialisation React</p>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -104,7 +106,7 @@ const Team = () => (
       {/* End of team member card */}
     </Card.Group>
   </Container>
-  
+
 );
 
 export default Team;
