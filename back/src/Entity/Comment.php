@@ -48,6 +48,9 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("api_v1_areas")
+     * @Groups("api_v1_user")
+     * @Groups("api_v1_comment")
      */
     private $createdAt;
 
