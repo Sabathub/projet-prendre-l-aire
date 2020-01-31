@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Button, Comment, Form, Header, Segment, Divider,
 } from 'semantic-ui-react';
+// import Moment from 'react-moment';
 
 import './commentsarea.scss';
 
@@ -12,21 +13,37 @@ const CommentsArea = ({ comments, logged }) => (
       <Header as="h3">Commentaires</Header>
     </Segment>
 
-    {comments != null && comments.map((comment) => (
-      <>
-        <Comment key={comment.id}>
-          <Comment.Content>
-            <Comment.Author as="a">{comment.user.username}</Comment.Author>
-            <Comment.Metadata>
-              <div>{comment.createdAt}</div>
-            </Comment.Metadata>
-            <Comment.Text>{comment.description}</Comment.Text>
-          </Comment.Content>
-        </Comment>
+    {comments != null && comments.map((comment) => {
+      const currentDate = new Date(comment.createdAt);
+      console.log(currentDate);
 
-        <Divider />
-      </>
-    ))}
+const date = currentDate.getDate();
+const month = currentDate.getMonth(); 
+const year = currentDate.getFullYear();
+const hour = currentDate.getHours();
+const second = currentDate.getSeconds();
+var monthNames = [
+  "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+];
+console.log(date, monthNames[month], year);
+      return (
+        <>
+          <Comment key={comment.id}>
+            <Comment.Content>
+              <Comment.Author as="a">{comment.user.username}</Comment.Author>
+              <Comment.Metadata>
+                <div>
+                  posté le {date} {monthNames[month]} {year} à {hour}h{second}
+                </div>
+              </Comment.Metadata>
+              <Comment.Text>{comment.description}</Comment.Text>
+            </Comment.Content>
+          </Comment>
+
+          <Divider />
+        </>
+      );
+    })}
 
     {logged && (
     <Form reply>
@@ -44,7 +61,7 @@ CommentsArea.propTypes = {
     rate: PropTypes.number.isRequired,
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
-      email: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
 };
