@@ -28,6 +28,8 @@ import CommentsArea from 'src/containers/CommentsArea';
 // import Carousel component
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+// import Upload component
+import Upload from 'src/containers/Upload';
 
 
 import './area.scss';
@@ -36,12 +38,19 @@ const Area = ({
   areaData,
   arealoading,
   highwayloading,
+  doImage,
   // found,
 }) => {
-  console.log(arealoading, highwayloading);
-  if (arealoading === false && highwayloading === false) {
-    console.log('on a tout');
-    console.log(areaData.destinations[0].highways.name);
+  const handleFile = (evt) => {
+    evt.preventDefault();
+    const file = evt.target.files[0];
+    console.log(file);
+    doImage(file);
+  };
+
+  const handleUpload = (evt) => {
+    evt.preventDefault();
+    console.log('upload');
   }
 
 
@@ -85,7 +94,7 @@ const Area = ({
                     <Image centered src={areaData.gasStation.brandPicture} alt={areaData.gasStation.name} size="small" />
                   </Segment>
                   {areaData.gasPrices.map((gasPrice) => (
-                    <Segment.Group horizontal>
+                    <Segment.Group horizontal key={gasPrice.id}>
                       <Segment textAlign="center" className="gasname">{gasPrice.gasType.name}</Segment>
                       <Segment textAlign="center" className="gasprice">{gasPrice.price} €</Segment>
                     </Segment.Group>
@@ -174,7 +183,7 @@ const Area = ({
                 </Segment>
                 <Segment className="flex">
                   {areaData.restaurants.map((restaurant) => (
-                    <Image className="restaurant-brand" centered alt={restaurant.name} src={restaurant.brandPicture} />
+                    <Image className="restaurant-brand" centered alt={restaurant.name} src={restaurant.brandPicture} key={restaurant.id} />
                   ))}
                 </Segment>
               </Grid.Column>
@@ -199,6 +208,14 @@ const Area = ({
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          <form onSubmit={handleUpload}>
+            <div>
+              <label>Select file</label>
+              <input type="file" name="file" onChange={handleFile} />
+            </div>
+            <button type="submit">Upload</button>
+          </form>
+          {/* <Upload /> */}
           <CommentsArea />
         </>
       )}
@@ -258,6 +275,7 @@ Area.propTypes = {
   arealoading: PropTypes.bool.isRequired,
   highwayloading: PropTypes.bool.isRequired,
   // found: PropTypes.bool.isRequired,
+  doImage: PropTypes.func.isRequired,
 };
 
 Area.defaultProps = {
