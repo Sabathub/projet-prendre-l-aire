@@ -15,17 +15,15 @@ const CommentsArea = ({ comments, logged }) => (
 
     {comments != null && comments.map((comment) => {
       const currentDate = new Date(comment.createdAt);
-      console.log(currentDate);
 
-const date = currentDate.getDate();
-const month = currentDate.getMonth(); 
-const year = currentDate.getFullYear();
-const hour = currentDate.getHours();
-const second = currentDate.getSeconds();
-var monthNames = [
-  "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"
-];
-console.log(date, monthNames[month], year);
+      const date = currentDate.getDate();
+      const month = currentDate.getMonth();
+      const year = currentDate.getFullYear();
+      const hour = currentDate.getHours();
+      const second = currentDate.getSeconds();
+      const monthNames = [
+        'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre',
+      ];
       return (
         <>
           <Comment key={comment.id}>
