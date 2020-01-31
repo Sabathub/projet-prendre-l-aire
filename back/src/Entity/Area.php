@@ -113,6 +113,7 @@ class Area
 
     /**
      * @ORM\Column(type="decimal", precision=2, scale=1, nullable=true)
+     * @Groups("api_v1_areas")
      */
     private $averageRate;
 
