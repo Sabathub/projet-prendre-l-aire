@@ -26,12 +26,13 @@ const Maparea = ({
   };
 
   console.log(arealoading);
+  console.log(newAreasValue, 'je suis dans maparea');
 
   let newAreas = [];
 
-  if (newAreasValue && areas) {
+  if (newAreasValue !== null && !arealoading) {
     newAreas = areas.filter((area) => (
-      area.destinations.highways.id === newAreasValue.highwayId
+      area.destinations[0].highways.id === newAreasValue.highwayId
     ));
   }
 
@@ -47,7 +48,7 @@ const Maparea = ({
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {!arealoading && !newAreasValue && areas.map((area) => (
+        {!arealoading && areas.map((area) => (
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
               <p className="popup-area-name">{area.name}</p>
@@ -56,8 +57,8 @@ const Maparea = ({
             </Popup>
           </Marker>
         ))}
-        {!arealoading && newAreasValue && newAreas.map((area) => (
-          <Marker position={[area.latitude, area.longitude]} key={newAreasValue.highwayId}>
+        {!arealoading && newAreasValue !== null && newAreas.map((area) => (
+          <Marker position={[area.latitude, area.longitude]} key={area.id}>
             <Popup>
               <p className="popup-area-name">{area.name}</p>
 
