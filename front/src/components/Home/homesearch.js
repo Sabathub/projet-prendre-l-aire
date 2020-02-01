@@ -8,12 +8,18 @@ import PropTypes from 'prop-types';
 const Homesearch = ({
   highways,
   arealoading,
+  changeMarkersValue,
 }) => {
   const areaOptions = highways.map((highway) => ({
     key: highway.id,
     text: highway.highways.name + highway.name,
-    value: highway.highways.name + highway.name,
+    value: highway.id,
   }));
+
+  const handleChange = (evt, data) => {
+    changeMarkersValue({ highwayId: data.value });
+    console.log(data.value);
+  };
 
   return (
     <>
@@ -27,6 +33,7 @@ const Homesearch = ({
         fluid
         selection
         options={areaOptions}
+        onChange={handleChange}
         id="highwayslist"
       />
     </>
@@ -47,6 +54,7 @@ Homesearch.propTypes = {
     }).isRequired,
   })).isRequired,
   arealoading: PropTypes.bool.isRequired,
+  changeMarkersValue: PropTypes.func.isRequired,
 };
 
 export default Homesearch;

@@ -14,7 +14,7 @@ import LocateControl from './locatecontrol';
 import './maparea.scss';
 
 const Maparea = ({
-  lat, lng, zoom, areas, arealoading,
+  lat, lng, zoom, areas, arealoading, newAreasValue,
 }) => {
   const position = [lat, lng];
 
@@ -26,6 +26,14 @@ const Maparea = ({
   };
 
   console.log(arealoading);
+
+  let newAreas = [];
+
+  if (newAreasValue && areas) {
+    newAreas = areas.filter((area) => (
+      area.destinations.highways.id === newAreasValue.highwayId
+    ));
+  }
 
   return (
     <>
@@ -39,8 +47,17 @@ const Maparea = ({
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {!arealoading && areas.map((area) => (
+        {!arealoading && !newAreasValue && areas.map((area) => (
           <Marker position={[area.latitude, area.longitude]} key={area.id}>
+            <Popup>
+              <p className="popup-area-name">{area.name}</p>
+
+              <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
+            </Popup>
+          </Marker>
+        ))}
+        {!arealoading && newAreasValue && newAreas.map((area) => (
+          <Marker position={[area.latitude, area.longitude]} key={newAreasValue.highwayId}>
             <Popup>
               <p className="popup-area-name">{area.name}</p>
 
@@ -102,6 +119,9 @@ Maparea.propTypes = {
     })).isRequired,
   })).isRequired,
   arealoading: PropTypes.bool.isRequired,
+  newAreasValue: PropTypes.shape({
+    highwayId: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Maparea;
