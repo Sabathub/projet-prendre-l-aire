@@ -17,7 +17,7 @@ const Homesearch = ({
   }));
 
   const handleChange = (evt, data) => {
-    changeMarkersValue({ newAreasValue: data.value });
+    changeMarkersValue({ highwayId: data.value });
     console.log(data.value);
   };
 
