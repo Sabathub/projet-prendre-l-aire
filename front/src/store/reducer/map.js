@@ -5,6 +5,7 @@ import {
   RECEIVE_HIGHWAYS_DATA,
   STOP_LOADING,
   STOP_LOADING_HIGHWAYS,
+  CHANGE_MARKERS_VALUE,
 } from '../actions';
 // --- initial state
 const initialState = {
@@ -16,6 +17,8 @@ const initialState = {
 
   areas: [],
 
+  newAreasValue: {},
+
   highways: [],
 
   arealoading: true,
@@ -25,6 +28,11 @@ const initialState = {
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHANGE_MARKERS_VALUE:
+      return {
+        ...state,
+        newAreasValue: action.newAreasValue,
+      };
     case RECEIVE_AREAS_DATA:
       return {
         ...state,
