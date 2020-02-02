@@ -1,6 +1,7 @@
 // == action types
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const CHANGE_MARKERS_VALUE = 'CHANGE_MARKERS_VALUE';
+export const CHANGE_AREAS_DATA = 'CHANGE_AREAS_DATA';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
 export const DO_CONTACT = 'DO_CONTACT';
@@ -37,6 +38,11 @@ export const changeInput = (value, name) => ({
 export const changeMarkers = (newAreasValue) => ({
   type: CHANGE_MARKERS_VALUE,
   newAreasValue,
+});
+
+export const changeAreas = (areas) => ({
+  type: CHANGE_AREAS_DATA,
+  areas,
 });
 
 export const doSignup = () => ({

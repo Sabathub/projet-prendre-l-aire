@@ -6,6 +6,7 @@ import {
   STOP_LOADING,
   STOP_LOADING_HIGHWAYS,
   CHANGE_MARKERS_VALUE,
+  CHANGE_AREAS_DATA,
 } from '../actions';
 // --- initial state
 const initialState = {
@@ -32,6 +33,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         newAreasValue: action.newAreasValue,
+      };
+    case CHANGE_AREAS_DATA:
+      return {
+        ...state,
+        areas: action.areas,
       };
     case RECEIVE_AREAS_DATA:
       return {

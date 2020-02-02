@@ -13,7 +13,6 @@ const mapStateToProps = (state, ownProps) => {
     arealoading: state.area.arealoading,
     highwayloading: state.map.highwayloading,
     found: area !== undefined,
-    file: state.comment.file,
     logged: state.user.logged,
   });
 };
