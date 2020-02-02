@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Container, Image, Segment, Grid, Button, Icon, Header, Modal, Form, Comment, Divider,
 } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 import './profile.scss';
 
@@ -13,8 +13,27 @@ class Profile extends React.Component {
 
   }
 
-  componentDidUpdate() {
-
+  componentDidUpdate(prevProps) {
+    const { submitedUsername, submitedPassword, logged } = this.props;
+    const Refresh = ({ path = '/' }) => (
+      <Route
+        path={path}
+        component={({ history, location, match }) => {
+          history.replace({
+            ...location,
+            pathname: location.pathname.substring(match.path.length),
+          });
+          return null;
+        }}
+      />
+    );
+    if ((submitedUsername !== prevProps.submitedUsername)
+      || (submitedPassword !== prevProps.submitedUsername)) {
+      return <Refresh path="/profile" />;
+    }
+    if (!logged) {
+      return <Redirect to="/" />;
+    }
   }
 
 
@@ -27,9 +46,6 @@ class Profile extends React.Component {
       editUsername,
       editPassword,
       deleteUser,
-      submitedUsername,
-      submitedPassword,
-      logged,
     } = this.props;
     const handleChange = (evt) => {
       const { value: fieldValue } = evt.target;
@@ -48,17 +64,6 @@ class Profile extends React.Component {
       evt.preventDefault();
       deleteUser();
     };
-
-    if (submitedUsername) {
-      window.location.reload(false);
-    }
-    if (submitedPassword) {
-      window.location.reload(false);
-    }
-    if (!logged) {
-      return <Redirect to="/" />;
-    }
-
 
     return (
       <Container>
@@ -86,7 +91,8 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
-                  size="small"
+                  closeIcon
+                  size="mini"
                 >
                   <Modal.Header>Modifier mon pseudo</Modal.Header>
                   <Modal.Content image>
@@ -123,7 +129,8 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
-                  size="small"
+                  closeIcon
+                  size="mini"
                 >
                   <Modal.Header>Modifier mon mot de passe</Modal.Header>
                   <Modal.Content image>
@@ -160,7 +167,8 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
-                  size="small"
+                  closeIcon
+                  size="mini"
                 >
                   <Header icon="archive" content="Supprimer mon compte" />
                   <Modal.Content>
