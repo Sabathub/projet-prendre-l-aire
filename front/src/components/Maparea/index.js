@@ -13,65 +13,78 @@ import LocateControl from './locatecontrol';
 
 import './maparea.scss';
 
-const Maparea = ({
-  lat, lng, zoom, areas, arealoading, newAreasValue,
-}) => {
-  const position = [lat, lng];
+class Maparea extends React.Component {
+  componentDidMount() {
 
-  const locateOptions = {
-    position: 'topright',
-    strings: {
-      title: 'Montre moi les aires d\'autoroute à proximité de ma postition',
-    },
-  };
 
-  console.log(arealoading);
-  console.log(newAreasValue, 'je suis dans maparea');
-
-  let newAreas = [];
-
-  if (newAreasValue !== null && !arealoading) {
-    newAreas = areas.filter((area) => (
-      area.destinations[0].highways.id === newAreasValue.highwayId
-    ));
   }
 
-  return (
-    <>
-      {arealoading && (
-      <Dimmer active inverted>
-        <Loader inverted content="Chargement" />
-      </Dimmer>
-      )}
-      <Map id="mapid" center={position} zoom={zoom}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {!arealoading && areas.map((area) => (
-          <Marker position={[area.latitude, area.longitude]} key={area.id}>
-            <Popup>
-              <p className="popup-area-name">{area.name}</p>
+  componentDidUpdate() {
 
-              <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
-            </Popup>
-          </Marker>
-        ))}
-        {!arealoading && newAreasValue !== null && newAreas.map((area) => (
-          <Marker position={[area.latitude, area.longitude]} key={area.id}>
-            <Popup>
-              <p className="popup-area-name">{area.name}</p>
+  }
 
-              <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
-            </Popup>
-          </Marker>
-        ))}
-        <LocateControl options={locateOptions} startDirectly />
-      </Map>
-    </>
+  render() {
+    const {
+      lat, lng, zoom, areas, arealoading, newAreasValue,
+    } = this.props;
+    console.log(arealoading);
+    console.log(newAreasValue, 'je suis dans maparea');
 
-  );
-};
+    const position = [lat, lng];
+
+    const locateOptions = {
+      position: 'topright',
+      strings: {
+        title: 'Montre moi les aires d\'autoroute à proximité de ma postition',
+      },
+    };
+
+    let newAreas = [];
+
+    if (newAreasValue.highwayId !== null && !arealoading) {
+      newAreas = areas.filter((area) => (
+        area.destinations[0].highways.id === newAreasValue.highwayId
+      ));
+      console.log(newAreas);
+    }
+
+    return (
+      <>
+        {arealoading && (
+        <Dimmer active inverted>
+          <Loader inverted content="Chargement" />
+        </Dimmer>
+        )}
+        <Map id="mapid" center={position} zoom={zoom}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {!arealoading && areas.map((area) => (
+            <Marker position={[area.latitude, area.longitude]} key={area.id}>
+              <Popup>
+                <p className="popup-area-name">{area.name}</p>
+
+                <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
+              </Popup>
+            </Marker>
+          ))}
+          {!arealoading && newAreasValue !== null && newAreas.map((area) => (
+            <Marker position={[area.latitude, area.longitude]} key={area.id}>
+              <Popup>
+                <p className="popup-area-name">{area.name}</p>
+
+                <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
+              </Popup>
+            </Marker>
+          ))}
+          <LocateControl options={locateOptions} startDirectly />
+        </Map>
+      </>
+
+    );
+  }
+}
 
 Maparea.propTypes = {
   lat: PropTypes.string.isRequired,
