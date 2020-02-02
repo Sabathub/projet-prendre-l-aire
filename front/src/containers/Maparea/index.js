@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 
 import Maparea from 'src/components/Maparea';
 
+import { changeAreas } from 'src/store/actions';
+
 
 const mapStateToProps = (state) => ({
   lat: state.map.position.lat,
@@ -13,7 +15,10 @@ const mapStateToProps = (state) => ({
 });
 
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch) => ({
+  updateNewAreasData: (areas) => {
+    dispatch(changeAreas(areas));
+  },
 });
 
 const MapareaContainer = connect(

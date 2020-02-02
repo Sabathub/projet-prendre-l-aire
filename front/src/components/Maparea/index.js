@@ -6,7 +6,7 @@ import {
 import {
   Dimmer, Loader, Button,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import slugify from 'slugify';
 import LocateControl from './locatecontrol';
 
@@ -14,13 +14,30 @@ import LocateControl from './locatecontrol';
 import './maparea.scss';
 
 class Maparea extends React.Component {
-  componentDidMount() {
 
+  componentDidUpdate(prevProps) {
+    const {
+      areas, arealoading, newAreasValue, updateNewAreasData,
+    } = this.props;
+    const Refresh = ({ path = '/' }) => (
+      <Route
+        path={path}
+        component={({ history, location, match }) => {
+          history.replace({
+            ...location,
+            pathname: location.pathname.substring(match.path.length),
+          });
+          return null;
+        }}
+      />
+    );
 
-  }
-
-  componentDidUpdate() {
-
+    if (newAreasValue.highwayId !== prevProps.newAreasValue.highwayId && !arealoading) {
+      const newAreasData = areas.filter((area) => area.destinations[0].id === newAreasValue.highwayId);
+      console.log(newAreasData, 'suis-je vide?');
+      updateNewAreasData(newAreasData);
+      return <Refresh path="/" />;
+    }
   }
 
   render() {
@@ -39,15 +56,6 @@ class Maparea extends React.Component {
       },
     };
 
-    let newAreas = [];
-
-    if (newAreasValue.highwayId !== null && !arealoading) {
-      newAreas = areas.filter((area) => (
-        area.destinations[0].highways.id === newAreasValue.highwayId
-      ));
-      console.log(newAreas);
-    }
-
     return (
       <>
         {arealoading && (
@@ -61,15 +69,6 @@ class Maparea extends React.Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {!arealoading && areas.map((area) => (
-            <Marker position={[area.latitude, area.longitude]} key={area.id}>
-              <Popup>
-                <p className="popup-area-name">{area.name}</p>
-
-                <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
-              </Popup>
-            </Marker>
-          ))}
-          {!arealoading && newAreasValue !== null && newAreas.map((area) => (
             <Marker position={[area.latitude, area.longitude]} key={area.id}>
               <Popup>
                 <p className="popup-area-name">{area.name}</p>
@@ -136,6 +135,7 @@ Maparea.propTypes = {
   newAreasValue: PropTypes.shape({
     highwayId: PropTypes.number.isRequired,
   }).isRequired,
+  updateNewAreasData: PropTypes.func.isRequired,
 };
 
 export default Maparea;
