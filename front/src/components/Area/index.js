@@ -27,10 +27,9 @@ import {
 // import Carousel component
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+import CommentsArea from 'src/containers/Area/CommentsArea';
 // import Zoomarea component
 import Zoomarea from './Zoomarea';
-// import Zoomarea component
-import CommentsArea from './CommentsArea';
 
 
 import './area.scss';

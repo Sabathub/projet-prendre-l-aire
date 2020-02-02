@@ -5,11 +5,13 @@ import {
   DO_SIGNUP,
   DO_LOGIN,
   DO_CONTACT,
+  DO_COMMENT,
   DO_EDIT_USERNAME,
   DO_EDIT_PASSWORD,
   DO_DELETE_USER,
   SUBMIT_USER,
   SUBMIT_CONTACT,
+  SUBMIT_COMMENT,
   SUBMIT_EDIT_USERNAME,
   SUBMIT_EDIT_PASSWORD,
 } from '../actions';
@@ -23,6 +25,7 @@ const initialState = {
   name: '',
   subject: '',
   content: '',
+  commentContent: '',
   submitedUsername: false,
   submitedPassword: false,
 };
@@ -53,6 +56,10 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
       };
+    case DO_COMMENT:
+      return {
+        ...state,
+      };
     case DO_EDIT_USERNAME:
       return {
         ...state,
@@ -78,6 +85,11 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         subject: '',
         content: '',
+      };
+    case SUBMIT_COMMENT:
+      return {
+        ...state,
+        commentContent: '',
       };
     case SUBMIT_EDIT_USERNAME:
       return {

@@ -4,6 +4,7 @@ export const CHANGE_MARKERS_VALUE = 'CHANGE_MARKERS_VALUE';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
 export const DO_CONTACT = 'DO_CONTACT';
+export const DO_COMMENT = 'DO_COMMENT';
 export const DO_EDIT_USERNAME = 'DO_EDIT_USERNAME';
 export const DO_EDIT_PASSWORD = 'DO_EDIT_PASSWORD ';
 export const DO_DELETE_USER = 'DO_DELETE_USER';
@@ -11,6 +12,7 @@ export const LOG_USER = 'LOG_USER';
 export const USER_IS_CONNECT = 'USER_IS_CONNECT';
 export const SUBMIT_USER = 'SUBMIT_USER';
 export const SUBMIT_CONTACT = 'SUBMIT_CONTACT';
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
 export const SUBMIT_EDIT_USERNAME = 'SUBMIT_EDIT_USERNAME';
 export const SUBMIT_EDIT_PASSWORD = 'SUBMIT_EDIT_PASSWORD';
 export const SUBMIT_DELETE_USER = 'SUBMIT_DELETE_USER';
@@ -49,6 +51,10 @@ export const doLogin = () => ({
 
 export const doContact = () => ({
   type: DO_CONTACT,
+});
+
+export const doComment = () => ({
+  type: DO_COMMENT,
 });
 
 export const doEditUsername = () => ({
@@ -95,6 +101,11 @@ export const submitContact = (name, email, subject, content) => ({
   email,
   subject,
   content,
+});
+
+export const submitComment = (commentContent) => ({
+  type: SUBMIT_COMMENT,
+  commentContent,
 });
 
 export const submitEditUsername = (submitedUsername, username) => ({
