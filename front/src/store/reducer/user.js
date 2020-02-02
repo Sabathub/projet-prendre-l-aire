@@ -8,6 +8,8 @@ import {
   RECEIVE_PROFILE_DATA,
   SUBMIT_DELETE_USER,
   USER_IS_CONNECT,
+  DO_CLOSE_MODAL,
+  DO_OPEN_MODAL,
 } from '../actions';
 
 // --- initial state
@@ -17,6 +19,7 @@ const initialState = {
   password: '',
   submited: false,
   logged: false,
+  showModal: false,
   profile: {},
 };
 
@@ -55,6 +58,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         profile: action.profile,
+      };
+    case DO_CLOSE_MODAL:
+      return {
+        ...state,
+        showModal: false,
+      };
+    case DO_OPEN_MODAL:
+      return {
+        ...state,
+        showModal: true,
       };
 
     default: return state;

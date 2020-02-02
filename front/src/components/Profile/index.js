@@ -46,7 +46,13 @@ class Profile extends React.Component {
       editUsername,
       editPassword,
       deleteUser,
+      showModal,
+      closingModal,
+      openModal,
     } = this.props;
+    const closeModal = () => {
+      closingModal();
+    };
     const handleChange = (evt) => {
       const { value: fieldValue } = evt.target;
       const fieldName = evt.target.id;
@@ -55,14 +61,19 @@ class Profile extends React.Component {
     const handleSubmitUsername = (evt) => {
       evt.preventDefault();
       editUsername();
+      closeModal();
     };
     const handleSubmitPassword = (evt) => {
       evt.preventDefault();
       editPassword();
+      closeModal();
     };
     const handleClick = (evt) => {
       evt.preventDefault();
       deleteUser();
+    };
+    const handleOpenModal = () => {
+      openModal();
     };
 
     return (
@@ -83,7 +94,11 @@ class Profile extends React.Component {
                 <Modal
                   id="modalUsername"
                   trigger={(
-                    <Button animated color="teal">
+                    <Button
+                      animated
+                      color="teal"
+                      onClick={handleOpenModal}
+                    >
                       <Button.Content visible>Modifier mon pseudo</Button.Content>
                       <Button.Content hidden>
                         <Icon name="pencil alternate" />
@@ -91,13 +106,15 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
+                  open={showModal}
+                  onClose={closeModal}
                   closeIcon
                   size="mini"
                 >
                   <Modal.Header>Modifier mon pseudo</Modal.Header>
                   <Modal.Content image>
                     <Modal.Description>
-                      <Form id="form" onSubmit={handleSubmitUsername}>
+                      <Form className="form" onSubmit={handleSubmitUsername}>
                         <Form.Field>
                           <label htmlFor="username">
                           Choisissez votre nouveau pseudonyme
@@ -121,7 +138,12 @@ class Profile extends React.Component {
 
                 <Modal
                   trigger={(
-                    <Button animated color="yellow">
+                    <Button
+                      id="buttonEditPassword"
+                      animated
+                      color="yellow"
+                      onClick={handleOpenModal}
+                    >
                       <Button.Content visible>Modifier mon mot de passe</Button.Content>
                       <Button.Content hidden>
                         <Icon name="pencil alternate" />
@@ -129,13 +151,15 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
+                  open={showModal}
+                  onClose={closeModal}
                   closeIcon
                   size="mini"
                 >
                   <Modal.Header>Modifier mon mot de passe</Modal.Header>
                   <Modal.Content image>
                     <Modal.Description>
-                      <Form id="form" onSubmit={handleSubmitPassword}>
+                      <Form className="form" onSubmit={handleSubmitPassword}>
                         <Form.Field>
                           <label htmlFor="password">
                           Saisissez votre nouveau mot de passe
@@ -159,7 +183,12 @@ class Profile extends React.Component {
 
                 <Modal
                   trigger={(
-                    <Button animated color="red">
+                    <Button
+                      id="buttonDelete"
+                      animated
+                      color="red"
+                      onClick={handleOpenModal}
+                    >
                       <Button.Content visible>Supprimer mon compte</Button.Content>
                       <Button.Content hidden>
                         <Icon name="trash" />
@@ -167,6 +196,8 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
+                  open={showModal}
+                  onClose={closeModal}
                   closeIcon
                   size="mini"
                 >
@@ -177,9 +208,6 @@ class Profile extends React.Component {
                     </p>
                   </Modal.Content>
                   <Modal.Actions>
-                    <Button basic color="red" inverted>
-                      <Icon name="remove" /> Non
-                    </Button>
                     <Button
                       color="green"
                       inverted
@@ -259,6 +287,9 @@ Profile.propTypes = {
   submitedUsername: PropTypes.bool.isRequired,
   submitedPassword: PropTypes.bool.isRequired,
   logged: PropTypes.bool.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  closingModal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default Profile;

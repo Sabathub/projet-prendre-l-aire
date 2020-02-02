@@ -8,6 +8,8 @@ export const DO_CONTACT = 'DO_CONTACT';
 export const DO_EDIT_USERNAME = 'DO_EDIT_USERNAME';
 export const DO_EDIT_PASSWORD = 'DO_EDIT_PASSWORD ';
 export const DO_DELETE_USER = 'DO_DELETE_USER';
+export const DO_CLOSE_MODAL = 'DO_CLOSE_MODAL';
+export const DO_OPEN_MODAL = 'DO_OPEN_MODAL';
 export const LOG_USER = 'LOG_USER';
 export const USER_IS_CONNECT = 'USER_IS_CONNECT';
 export const SUBMIT_USER = 'SUBMIT_USER';
@@ -67,6 +69,16 @@ export const doEditPassword = () => ({
 
 export const doDeleteUser = () => ({
   type: DO_DELETE_USER,
+});
+
+export const doCloseModal = (showModal) => ({
+  type: DO_CLOSE_MODAL,
+  showModal,
+});
+
+export const doOpenModal = (showModal) => ({
+  type: DO_OPEN_MODAL,
+  showModal,
 });
 
 export const logUser = (logged, email, password) => ({

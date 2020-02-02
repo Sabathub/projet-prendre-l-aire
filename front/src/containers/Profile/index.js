@@ -7,6 +7,8 @@ import {
   doEditUsername,
   doEditPassword,
   doDeleteUser,
+  doCloseModal,
+  doOpenModal,
 } from 'src/store/actions';
 
 
@@ -19,6 +21,7 @@ const mapStateToProps = (state) => ({
   submitedUsername: state.form.submitedUsername,
   submitedPassword: state.form.submitedPassword,
   logged: state.user.logged,
+  showModal: state.user.showModal,
 });
 
 // Ici, on gère les actions
@@ -34,6 +37,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   deleteUser: () => {
     dispatch(doDeleteUser());
+  },
+  closingModal: () => {
+    dispatch(doCloseModal());
+  },
+  openModal: () => {
+    dispatch(doOpenModal());
   },
 });
 

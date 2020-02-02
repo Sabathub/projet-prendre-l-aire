@@ -25,7 +25,7 @@ const Contact = ({
   };
   return (
     <div id="container">
-      <Form id="form" onSubmit={handleSubmit}>
+      <Form className="form" onSubmit={handleSubmit}>
         <h1>Formulaire de contact</h1>
         <Form.Field className="field">
           <label htmlFor="name">
