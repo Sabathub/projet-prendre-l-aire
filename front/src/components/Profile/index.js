@@ -262,25 +262,37 @@ class Profile extends React.Component {
 
           <Grid divided="vertically">
             <Grid.Row columns={1}>
-              {profileDatas.comments != null && profileDatas.comments.map((comment) => (
-                <>
-                  <Grid.Column>
-                    <Comment key={comment.id}>
-                      <Comment.Content>
-                        <Comment.Author as="a">{profileDatas.username}</Comment.Author>
-                        <Comment.Metadata>
-                          <div>
-                            posté le {date} {monthNames[month]} {year} à {hour}h{minute}
-                          </div>
-                        </Comment.Metadata>
-                        <Comment.Text>{comment.description}</Comment.Text>
-                      </Comment.Content>
-                    </Comment>
+              {profileDatas.comments != null && profileDatas.comments.map((comment) => {
+                const currentDate = new Date(comment.createdAt);
 
-                    <Divider />
-                  </Grid.Column>
-                </>
-                      ))}
+                const date = currentDate.getDate();
+                const month = currentDate.getMonth();
+                const year = currentDate.getFullYear();
+                const hour = currentDate.getHours();
+                const minute = (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes();
+                const monthNames = [
+                  'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre',
+                ];
+                return (
+                  <>
+                    <Grid.Column>
+                      <Comment key={comment.id}>
+                        <Comment.Content>
+                          <Comment.Author as="a">{profileDatas.username}</Comment.Author>
+                          <Comment.Metadata>
+                            <div>
+                              posté le {date} {monthNames[month]} {year} à {hour}h{minute}
+                            </div>
+                          </Comment.Metadata>
+                          <Comment.Text>{comment.description}</Comment.Text>
+                        </Comment.Content>
+                      </Comment>
+
+                      <Divider />
+                    </Grid.Column>
+                  </>
+                );
+              })}
               {profileDatas.comments.length === 0 && (
                 <>
                   <Grid.Column>
@@ -300,7 +312,7 @@ class Profile extends React.Component {
     );
   }
 }
-                      
+
 
 Profile.propTypes = {
   profileData: PropTypes.shape({
