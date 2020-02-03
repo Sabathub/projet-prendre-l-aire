@@ -12,6 +12,7 @@ const Contact = ({
   contentValue,
   changeInputValue,
   newContent,
+  areaname,
 }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
@@ -23,6 +24,7 @@ const Contact = ({
     evt.preventDefault();
     newContent();
   };
+  console.log(areaname);
   return (
     <div id="container">
       <Form className="form" onSubmit={handleSubmit}>
@@ -57,6 +59,24 @@ const Contact = ({
             />
           </label>
         </Form.Field>
+        {areaname != null && (
+        <Form.Field className="field">
+          <label className="label">
+          Objet :
+            <Form.Input
+              type="text"
+              icon="mail"
+              iconPosition="left"
+              placeholder="Quel est l'objet de votre message ?"
+              id="subject"
+              name="subject"
+              value={areaname + subjectValue}
+              onChange={handleChange}
+            />
+          </label>
+        </Form.Field>
+        )}
+        {areaname == null && (
         <Form.Field className="field">
           <label className="label">
           Objet :
@@ -72,6 +92,7 @@ const Contact = ({
             />
           </label>
         </Form.Field>
+        )}
         <Form.Field className="field">
           <label className="label">
           Votre message :
@@ -98,6 +119,7 @@ Contact.propTypes = {
   contentValue: PropTypes.string.isRequired,
   changeInputValue: PropTypes.func.isRequired,
   newContent: PropTypes.func.isRequired,
+  areaname: PropTypes.string.isRequired,
 };
 
 export default Contact;

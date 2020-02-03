@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { getAreaBySlug } from 'src/utils/selectors';
 import Area from 'src/components/Area';
 
-import { stockImageToState, changeInput, doComment } from 'src/store/actions';
+import { stockImageToState, changeInput, doComment, receiveAreaName } from 'src/store/actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -20,6 +20,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => ({
   changeInputValue: (value, name) => {
     dispatch(changeInput(value, name));
+  },
+  getAreaName: (areaname) => {
+    dispatch(receiveAreaName(areaname));
   },
 });
 

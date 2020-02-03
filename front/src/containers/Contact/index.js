@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
   emailValue: state.form.email,
   subjectValue: state.form.subject,
   contentValue: state.form.content,
+  areaname: state.form.areaname,
 });
 
 const mapDispatchToProps = (dispatch) => ({

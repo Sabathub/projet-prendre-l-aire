@@ -30,6 +30,7 @@ export const NEW_MARKER = 'NEW_MARKER';
 export const FETCH_AREAS_DATA = 'FETCH_AREAS_DATA';
 export const FETCH_HIGHWAYS_DATA = 'FETCH_HIGHWAYS_DATA';
 export const RECEIVE_AREAS_DATA = 'RECEIVE_AREAS_DATA';
+export const RECEIVE_AREA_NAME = 'RECEIVE_AREA_NAME';
 export const RECEIVE_HIGHWAYS_DATA = 'RECEIVE_HIGHWAYS_DATA';
 export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
@@ -184,6 +185,11 @@ export const fetchHighwaysData = () => ({
 export const receiveAreasData = (areas) => ({
   type: RECEIVE_AREAS_DATA,
   areas,
+});
+
+export const receiveAreaName = (areaname) => ({
+  type: RECEIVE_AREA_NAME,
+  areaname,
 });
 
 export const receiveHighwaysData = (highways) => ({
