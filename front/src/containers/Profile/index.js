@@ -7,8 +7,12 @@ import {
   doEditUsername,
   doEditPassword,
   doDeleteUser,
-  doCloseModal,
-  doOpenModal,
+  doCloseModalUsername,
+  doOpenModalUsername,
+  doCloseModalPassword,
+  doOpenModalPassword,
+  doCloseModalDelete,
+  doOpenModalDelete,
 } from 'src/store/actions';
 
 
@@ -21,7 +25,9 @@ const mapStateToProps = (state) => ({
   submitedUsername: state.form.submitedUsername,
   submitedPassword: state.form.submitedPassword,
   logged: state.user.logged,
-  showModal: state.user.showModal,
+  showModalUsername: state.user.showModalUsername,
+  showModalPassword: state.user.showModalPassword,
+  showModalDelete: state.user.showModalDelete,
 });
 
 // Ici, on gère les actions
@@ -38,11 +44,23 @@ const mapDispatchToProps = (dispatch) => ({
   deleteUser: () => {
     dispatch(doDeleteUser());
   },
-  closingModal: () => {
-    dispatch(doCloseModal());
+  closingModalUsername: () => {
+    dispatch(doCloseModalUsername());
   },
-  openModal: () => {
-    dispatch(doOpenModal());
+  openModalUsername: () => {
+    dispatch(doOpenModalUsername());
+  },
+  closingModalPassword: () => {
+    dispatch(doCloseModalPassword());
+  },
+  openModalPassword: () => {
+    dispatch(doOpenModalPassword());
+  },
+  closingModalDelete: () => {
+    dispatch(doCloseModalDelete());
+  },
+  openModalDelete: () => {
+    dispatch(doOpenModalDelete());
   },
 });
 

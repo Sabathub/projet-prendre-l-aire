@@ -46,12 +46,25 @@ class Profile extends React.Component {
       editUsername,
       editPassword,
       deleteUser,
-      showModal,
-      closingModal,
-      openModal,
+      showModalUsername,
+      closingModalUsername,
+      openModalUsername,
+      showModalPassword,
+      closingModalPassword,
+      openModalPassword,
+      showModalDelete,
+      closingModalDelete,
+      openModalDelete,
+
     } = this.props;
-    const closeModal = () => {
-      closingModal();
+    const closeModalUsername = () => {
+      closingModalUsername();
+    };
+    const closeModalPassword = () => {
+      closingModalPassword();
+    };
+    const closeModalDelete = () => {
+      closingModalDelete();
     };
     const handleChange = (evt) => {
       const { value: fieldValue } = evt.target;
@@ -61,19 +74,35 @@ class Profile extends React.Component {
     const handleSubmitUsername = (evt) => {
       evt.preventDefault();
       editUsername();
-      closeModal();
+      closeModalUsername();
     };
     const handleSubmitPassword = (evt) => {
       evt.preventDefault();
       editPassword();
-      closeModal();
+      closeModalPassword();
     };
     const handleClick = (evt) => {
       evt.preventDefault();
-      deleteUser();
+      if (confirm('Êtes-vous vraiment sûr de vouloir supprimer votre compte de façon définitive ?')) {
+        deleteUser();
+        closeModalDelete();
+      }
+      else {
+        closeModalDelete();
+      }
     };
-    const handleOpenModal = () => {
-      openModal();
+    const handleClickNo = (evt) => {
+      evt.preventDefault();
+      closeModalDelete();
+    };
+    const handleOpenModalUsername = () => {
+      openModalUsername();
+    };
+    const handleOpenModalPassword = () => {
+      openModalPassword();
+    };
+    const handleOpenModalDelete = () => {
+      openModalDelete();
     };
 
     return (
@@ -97,7 +126,7 @@ class Profile extends React.Component {
                     <Button
                       animated
                       color="teal"
-                      onClick={handleOpenModal}
+                      onClick={handleOpenModalUsername}
                     >
                       <Button.Content visible>Modifier mon pseudo</Button.Content>
                       <Button.Content hidden>
@@ -106,8 +135,8 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
-                  open={showModal}
-                  onClose={closeModal}
+                  open={showModalUsername}
+                  onClose={closeModalUsername}
                   closeIcon
                   size="mini"
                 >
@@ -142,7 +171,7 @@ class Profile extends React.Component {
                       id="buttonEditPassword"
                       animated
                       color="yellow"
-                      onClick={handleOpenModal}
+                      onClick={handleOpenModalPassword}
                     >
                       <Button.Content visible>Modifier mon mot de passe</Button.Content>
                       <Button.Content hidden>
@@ -151,8 +180,8 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
-                  open={showModal}
-                  onClose={closeModal}
+                  open={showModalPassword}
+                  onClose={closeModalPassword}
                   closeIcon
                   size="mini"
                 >
@@ -187,7 +216,7 @@ class Profile extends React.Component {
                       id="buttonDelete"
                       animated
                       color="red"
-                      onClick={handleOpenModal}
+                      onClick={handleOpenModalDelete}
                     >
                       <Button.Content visible>Supprimer mon compte</Button.Content>
                       <Button.Content hidden>
@@ -196,18 +225,26 @@ class Profile extends React.Component {
                     </Button>
                   )}
                   basic
-                  open={showModal}
-                  onClose={closeModal}
+                  open={showModalDelete}
+                  onClose={closeModalDelete}
                   closeIcon
                   size="mini"
                 >
                   <Header icon="archive" content="Supprimer mon compte" />
                   <Modal.Content>
                     <p>
-                      Êtes-vous vraiment sûr de vouloir supprimer votre compte?
+                      Voulez-vous supprimer votre compte?
                     </p>
                   </Modal.Content>
                   <Modal.Actions>
+                    <Button
+                      basic
+                      color="red"
+                      inverted
+                      onClick={handleClickNo}
+                    >
+                      <Icon name="remove" /> Non
+                    </Button>
                     <Button
                       color="green"
                       inverted
@@ -287,9 +324,15 @@ Profile.propTypes = {
   submitedUsername: PropTypes.bool.isRequired,
   submitedPassword: PropTypes.bool.isRequired,
   logged: PropTypes.bool.isRequired,
-  showModal: PropTypes.bool.isRequired,
-  closingModal: PropTypes.func.isRequired,
-  openModal: PropTypes.func.isRequired,
+  showModalUsername: PropTypes.bool.isRequired,
+  closingModalUsername: PropTypes.func.isRequired,
+  openModalUsername: PropTypes.func.isRequired,
+  showModalPassword: PropTypes.bool.isRequired,
+  closingModalPassword: PropTypes.func.isRequired,
+  openModalPassword: PropTypes.func.isRequired,
+  showModalDelete: PropTypes.bool.isRequired,
+  closingModalDelete: PropTypes.func.isRequired,
+  openModalDelete: PropTypes.func.isRequired,
 };
 
 export default Profile;
