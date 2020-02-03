@@ -23,7 +23,9 @@ const loginMiddleware = (store) => (next) => (action) => {
           axios.get('http://54.85.18.78/api/v1/secured/users/profile')
             .then((response2) => {
               console.log('Response', response2);
-              store.dispatch(receiveProfileData(response2.data));
+              window.localStorage.setItem('profileData', JSON.stringify(response2.data));
+              const profileData = JSON.parse(window.localStorage.getItem('profileData'));
+              store.dispatch(receiveProfileData(profileData));
             })
             .catch((error2) => {
               console.log('Error', error2);

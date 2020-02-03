@@ -40,6 +40,10 @@ const signupMiddleware = (store) => (next) => (action) => {
                   console.log('Response', response3);
                   alert('Félicitations, votre inscription a été validée. Vous êtes maintenant connecté :)');
                   store.dispatch(receiveProfileData(response3.data));
+                  window.localStorage.setItem('id', response2.data.id);
+                  window.localStorage.setItem('username', response2.data.username);
+                  window.localStorage.setItem('email', response2.data.email);
+                  window.localStorage.setItem('comments', JSON.stringify(response2.data.comments));
                 })
                 .catch((error3) => {
                   console.log('Error', error3);

@@ -24,7 +24,9 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(submitEditUsername(response.data.submitedUsername));
-          store.dispatch(receiveProfileData(response.data));
+          window.localStorage.setItem('profileData', JSON.stringify(response.data));
+          const profileData = JSON.parse(window.localStorage.getItem('profileData'));
+          store.dispatch(receiveProfileData(profileData));
           alert('Votre pseudo a bien été modifié');
         })
         .catch((error) => {

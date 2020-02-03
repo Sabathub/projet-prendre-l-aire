@@ -104,6 +104,7 @@ class Profile extends React.Component {
     const handleOpenModalDelete = () => {
       openModalDelete();
     };
+    const profileDatas = JSON.parse(window.localStorage.getItem('profileData'));
 
     return (
       <Container>
@@ -116,8 +117,8 @@ class Profile extends React.Component {
                 <Image className="avatar" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" centered circular />
               </Grid.Column>
               <Grid.Column id="info" width={5} textAlign="left">
-                <p>Bonjour {profileData.username} !</p>
-                <p>{profileData.email}</p>
+                <p>Bonjour {profileDatas.username} !</p>
+                <p>{profileDatas.email}</p>
               </Grid.Column>
               <Grid.Column width={4} textAlign="center">
                 <Modal
@@ -262,12 +263,12 @@ class Profile extends React.Component {
 
           <Grid divided="vertically">
             <Grid.Row columns={1}>
-              {profileData.comments != null && profileData.comments.map((comment) => (
+              {profileDatas.comments != null && profileDatas.comments.map((comment) => (
                 <>
                   <Grid.Column>
                     <Comment key={comment.id}>
                       <Comment.Content>
-                        <Comment.Author as="a">{profileData.comments.username}</Comment.Author>
+                        <Comment.Author as="a">{profileDatas.username}</Comment.Author>
                         <Comment.Metadata>
                           <div>{comment.createdAt}</div>
                         </Comment.Metadata>
@@ -279,7 +280,7 @@ class Profile extends React.Component {
                   </Grid.Column>
                 </>
               ))}
-              {profileData.comments == null && (
+              {profileDatas.comments == null && (
                 <>
                   <Grid.Column>
                     <div>
