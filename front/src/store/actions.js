@@ -1,6 +1,7 @@
 // == action types
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const CHANGE_MARKERS_VALUE = 'CHANGE_MARKERS_VALUE';
+export const CHANGE_AREAS_DATA = 'CHANGE_AREAS_DATA';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
 export const DO_CONTACT = 'DO_CONTACT';
@@ -8,6 +9,12 @@ export const DO_COMMENT = 'DO_COMMENT';
 export const DO_EDIT_USERNAME = 'DO_EDIT_USERNAME';
 export const DO_EDIT_PASSWORD = 'DO_EDIT_PASSWORD ';
 export const DO_DELETE_USER = 'DO_DELETE_USER';
+export const DO_CLOSE_MODAL_USERNAME = 'DO_CLOSE_MODAL_USERNAME';
+export const DO_OPEN_MODAL_USERNAME = 'DO_OPEN_MODAL_USERNAME';
+export const DO_CLOSE_MODAL_PASSWORD = 'DO_CLOSE_MODAL_PASSWORD';
+export const DO_OPEN_MODAL_PASSWORD = 'DO_OPEN_MODAL_PASSWORD';
+export const DO_CLOSE_MODAL_DELETE = 'DO_CLOSE_MODAL_DELETE';
+export const DO_OPEN_MODAL_DELETE = 'DO_OPEN_MODAL_DELETE';
 export const LOG_USER = 'LOG_USER';
 export const USER_IS_CONNECT = 'USER_IS_CONNECT';
 export const SUBMIT_USER = 'SUBMIT_USER';
@@ -42,6 +49,11 @@ export const changeMarkers = (newAreasValue) => ({
   newAreasValue,
 });
 
+export const changeAreas = (areas) => ({
+  type: CHANGE_AREAS_DATA,
+  areas,
+});
+
 export const doSignup = () => ({
   type: DO_SIGNUP,
 });
@@ -68,6 +80,36 @@ export const doEditPassword = () => ({
 
 export const doDeleteUser = () => ({
   type: DO_DELETE_USER,
+});
+
+export const doCloseModalUsername = (showModalUsername) => ({
+  type: DO_CLOSE_MODAL_USERNAME,
+  showModalUsername,
+});
+
+export const doOpenModalUsername = (showModalUsername) => ({
+  type: DO_OPEN_MODAL_USERNAME,
+  showModalUsername,
+});
+
+export const doCloseModalPassword = (showModalPassword) => ({
+  type: DO_CLOSE_MODAL_PASSWORD,
+  showModalPassword,
+});
+
+export const doOpenModalPassword = (showModalPassword) => ({
+  type: DO_OPEN_MODAL_PASSWORD,
+  showModalPassword,
+});
+
+export const doCloseModalDelete = (showModalDelete) => ({
+  type: DO_CLOSE_MODAL_DELETE,
+  showModalDelete,
+});
+
+export const doOpenModalDelete = (showModalDelete) => ({
+  type: DO_OPEN_MODAL_DELETE,
+  showModalDelete,
 });
 
 export const logUser = (logged, email, password) => ({

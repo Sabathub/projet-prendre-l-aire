@@ -25,7 +25,7 @@ const Login = ({ emailValue, passwordValue, changeInputValue, doConnect, logged 
 
   return (
     <div id="container">
-      <Form id="form" onSubmit={handleSubmit}>
+      <Form className="form" onSubmit={handleSubmit}>
         <Form.Field>
           <label htmlFor="email">
           Saisissez votre email

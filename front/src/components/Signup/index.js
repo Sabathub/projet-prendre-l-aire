@@ -33,7 +33,7 @@ const Signup = ({
 
   return (
     <div id="container">
-      <Form id="form" onSubmit={handleSubmit}>
+      <Form className="form" onSubmit={handleSubmit}>
         <Form.Field>
           <label htmlFor="username">
           Choisissez un pseudonyme

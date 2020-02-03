@@ -6,71 +6,84 @@ import {
 import {
   Dimmer, Loader, Button,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import slugify from 'slugify';
 import LocateControl from './locatecontrol';
 
 
 import './maparea.scss';
 
-const Maparea = ({
-  lat, lng, zoom, areas, arealoading, newAreasValue,
-}) => {
-  const position = [lat, lng];
+class Maparea extends React.Component {
 
-  const locateOptions = {
-    position: 'topright',
-    strings: {
-      title: 'Montre moi les aires d\'autoroute à proximité de ma postition',
-    },
-  };
+  componentDidUpdate(prevProps) {
+    const {
+      areas, arealoading, newAreasValue, updateNewAreasData,
+    } = this.props;
+    const Refresh = ({ path = '/' }) => (
+      <Route
+        path={path}
+        component={({ history, location, match }) => {
+          history.replace({
+            ...location,
+            pathname: location.pathname.substring(match.path.length),
+          });
+          return null;
+        }}
+      />
+    );
 
-  console.log(arealoading);
+    if (newAreasValue.highwayId !== prevProps.newAreasValue.highwayId && !arealoading) {
+      const newAreasData = areas.filter((area) => area.destinations[0].id === newAreasValue.highwayId);
+      console.log(newAreasData, 'suis-je vide?');
+      updateNewAreasData(newAreasData);
+      return <Refresh path="/" />;
+    }
+  }
 
-  let newAreas = [];
+  render() {
+    const {
+      lat, lng, zoom, areas, arealoading, newAreasValue,
+    } = this.props;
+    console.log(arealoading);
+    console.log(newAreasValue, 'je suis dans maparea');
 
-  /* if (newAreasValue && areas) {
-    newAreas = areas.filter((area) => (
-      area.destinations.highways.id === newAreasValue.highwayId
-    ));
-  } */
+    const position = [lat, lng];
 
-  return (
-    <>
-      {arealoading && (
-      <Dimmer active inverted>
-        <Loader inverted content="Chargement" />
-      </Dimmer>
-      )}
-      <Map id="mapid" center={position} zoom={zoom}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {!arealoading && areas.map((area) => (
-          <Marker position={[area.latitude, area.longitude]} key={area.id}>
-            <Popup>
-              <p className="popup-area-name">{area.name}</p>
+    const locateOptions = {
+      position: 'topright',
+      strings: {
+        title: 'Montre moi les aires d\'autoroute à proximité de ma postition',
+      },
+    };
 
-              <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
-            </Popup>
-          </Marker>
-        ))}
-        {/* {!arealoading && newAreasValue && newAreas.map((area) => (
-          <Marker position={[area.latitude, area.longitude]} key={newAreasValue.highwayId}>
-            <Popup>
-              <p className="popup-area-name">{area.name}</p>
+    return (
+      <>
+        {arealoading && (
+        <Dimmer active inverted>
+          <Loader inverted content="Chargement" />
+        </Dimmer>
+        )}
+        <Map id="mapid" center={position} zoom={zoom}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {!arealoading && areas.map((area) => (
+            <Marker position={[area.latitude, area.longitude]} key={area.id}>
+              <Popup>
+                <p className="popup-area-name">{area.name}</p>
 
-              <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
-            </Popup>
-          </Marker>
-        ))} */}
-        <LocateControl options={locateOptions} startDirectly />
-      </Map>
-    </>
+                <Button as={Link} to={`/areas/${slugify(area.name)}`} size="mini" color="teal">Fiche détaillée</Button>
+              </Popup>
+            </Marker>
+          ))}
+          <LocateControl options={locateOptions} startDirectly />
+        </Map>
+      </>
 
-  );
-};
+    );
+  }
+}
 
 Maparea.propTypes = {
   lat: PropTypes.string.isRequired,
@@ -122,6 +135,7 @@ Maparea.propTypes = {
   newAreasValue: PropTypes.shape({
     highwayId: PropTypes.number.isRequired,
   }).isRequired,
+  updateNewAreasData: PropTypes.func.isRequired,
 };
 
 export default Maparea;
