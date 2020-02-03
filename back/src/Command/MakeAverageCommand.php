@@ -49,8 +49,6 @@ class MakeAverageCommand extends Command
         }
         $em->flush();
 
-        echo 'Averages calculated with success';
-
         // Return 0 in case of success for the Terminal
         return 0;
     }
