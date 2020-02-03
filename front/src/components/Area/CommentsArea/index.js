@@ -5,6 +5,7 @@ import {
 } from 'semantic-ui-react';
 // import Moment from 'react-moment';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 
 import './commentsarea.scss';
 
@@ -47,11 +48,22 @@ class CommentsArea extends React.Component {
     };
     const handleFile = (evt) => {
       evt.preventDefault();
-      const image = evt.target.files[0];
-      console.log(image);
-      const file = window.URL.createObjectURL(image);
+      const file = evt.target.files[0];
       console.log(file);
-      doImage(file);
+      // doImage(file);
+      const url = 'https://api.cloudinary.com/v1_1/kiveun/image/upload';
+      const fd = new FormData();
+      fd.append('upload_preset', 'hq6ssejy');
+      fd.append('file', file);
+      const config = {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+      };
+      axios.post(url, fd, config)
+        .then((res) => {
+          console.log(res);
+          console.log(res.data.secure_url);
+          doImage(res.data.secure_url);
+        });
     };
     const handleSubmit = (evt) => {
       evt.preventDefault();
