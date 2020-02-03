@@ -36,7 +36,6 @@ class Profile extends React.Component {
     }
   }
 
-
   render() {
     const {
       profileData,
@@ -269,7 +268,9 @@ class Profile extends React.Component {
                       <Comment.Content>
                         <Comment.Author as="a">{profileData.comments.username}</Comment.Author>
                         <Comment.Metadata>
-                          <div>{comment.createdAt}</div>
+                          <div>
+                            posté le {date} {monthNames[month]} {year} à {hour}h{minute}
+                          </div>
                         </Comment.Metadata>
                         <Comment.Text>{comment.description}</Comment.Text>
                       </Comment.Content>
@@ -278,8 +279,8 @@ class Profile extends React.Component {
                     <Divider />
                   </Grid.Column>
                 </>
-              ))}
-              {profileData.comments == null && (
+                      ))}
+              {profileData.comments.length === 0 && (
                 <>
                   <Grid.Column>
                     <div>
@@ -298,6 +299,7 @@ class Profile extends React.Component {
     );
   }
 }
+                      
 
 Profile.propTypes = {
   profileData: PropTypes.shape({
