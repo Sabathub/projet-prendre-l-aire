@@ -2,11 +2,16 @@ import { connect } from 'react-redux';
 
 import CommentsArea from 'src/components/Area/CommentsArea';
 
-import { changeInput, doComment, addImage, commentAreaId } from 'src/store/actions';
+import {
+  changeInput,
+  doComment,
+  addImage,
+  commentAreaId,
+} from 'src/store/actions';
 
 
 const mapStateToProps = (state) => ({
-  contentValue: state.form.content,
+  contentValue: state.form.commentContent,
 });
 
 const mapDispatchToProps = (dispatch) => ({

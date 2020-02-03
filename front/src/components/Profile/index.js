@@ -8,11 +8,6 @@ import { Redirect, Route } from 'react-router-dom';
 import './profile.scss';
 
 class Profile extends React.Component {
-  componentDidMount() {
-
-
-  }
-
   componentDidUpdate(prevProps) {
     const { submitedUsername, submitedPassword, logged } = this.props;
     const Refresh = ({ path = '/' }) => (
