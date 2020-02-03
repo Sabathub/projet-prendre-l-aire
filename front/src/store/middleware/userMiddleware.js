@@ -25,10 +25,12 @@ const userMiddleware = (store) => (next) => (action) => {
           console.log(response);
           store.dispatch(submitEditUsername(response.data.submitedUsername));
           store.dispatch(receiveProfileData(response.data));
+          alert('Votre pseudo a bien été modifié');
         })
         .catch((error) => {
           // console.error permet d'afficher une erreur dans la console
           console.error(error);
+          alert('Une erreur s\'est produite, réesayez.');
         })
         .finally();
       break;
@@ -44,10 +46,12 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(submitEditPassword(response.data.submitedPassword));
+          alert('Votre mot de passe a bien été modifié');
         })
         .catch((error) => {
         // console.error permet d'afficher une erreur dans la console
           console.error(error);
+          alert('Une erreur s\'est produite, réesayez.');
         })
         .finally();
       break;
@@ -58,10 +62,12 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(submitDeleteUser(response.data.logged));
+          alert('Votre compte a été supprimé');
         })
         .catch((error) => {
         // console.error permet d'afficher une erreur dans la console
           console.error(error);
+          alert('Une erreur s\'est produite, réesayez.');
         })
         .finally();
       break;

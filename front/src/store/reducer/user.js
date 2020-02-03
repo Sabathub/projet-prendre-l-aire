@@ -8,8 +8,12 @@ import {
   RECEIVE_PROFILE_DATA,
   SUBMIT_DELETE_USER,
   USER_IS_CONNECT,
-  DO_CLOSE_MODAL,
-  DO_OPEN_MODAL,
+  DO_CLOSE_MODAL_USERNAME,
+  DO_OPEN_MODAL_USERNAME,
+  DO_CLOSE_MODAL_PASSWORD,
+  DO_OPEN_MODAL_PASSWORD,
+  DO_CLOSE_MODAL_DELETE,
+  DO_OPEN_MODAL_DELETE,
 } from '../actions';
 
 // --- initial state
@@ -19,7 +23,9 @@ const initialState = {
   password: '',
   submited: false,
   logged: false,
-  showModal: false,
+  showModalUsername: false,
+  showModalPassword: false,
+  showModalDelete: false,
   profile: {},
 };
 
@@ -59,15 +65,35 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         profile: action.profile,
       };
-    case DO_CLOSE_MODAL:
+    case DO_CLOSE_MODAL_USERNAME:
       return {
         ...state,
-        showModal: false,
+        showModalUsername: false,
       };
-    case DO_OPEN_MODAL:
+    case DO_OPEN_MODAL_USERNAME:
       return {
         ...state,
-        showModal: true,
+        showModalUsername: true,
+      };
+    case DO_CLOSE_MODAL_PASSWORD:
+      return {
+        ...state,
+        showModalPassword: false,
+      };
+    case DO_OPEN_MODAL_PASSWORD:
+      return {
+        ...state,
+        showModalPassword: true,
+      };
+    case DO_CLOSE_MODAL_DELETE:
+      return {
+        ...state,
+        showModalDelete: false,
+      };
+    case DO_OPEN_MODAL_DELETE:
+      return {
+        ...state,
+        showModalDelete: true,
       };
 
     default: return state;
