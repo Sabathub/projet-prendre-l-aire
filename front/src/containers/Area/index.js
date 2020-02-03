@@ -13,21 +13,13 @@ const mapStateToProps = (state, ownProps) => {
     arealoading: state.area.arealoading,
     highwayloading: state.map.highwayloading,
     found: area !== undefined,
-    file: state.comment.file,
     logged: state.user.logged,
-    commentValue: state.form.commentContent,
   });
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  doImage: (file) => {
-    dispatch(stockImageToState(file));
-  },
   changeInputValue: (value, name) => {
     dispatch(changeInput(value, name));
-  },
-  newContent: () => {
-    dispatch(doComment());
   },
 });
 

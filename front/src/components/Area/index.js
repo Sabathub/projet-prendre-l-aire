@@ -38,21 +38,25 @@ const Area = ({
   areaData,
   arealoading,
   highwayloading,
-  doImage,
+  // doImage,
   logged,
   // found,
 }) => {
-  const handleFile = (evt) => {
+  if (arealoading === false && highwayloading === false) {
+    console.log(areaData.averageRate);
+  }
+
+  /* const handleFile = (evt) => {
     evt.preventDefault();
     const file = evt.target.files[0];
     console.log(file);
     doImage(file);
-  };
+  }; */
 
-  const handleUpload = (evt) => {
+  /* const handleUpload = (evt) => {
     evt.preventDefault();
     console.log('upload');
-  }
+  } */
 
 
   return (
@@ -73,8 +77,8 @@ const Area = ({
               </Grid.Column>
               <Grid.Column width={5} textAlign="center" verticalAlign="middle">
                 <Segment basic>
-                  <Rating icon="star" defaultRating={3} maxRating={5} disabled />
-                  <p id="rating">Note moyenne de 12 avis</p>
+                  <Rating icon="star" defaultRating={Math.round(areaData.averageRate)} maxRating={5} disabled />
+                  <p id="rating">Note moyenne de {areaData.comments.length} avis</p>
                 </Segment>
                 <Segment id="area-infos">
                   <p id="highway">Autoroute {areaData.destinations[0].highways.name}</p>
@@ -209,15 +213,7 @@ const Area = ({
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <form onSubmit={handleUpload}>
-            <div>
-              <label>Select file</label>
-              <input type="file" name="file" onChange={handleFile} />
-            </div>
-            <button type="submit">Upload</button>
-          </form>
-          {/* <Upload /> */}
-          <CommentsArea comments={areaData.comments} logged={logged} />
+          <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
         </>
       )}
       {/* {!found && <Redirect to="/not-found" />} */}

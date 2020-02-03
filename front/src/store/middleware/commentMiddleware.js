@@ -2,16 +2,18 @@ import axios from 'axios';
 
 import { DO_COMMENT, submitComment } from 'src/store/actions';
 
-const signupMiddleware = (store) => (next) => (action) => {
+const commentMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_COMMENT: {
       const comment = {
-        commentContent: (store.getState().form.commentContent),
+        description: (store.getState().form.commentContent),
+        rate: 5,
+        area: (store.getState().form.areaId),
+        picture: (store.getState().form.picture),
       };
-      console.log(comment);
 
       // Ouvrir une connexion avec le serveur
-      axios.post('http://54.85.18.78/api/v1/secured/comments', {
+      axios.post('http://54.85.18.78/api/v1/secured/comments/', {
         comment,
       })
       // succès
@@ -39,4 +41,4 @@ const signupMiddleware = (store) => (next) => (action) => {
   }
 };
 
-export default signupMiddleware;
+export default commentMiddleware;

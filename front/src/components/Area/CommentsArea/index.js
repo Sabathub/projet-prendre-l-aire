@@ -9,10 +9,13 @@ import './commentsarea.scss';
 
 const CommentsArea = ({
   comments,
+  areaId,
   logged,
   commentValue,
   changeInputValue,
+  addArea,
   newContent,
+  doImage,
 }) => {
   const handleChange = (evt) => {
     const { value: fieldValue } = evt.target;
@@ -20,8 +23,18 @@ const CommentsArea = ({
     changeInputValue(fieldValue, fieldName);
   };
 
+  const handleFile = (evt) => {
+    evt.preventDefault();
+    const image = evt.target.files[0];
+    console.log(image);
+    const file = window.URL.createObjectURL(image);
+    console.log(file);
+    doImage(file);
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    addArea(areaId);
     newContent();
   };
   return (
@@ -49,7 +62,7 @@ const CommentsArea = ({
                 <Comment.Metadata>
                   <div>
                   posté le {date} {monthNames[month]} {year} à {hour}h{minute}
-                </div>
+                  </div>
                 </Comment.Metadata>
                 <Comment.Text>{comment.description}</Comment.Text>
               </Comment.Content>
@@ -78,13 +91,17 @@ const CommentsArea = ({
           Votre message :
             <Form.TextArea
               type="text"
-              placeholder="..."
+              placeholder="Ajoutez un commentaire"
               id="commentContent"
               name="commentContent"
               value={commentValue}
               onChange={handleChange}
             />
           </label>
+        </Form.Field>
+        <Form.Field className="label">
+          <label>Select file</label>
+          <input type="file" name="file" onChange={handleFile} />
         </Form.Field>
         <Button content="Ajoutez un commentaire" labelPosition="left" icon="edit" primary />
       </Form>
