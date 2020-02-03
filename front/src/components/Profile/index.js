@@ -280,7 +280,7 @@ class Profile extends React.Component {
                     <Divider />
                   </Grid.Column>
                 </>
-                      ))}
+              ))}
               {profileDatas.comments.length === 0 && (
                 <>
                   <Grid.Column>
@@ -300,7 +300,6 @@ class Profile extends React.Component {
     );
   }
 }
-                      
 
 Profile.propTypes = {
   profileData: PropTypes.shape({

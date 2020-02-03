@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { DO_LOGIN, logUser, receiveProfileData } from 'src/store/actions';
+import {
+  DO_LOGIN,
+  logUser,
+  receiveProfileData,
+  doFailPassword,
+} from 'src/store/actions';
 
 
 const loginMiddleware = (store) => (next) => (action) => {
@@ -29,13 +34,19 @@ const loginMiddleware = (store) => (next) => (action) => {
             })
             .catch((error2) => {
               console.log('Error', error2);
-              alert('Une erreur s\'est produite, réesayez.');
             });
         })
       // Erreur
         .catch((error1) => {
           console.log('Error', error1);
-          alert('Une erreur s\'est produite, réesayez.');
+          if (error1.response.status === 401) {
+            alert("L'email et/ou le mot de passe que vous avez saisi(s) est/sont incorrect(s) !");
+            store.dispatch(doFailPassword());
+          }
+          else {
+            alert('Une erreur indépendante de notre volonté s\'est produite, veuillez réesayez plus tard.');
+            store.dispatch(doFailPassword());
+          }
         })
       // Dans tous les cas
         .finally();

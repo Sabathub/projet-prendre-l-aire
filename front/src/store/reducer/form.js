@@ -3,6 +3,7 @@ import {
   CHANGE_INPUT_VALUE,
   LOG_USER,
   DO_SIGNUP,
+  DO_FAIL_PASSWORD,
   DO_LOGIN,
   DO_CONTACT,
   DO_COMMENT,
@@ -61,6 +62,14 @@ const reducer = (state = initialState, action = {}) => {
     case DO_SIGNUP:
       return {
         ...state,
+      };
+    case DO_FAIL_PASSWORD:
+      return {
+        ...state,
+        username: '',
+        email: '',
+        password: '',
+        passwordVerify: '',
       };
     case DO_LOGIN:
       return {

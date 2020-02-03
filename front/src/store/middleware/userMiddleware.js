@@ -8,6 +8,7 @@ import {
   submitEditPassword,
   submitDeleteUser,
   receiveProfileData,
+  doFailPassword,
 } from '../actions';
 
 
@@ -32,7 +33,14 @@ const userMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           // console.error permet d'afficher une erreur dans la console
           console.error(error);
-          alert('Une erreur s\'est produite, réesayez.');
+          if (error.response.status === 500) {
+            alert('Le pseudo que vous avez saisi est déjà associé à un compte existant !');
+            store.dispatch(doFailPassword());
+          }
+          else {
+            alert('Une erreur indépendante de notre volonté s\'est produite, veuillez réesayez plus tard.');
+            store.dispatch(doFailPassword());
+          }
         })
         .finally();
       break;
@@ -53,7 +61,7 @@ const userMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
         // console.error permet d'afficher une erreur dans la console
           console.error(error);
-          alert('Une erreur s\'est produite, réesayez.');
+          alert('Une erreur indépendante de notre volonté s\'est produite, veuillez réesayez plus tard.');
         })
         .finally();
       break;
@@ -69,7 +77,7 @@ const userMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
         // console.error permet d'afficher une erreur dans la console
           console.error(error);
-          alert('Une erreur s\'est produite, réesayez.');
+          alert('Une erreur indépendante de notre volonté s\'est produite, veuillez réesayez plus tard.');
         })
         .finally();
       break;
