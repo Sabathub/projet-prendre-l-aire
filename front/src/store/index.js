@@ -5,6 +5,7 @@ import loginMiddleware from 'src/store/middleware/loginMiddleware';
 import areaMiddleware from 'src/store/middleware/areaMiddleware';
 import contactMiddleware from 'src/store/middleware/contactMiddleware';
 import userMiddleware from 'src/store/middleware/userMiddleware';
+import commentMiddleware from 'src/store/middleware/commentMiddleware';
 
 // on importe le reducer qui combine les autres
 import reducer from './reducer';
@@ -18,6 +19,7 @@ const enhancers = composeEnhancers(
     areaMiddleware,
     contactMiddleware,
     userMiddleware,
+    commentMiddleware,
   ),
 );
 

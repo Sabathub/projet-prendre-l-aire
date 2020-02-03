@@ -5,13 +5,17 @@ import {
   DO_SIGNUP,
   DO_LOGIN,
   DO_CONTACT,
+  DO_COMMENT,
   DO_EDIT_USERNAME,
   DO_EDIT_PASSWORD,
   DO_DELETE_USER,
   SUBMIT_USER,
   SUBMIT_CONTACT,
+  SUBMIT_COMMENT,
   SUBMIT_EDIT_USERNAME,
   SUBMIT_EDIT_PASSWORD,
+  ADD_IMAGE,
+  COMMENT_AREA_ID,
 } from '../actions';
 
 // --- initial state
@@ -23,8 +27,11 @@ const initialState = {
   name: '',
   subject: '',
   content: '',
+  commentContent: '',
   submitedUsername: false,
   submitedPassword: false,
+  picture: null,
+  areaId: '',
 };
 
 // --- Reducer
@@ -34,6 +41,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.name]: action.value,
+      };
+    case ADD_IMAGE:
+      return {
+        ...state,
+        picture: action.file,
+      };
+    case COMMENT_AREA_ID:
+      return {
+        ...state,
+        areaId: action.areaId,
       };
     case LOG_USER:
       return {
@@ -52,6 +69,11 @@ const reducer = (state = initialState, action = {}) => {
     case DO_CONTACT:
       return {
         ...state,
+      };
+    case DO_COMMENT:
+      return {
+        ...state,
+        areaId: action.areaId,
       };
     case DO_EDIT_USERNAME:
       return {
@@ -78,6 +100,11 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         subject: '',
         content: '',
+      };
+    case SUBMIT_COMMENT:
+      return {
+        ...state,
+        commentContent: '',
       };
     case SUBMIT_EDIT_USERNAME:
       return {

@@ -5,6 +5,7 @@ export const CHANGE_AREAS_DATA = 'CHANGE_AREAS_DATA';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_LOGIN = 'DO_LOGIN';
 export const DO_CONTACT = 'DO_CONTACT';
+export const DO_COMMENT = 'DO_COMMENT';
 export const DO_EDIT_USERNAME = 'DO_EDIT_USERNAME';
 export const DO_EDIT_PASSWORD = 'DO_EDIT_PASSWORD ';
 export const DO_DELETE_USER = 'DO_DELETE_USER';
@@ -18,6 +19,7 @@ export const LOG_USER = 'LOG_USER';
 export const USER_IS_CONNECT = 'USER_IS_CONNECT';
 export const SUBMIT_USER = 'SUBMIT_USER';
 export const SUBMIT_CONTACT = 'SUBMIT_CONTACT';
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
 export const SUBMIT_EDIT_USERNAME = 'SUBMIT_EDIT_USERNAME';
 export const SUBMIT_EDIT_PASSWORD = 'SUBMIT_EDIT_PASSWORD';
 export const SUBMIT_DELETE_USER = 'SUBMIT_DELETE_USER';
@@ -31,7 +33,8 @@ export const RECEIVE_HIGHWAYS_DATA = 'RECEIVE_HIGHWAYS_DATA';
 export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
 export const STOP_LOADING_HIGHWAYS = 'STOP_LOADING_HIGHWAYS';
-export const STOCK_IMAGE = 'STOCK_IMAGE';
+export const ADD_IMAGE = 'ADD_IMAGE';
+export const COMMENT_AREA_ID = 'COMMENT_AREA_ID';
 
 
 // == action creators
@@ -61,6 +64,10 @@ export const doLogin = () => ({
 
 export const doContact = () => ({
   type: DO_CONTACT,
+});
+
+export const doComment = () => ({
+  type: DO_COMMENT,
 });
 
 export const doEditUsername = () => ({
@@ -139,6 +146,11 @@ export const submitContact = (name, email, subject, content) => ({
   content,
 });
 
+export const submitComment = (commentContent) => ({
+  type: SUBMIT_COMMENT,
+  commentContent,
+});
+
 export const submitEditUsername = (submitedUsername, username) => ({
   type: SUBMIT_EDIT_USERNAME,
   submitedUsername,
@@ -187,7 +199,12 @@ export const stopLoadingHighways = () => ({
   type: STOP_LOADING_HIGHWAYS,
 });
 
-export const stockImageToState = (file) => ({
-  type: STOCK_IMAGE,
+export const addImage = (file) => ({
+  type: ADD_IMAGE,
   file,
+});
+
+export const commentAreaId = (areaId) => ({
+  type: COMMENT_AREA_ID,
+  areaId,
 });
