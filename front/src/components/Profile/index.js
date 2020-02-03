@@ -85,10 +85,15 @@ class Profile extends React.Component {
       evt.preventDefault();
       if (confirm('Êtes-vous vraiment sûr de vouloir supprimer votre compte de façon définitive ?')) {
         deleteUser();
+        closeModalDelete();
       }
       else {
         closeModalDelete();
       }
+    };
+    const handleClickNo = (evt) => {
+      evt.preventDefault();
+      closeModalDelete();
     };
     const handleOpenModalUsername = () => {
       openModalUsername();
@@ -232,6 +237,14 @@ class Profile extends React.Component {
                     </p>
                   </Modal.Content>
                   <Modal.Actions>
+                    <Button
+                      basic
+                      color="red"
+                      inverted
+                      onClick={handleClickNo}
+                    >
+                      <Icon name="remove" /> Non
+                    </Button>
                     <Button
                       color="green"
                       inverted
