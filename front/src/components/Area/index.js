@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import {
   Grid,
   Image,
   Header,
   Segment,
   Rating,
+  Button,
 } from 'semantic-ui-react';
 import {
   FaGasPump,
@@ -41,6 +42,7 @@ const Area = ({
   // doImage,
   logged,
   // found,
+  getAreaName,
 }) => {
   if (arealoading === false && highwayloading === false) {
     console.log(areaData.averageRate);
@@ -57,7 +59,10 @@ const Area = ({
     evt.preventDefault();
     console.log('upload');
   } */
-
+  const handleClick = () => {
+    const areaname = areaData.name;
+    getAreaName(areaname);
+  };
 
   return (
 
@@ -213,6 +218,7 @@ const Area = ({
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          <Button as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
           <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
         </>
       )}
@@ -274,6 +280,7 @@ Area.propTypes = {
   // found: PropTypes.bool.isRequired,
   doImage: PropTypes.func.isRequired,
   logged: PropTypes.bool.isRequired,
+  getAreaName: PropTypes.func.isRequired,
 };
 
 Area.defaultProps = {

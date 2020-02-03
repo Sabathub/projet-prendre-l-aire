@@ -17,6 +17,7 @@ import {
   SUBMIT_EDIT_PASSWORD,
   ADD_IMAGE,
   COMMENT_AREA_ID,
+  RECEIVE_AREA_NAME,
 } from '../actions';
 
 // --- initial state
@@ -33,6 +34,7 @@ const initialState = {
   submitedPassword: false,
   picture: null,
   areaId: '',
+  areaname: '',
 };
 
 // --- Reducer
@@ -126,6 +128,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         submitedPassword: true,
         password: '',
+      };
+    case RECEIVE_AREA_NAME:
+      return {
+        ...state,
+        areaname: action.areaname,
       };
 
     default: return state;
