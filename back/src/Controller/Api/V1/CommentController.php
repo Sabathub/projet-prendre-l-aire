@@ -11,6 +11,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
 * @Route("/api/v1/secured/comments", name="api_v1_secured_comments_")
@@ -42,7 +48,7 @@ class CommentController extends AbstractController
      * Create a new comment
      * @Route("/", name="new", methods={"POST"})
      */
-    public function new(Request $request, ImageUploader $imageUploader, SerializerInterface $serializer)
+    public function new(Request $request, ImageUploader $imageUploader, SerializerInterface $serializer, KernelInterface $kernel)
     {
         // first action we get the Json content
         $newComment = $request->getContent();
@@ -76,6 +82,22 @@ class CommentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
+
+            // Here we instantiate the kernel class to create application kernel
+            $application = new Application($kernel);
+            // Sets whether to automatically exit after a command execution or not.
+            $application->setAutoExit(false);
+
+            // instantiate the input interface with arguments and options to pass to the command
+            $input = new ArrayInput([
+                'command' => 'app:make:average'
+            ]);
+
+            // instantiate output interface. BufferedOutPut empties buffer and returns its content. We use NullOutput() because we don't use the output.
+            $output = new NullOutput();
+
+            // run the command
+            $application->run($input, $output);
 
             // return comment in JSON
             $data = $serializer->normalize($comment, null, ['groups' => 'api_v1_comment']);
