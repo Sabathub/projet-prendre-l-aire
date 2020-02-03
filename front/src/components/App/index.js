@@ -17,8 +17,9 @@ class App extends React.Component {
     const { fetchAreas, fetchHighways, keepLogged } = this.props;
     fetchAreas();
     fetchHighways();
-    const localStorage = window.localStorage.getItem('token');
-    if (localStorage !== null) {
+    const localStorageToken = window.localStorage.getItem('token');
+    const profileData = JSON.parse(window.localStorage.getItem('profileData'));
+    if (localStorageToken !== null && profileData !== null) {
       keepLogged();
     }
   }
