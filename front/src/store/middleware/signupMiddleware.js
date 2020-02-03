@@ -5,6 +5,7 @@ import {
   logUser,
   submitUser,
   receiveProfileData,
+  doFailPassword,
 } from 'src/store/actions';
 
 const signupMiddleware = (store) => (next) => (action) => {
@@ -39,26 +40,37 @@ const signupMiddleware = (store) => (next) => (action) => {
                 .then((response3) => {
                   console.log('Response', response3);
                   alert('Félicitations, votre inscription a été validée. Vous êtes maintenant connecté :)');
-                  store.dispatch(receiveProfileData(response3.data));
-                  window.localStorage.setItem('id', response2.data.id);
-                  window.localStorage.setItem('username', response2.data.username);
-                  window.localStorage.setItem('email', response2.data.email);
-                  window.localStorage.setItem('comments', JSON.stringify(response2.data.comments));
+                  window.localStorage.setItem('profileData', JSON.stringify(response3.data));
+                  const profileData = JSON.parse(window.localStorage.getItem('profileData'));
+                  store.dispatch(receiveProfileData(profileData));
                 })
                 .catch((error3) => {
                   console.log('Error', error3);
-                  alert('Une erreur s\'est produite, réesayez.');
                 });
             })
             .catch((error2) => {
               console.log('Error', error2);
-              alert('Une erreur s\'est produite, réesayez.');
+              if (error2.response.status === 401) {
+                alert("L'email et/ou le mot de passe que vous avez saisi(s) est/sont incorrect(s) !");
+                store.dispatch(doFailPassword());
+              }
+              else {
+                alert('Une erreur indépendante de notre volonté s\'est produite, veuillez réesayez plus tard.');
+                store.dispatch(doFailPassword());
+              }
             });
         })
       // Erreur
         .catch((error1) => {
-          console.log('Error', error1);
-          alert('Une erreur s\'est produite, réesayez.');
+          console.log('Error1', error1);
+          if (error1.response.status === 500) {
+            alert('Le pseudo et/ou l\'email que vous avez saisi(s) est/sont déjà associé(s) à un compte existant !');
+            store.dispatch(doFailPassword());
+          }
+          else {
+            alert('Une erreur indépendante de notre volonté s\'est produite, veuillez réesayez plus tard.');
+            store.dispatch(doFailPassword());
+          }
         })
       // Dans tous les cas
         .finally();

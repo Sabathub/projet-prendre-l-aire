@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { DO_CONTACT, submitContact } from 'src/store/actions';
+import { DO_CONTACT, submitContact, doFailPassword } from 'src/store/actions';
 
 const signupMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -28,7 +28,8 @@ const signupMiddleware = (store) => (next) => (action) => {
       // Erreur
         .catch((error) => {
           console.log('Error', error);
-          alert('Une erreur s\'est produite, votre message n\'a pas été envoyé, réesayez.');
+          alert('Une erreur indépendante de notre volonté s\'est produite, veuillez réesayez plus tard.');
+          store.dispatch(doFailPassword());
         })
       // Dans tous les cas
         .finally();

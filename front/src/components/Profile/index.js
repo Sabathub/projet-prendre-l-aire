@@ -264,7 +264,6 @@ class Profile extends React.Component {
             <Grid.Row columns={1}>
               {profileDatas.comments != null && profileDatas.comments.map((comment) => {
                 const currentDate = new Date(comment.createdAt);
-
                 const date = currentDate.getDate();
                 const month = currentDate.getMonth();
                 const year = currentDate.getFullYear();
@@ -293,6 +292,7 @@ class Profile extends React.Component {
                   </>
                 );
               })}
+
               {profileDatas.comments.length === 0 && (
                 <>
                   <Grid.Column>
@@ -312,7 +312,6 @@ class Profile extends React.Component {
     );
   }
 }
-
 
 Profile.propTypes = {
   profileData: PropTypes.shape({

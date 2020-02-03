@@ -13,6 +13,7 @@ const Signup = ({
   passwordVerifyValue,
   changeInputValue,
   newUser,
+  failPassword,
   submited,
 }) => {
   const handleChange = (evt) => {
@@ -23,7 +24,13 @@ const Signup = ({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    newUser();
+    if (passwordValue === passwordVerifyValue) {
+      newUser();
+    }
+    else {
+      alert('Les deux mot de passe que vous avez saisis sont différents !');
+      failPassword();
+    }
   };
 
   if (submited) {
@@ -107,6 +114,7 @@ Signup.propTypes = {
   passwordVerifyValue: PropTypes.string.isRequired,
   changeInputValue: PropTypes.func.isRequired,
   newUser: PropTypes.func.isRequired,
+  failPassword: PropTypes.func.isRequired,
   submited: PropTypes.bool.isRequired,
 };
 
