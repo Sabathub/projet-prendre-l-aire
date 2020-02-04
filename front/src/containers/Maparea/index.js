@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Maparea from 'src/components/Maparea';
 
-import { changeAreas } from 'src/store/actions';
+import { changeAreas, stopLoadingSearchedArea } from 'src/store/actions';
 
 
 const mapStateToProps = (state) => ({
@@ -11,13 +11,17 @@ const mapStateToProps = (state) => ({
   zoom: state.map.position.zoom,
   areas: state.map.areas,
   arealoading: state.map.arealoading,
+  searchedarealoading: state.map.searchedarealoading,
   newAreasValue: state.map.newAreasValue,
+  searchedareas: state.map.searchedareas,
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-  updateNewAreasData: (areas) => {
-    dispatch(changeAreas(areas));
+  updateNewAreasData: (searchedareas) => {
+    dispatch(changeAreas(searchedareas));
+    const stopLoadingAction = stopLoadingSearchedArea();
+    dispatch(stopLoadingAction);
   },
 });
 
