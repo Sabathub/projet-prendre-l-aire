@@ -69,7 +69,7 @@ class CommentController extends AbstractController
                 // upload of the picture 
                 $urlFile = $form['picture']->getData();
                 $file = $imageUploader->downloadFile($urlFile, 'images');
-                $comment->setPicture($container->getParameter('kernel.project_dir').'/public/images/' . $file);
+                $comment->setPicture('/images/' . $file);
             }
             
             // if the user fill the rate data, then we set it
