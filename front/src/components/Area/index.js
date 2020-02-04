@@ -37,7 +37,7 @@ import './area.scss';
 
 class Area extends React.Component {
   componentDidMount() {
-    const {clearForm} = this.props;    
+    const {clearForm} = this.props;
     clearForm();
   }
 
