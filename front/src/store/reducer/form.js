@@ -4,6 +4,7 @@ import {
   LOG_USER,
   DO_SIGNUP,
   DO_FAIL_PASSWORD,
+  DO_FAIL_CONTACT,
   DO_LOGIN,
   DO_CONTACT,
   DO_COMMENT,
@@ -73,6 +74,21 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
     case DO_FAIL_PASSWORD:
+      return {
+        ...state,
+        username: '',
+        email: '',
+        password: '',
+        passwordVerify: '',
+        name: '',
+        subject: '',
+        content: '',
+        commentContent: '',
+        picture: null,
+        areaId: '',
+        rate: null,
+      };
+    case DO_FAIL_CONTACT:
       return {
         ...state,
         username: '',

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Contact from 'src/components/Contact';
 
-import { changeInput, doContact, doFailPassword } from 'src/store/actions';
+import { changeInput, doContact, doFailContact} from 'src/store/actions';
 
 
 const mapStateToProps = (state) => ({
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(doContact());
   },
   clearForm: () => {
-    dispatch(doFailPassword());
+    dispatch(doFailContact());
   },
 });
 
