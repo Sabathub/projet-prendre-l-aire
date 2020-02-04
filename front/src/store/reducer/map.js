@@ -5,6 +5,7 @@ import {
   RECEIVE_HIGHWAYS_DATA,
   STOP_LOADING,
   STOP_LOADING_HIGHWAYS,
+  STOP_LOADING_SEARCHED_AREA,
   CHANGE_MARKERS_VALUE,
   CHANGE_AREAS_DATA,
 } from '../actions';
@@ -18,11 +19,14 @@ const initialState = {
 
   areas: [],
 
+  searchedareas: [],
+
   newAreasValue: {},
 
   highways: [],
 
   arealoading: true,
+  searchedarealoading: true,
   highwayloading: true,
 
 };
@@ -37,7 +41,7 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_AREAS_DATA:
       return {
         ...state,
-        areas: action.areas,
+        searchedareas: action.searchedareas,
       };
     case RECEIVE_AREAS_DATA:
       return {
@@ -58,6 +62,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         highwayloading: false,
+      };
+    case STOP_LOADING_SEARCHED_AREA:
+      return {
+        ...state,
+        searchedarealoading: false,
       };
     default: return state;
   }
