@@ -35,7 +35,7 @@ const Page = ({ logged }) => (
     </Route>
     {/* Switch => on s'arrête à la première route qui a "path" qui correspond à l'URL.
       La ligne suivante protège toutes nos routes privées */}
-    {!logged && <Redirect to="/" />}
+    {!logged && <Redirect to="/not-found" />}
     {/* "logged &&" est important ici, sinon l'utilisateur non connecté a accès à cette page à
     partir de l'URL (n'est pas indispensable si on a Redirect au-dessus,
     mais évitera des problèmes de sécurité si on enlève Redirect) */}
