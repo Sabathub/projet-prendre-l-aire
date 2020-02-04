@@ -19,6 +19,8 @@ const userMiddleware = (store) => (next) => (action) => {
         username: (store.getState().form.username),
       };
       // appel axios
+      const token = window.localStorage.getItem('token');
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       axios.patch('http://54.85.18.78/api/v1/secured/users/edit', {
         edituser,
       })
@@ -50,6 +52,8 @@ const userMiddleware = (store) => (next) => (action) => {
         password: (store.getState().form.password),
       };
       // appel axios
+      const token = window.localStorage.getItem('token');
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       axios.put('http://54.85.18.78/api/v1/secured/users/edit/password', {
         editpassword,
       })
@@ -68,6 +72,8 @@ const userMiddleware = (store) => (next) => (action) => {
     }
     case DO_DELETE_USER: {
       // appel axios
+      const token = window.localStorage.getItem('token');
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       axios.delete('http://54.85.18.78/api/v1/secured/users/delete')
         .then((response) => {
           console.log(response);
