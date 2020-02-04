@@ -37,6 +37,7 @@ export const STOP_LOADING = 'STOP_LOADING';
 export const STOP_LOADING_HIGHWAYS = 'STOP_LOADING_HIGHWAYS';
 export const STOP_LOADING_SEARCHED_AREA = 'STOP_LOADING_SEARCHED_AREA';
 export const ADD_IMAGE = 'ADD_IMAGE';
+export const ADD_RATE = 'ADD_RATE';
 export const COMMENT_AREA_ID = 'COMMENT_AREA_ID';
 
 
@@ -218,6 +219,11 @@ export const stopLoadingSearchedArea = () => ({
 export const addImage = (file) => ({
   type: ADD_IMAGE,
   file,
+});
+
+export const addRate = (rate) => ({
+  type: ADD_RATE,
+  rate,
 });
 
 export const commentAreaId = (areaId) => ({

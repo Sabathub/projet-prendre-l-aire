@@ -16,6 +16,7 @@ import {
   SUBMIT_EDIT_USERNAME,
   SUBMIT_EDIT_PASSWORD,
   ADD_IMAGE,
+  ADD_RATE,
   COMMENT_AREA_ID,
   RECEIVE_AREA_NAME,
 } from '../actions';
@@ -35,6 +36,7 @@ const initialState = {
   picture: null,
   areaId: '',
   areaname: '',
+  rate: null,
 };
 
 // --- Reducer
@@ -49,6 +51,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         picture: action.file,
+      };
+    case ADD_RATE:
+      return {
+        ...state,
+        rate: action.rate,
       };
     case COMMENT_AREA_ID:
       return {
@@ -72,6 +79,11 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
         passwordVerify: '',
+        commentContent: '',
+        picture: null,
+        areaId: '',
+        areaname: '',
+        rate: null,
       };
     case DO_LOGIN:
       return {
@@ -116,6 +128,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         commentContent: '',
+        rate: null,
       };
     case SUBMIT_EDIT_USERNAME:
       return {

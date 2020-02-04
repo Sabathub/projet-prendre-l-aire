@@ -7,6 +7,7 @@ import {
   doComment,
   addImage,
   commentAreaId,
+  addRate,
 } from 'src/store/actions';
 
 
@@ -26,6 +27,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   doImage: (file) => {
     dispatch(addImage(file));
+  },
+  changeRate: (rate) => {
+    dispatch(addRate(rate));
   },
 });
 

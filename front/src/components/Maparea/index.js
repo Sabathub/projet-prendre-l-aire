@@ -8,7 +8,7 @@ import {
 } from 'semantic-ui-react';
 import { Link, Route } from 'react-router-dom';
 import slugify from 'slugify';
-import LocateControl from './locatecontrol';
+// import LocateControl from './locatecontrol';
 
 
 import './maparea.scss';
@@ -43,17 +43,15 @@ class Maparea extends React.Component {
     const {
       lat, lng, zoom, areas, arealoading, newAreasValue, searchedareas, searchedarealoading,
     } = this.props;
-    console.log(arealoading);
-    console.log(newAreasValue, 'je suis dans maparea');
 
     const position = [lat, lng];
 
-    const locateOptions = {
+    /* const locateOptions = {
       position: 'topright',
       strings: {
         title: 'Montre moi les aires d\'autoroute à proximité de ma postition',
       },
-    };
+    }; */
 
     return (
       <>
@@ -85,7 +83,7 @@ class Maparea extends React.Component {
               </Popup>
             </Marker>
           ))}
-          <LocateControl options={locateOptions} startDirectly />
+          {/* <LocateControl options={locateOptions} startDirectly /> */}
         </Map>
       </>
 
