@@ -36,6 +36,7 @@ export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
 export const STOP_LOADING_HIGHWAYS = 'STOP_LOADING_HIGHWAYS';
 export const STOP_LOADING_SEARCHED_AREA = 'STOP_LOADING_SEARCHED_AREA';
+export const STOP_LOADING_COMMENTS = 'STOP_LOADING_COMMENTS';
 export const ADD_IMAGE = 'ADD_IMAGE';
 export const ADD_RATE = 'ADD_RATE';
 export const COMMENT_AREA_ID = 'COMMENT_AREA_ID';
@@ -210,6 +211,10 @@ export const stopLoading = () => ({
 
 export const stopLoadingHighways = () => ({
   type: STOP_LOADING_HIGHWAYS,
+});
+
+export const stopLoadingComments = () => ({
+  type: STOP_LOADING_COMMENTS,
 });
 
 export const stopLoadingSearchedArea = () => ({

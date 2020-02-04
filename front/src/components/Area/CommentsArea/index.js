@@ -64,6 +64,7 @@ class CommentsArea extends React.Component {
       axios.post(url, fd, config)
         .then((res) => {
           doImage(res.data.secure_url);
+          console.log(res.data.secure_url);
         });
     };
     const handleSubmit = (evt) => {

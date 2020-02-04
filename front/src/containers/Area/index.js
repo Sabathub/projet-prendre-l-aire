@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { getAreaBySlug } from 'src/utils/selectors';
 import Area from 'src/components/Area';
 
-import { stockImageToState, changeInput, doComment, receiveAreaName, doFailPassword } from 'src/store/actions';
+import { changeInput, receiveAreaName, doFailPassword } from 'src/store/actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     areaData: area,
     arealoading: state.area.arealoading,
     highwayloading: state.map.highwayloading,
+    commentloading: state.comment.commentloading,
     found: area !== undefined,
     logged: state.user.logged,
   });

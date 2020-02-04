@@ -18,6 +18,8 @@ const commentMiddleware = (store) => (next) => (action) => {
         picture: (store.getState().form.picture),
       };
 
+      console.log(comment);
+
       // Ouvrir une connexion avec le serveur
       const token = window.localStorage.getItem('token');
       axios.defaults.headers.Authorization = `Bearer ${token}`;
