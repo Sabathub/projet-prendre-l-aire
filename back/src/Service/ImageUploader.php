@@ -41,7 +41,7 @@ class ImageUploader
         // On crée ce fichier avec le contenu de l'image trouvée et on le nomme comme $fileName
         file_put_contents(
             $this->container->getParameter('kernel.project_dir')
-           .'/public/'
+           .'/assets/'
            .$localDirectory
            .'/'.$fileName
            ,
