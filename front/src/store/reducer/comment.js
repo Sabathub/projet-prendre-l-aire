@@ -1,18 +1,18 @@
 // --- action types
 import {
-  STOP_LOADING_COMMENTS,
+  UPDATE_GALLERY,
 } from '../actions';
 // --- initial state
 const initialState = {
-  commentloading: true,
+  commentsWithImages: [],
 };
 // --- Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case STOP_LOADING_COMMENTS:
+    case UPDATE_GALLERY:
       return {
         ...state,
-        commentloading: false,
+        commentsWithImages: action.commentsWithImages,
       };
     default: return state;
   }

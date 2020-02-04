@@ -137,7 +137,7 @@ class CommentsArea extends React.Component {
           </Form.Field>
           <Form.Field className="label">
             <label>Notez cette aire (optionnel) :</label>
-            <Rating icon="star" defaultRating={3} maxRating={5} onRate={handleRate} />
+            <Rating icon="star" defaultRating={0} maxRating={5} onRate={handleRate} />
           </Form.Field>
           <Form.Field className="label">
             <label>Partagez une image (optionnel) :</label>

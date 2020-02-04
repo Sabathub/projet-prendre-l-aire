@@ -43,8 +43,14 @@ import './area.scss';
 
 class Area extends React.Component {
   componentDidMount() {
-    const { clearForm } = this.props;
+    const { clearForm, arealoading, highwayloading, areaData, fetchGallery } = this.props;
     clearForm();
+
+    if (arealoading === false && highwayloading === false) {
+      const commentsList = areaData.comments;
+      const commentsWithImages = commentsList.filter((commentList) => commentList.picture !== null);
+      fetchGallery(commentsWithImages);
+    }
   }
 
   render() {
@@ -52,15 +58,12 @@ class Area extends React.Component {
       areaData,
       arealoading,
       highwayloading,
-      commentloading,
       // doImage,
       logged,
       // found,
       getAreaName,
+      picturedComments,
     } = this.props;
-    if (arealoading === false && highwayloading === false) {
-      console.log(areaData.comments);
-    }
 
     /* const handleFile = (evt) => {
     evt.preventDefault();
@@ -77,6 +80,10 @@ class Area extends React.Component {
       const areaname = areaData.name;
       getAreaName(areaname);
     };
+
+    if (arealoading === false && highwayloading === false) {
+      console.log('picturedComments' ,picturedComments);
+    }
 
     return (
 
@@ -298,7 +305,7 @@ class Area extends React.Component {
                     <Header as="h3">Galerie d'images</Header>
                   </Segment>
                   <Carousel infiniteLoop useKeyboardArrows dynamicHeight>
-                    {!arealoading && !highwayloading && areaData.comments.map((comment) => {
+                    {!arealoading && !highwayloading && picturedComments.map((comment) => {
                       const url = `http://54.85.18.78${comment.picture}`;
                       console.log(url);
                       return (
@@ -306,24 +313,13 @@ class Area extends React.Component {
                           <div>
                             <img src={url} alt="" />
                           </div>
-                        ) : null
+                        ) : <div />
                       );
                     })}
                   </Carousel>
                 </Grid.Column>
               </Grid.Row> */}
             </Grid>
-            {!arealoading && !highwayloading && areaData.comments.map((comment) => {
-              const url = `http://54.85.18.78${comment.picture}`;
-              console.log(url);
-              return (
-                comment.picture !== null ? (
-                  <div>
-                    <img src={url} alt="" />
-                  </div>
-                ) : null
-              );
-            })}
             <Button as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
             <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
           </>
@@ -390,6 +386,7 @@ Area.propTypes = {
   logged: PropTypes.bool.isRequired,
   getAreaName: PropTypes.func.isRequired,
   clearForm: PropTypes.func.isRequired,
+  fetchGallery: PropTypes.func.isRequired,
 };
 
 Area.defaultProps = {

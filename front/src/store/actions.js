@@ -40,6 +40,7 @@ export const STOP_LOADING_COMMENTS = 'STOP_LOADING_COMMENTS';
 export const ADD_IMAGE = 'ADD_IMAGE';
 export const ADD_RATE = 'ADD_RATE';
 export const COMMENT_AREA_ID = 'COMMENT_AREA_ID';
+export const UPDATE_GALLERY = 'UPDATE_GALLERY';
 
 
 // == action creators
@@ -57,6 +58,11 @@ export const changeMarkers = (newAreasValue) => ({
 export const changeAreas = (searchedareas) => ({
   type: CHANGE_AREAS_DATA,
   searchedareas,
+});
+
+export const updateGallery = (commentsWithImages) => ({
+  type: UPDATE_GALLERY,
+  commentsWithImages,
 });
 
 export const doSignup = () => ({
