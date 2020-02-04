@@ -65,7 +65,6 @@ class Destination
 
     /**
      * @return Collection|Area[]
-     * 
      */
     public function getAreas(): Collection
     {

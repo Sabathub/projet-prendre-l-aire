@@ -32,7 +32,7 @@ class UserController extends AbstractController
 
      /**
       * Change user datas (email or username)
-     * @Route("/edit", name="edit", requirements={"id": "\d+"}, methods="PATCH")
+     * @Route("/edit", name="edit", methods="PATCH")
      */
     public function edit(Request $request, SerializerInterface $serializer): Response
     {
@@ -68,7 +68,7 @@ class UserController extends AbstractController
    
      /**
       * Change the password
-     * @Route("/edit/password", name="edit_password", requirements={"id": "\d+"}, methods="PUT")
+     * @Route("/edit/password", name="edit_password", methods="PUT")
      */
     public function editPassword(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -112,7 +112,7 @@ class UserController extends AbstractController
 
     /**
      * Delete a user
-     * @Route("/delete", name="delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/delete", name="delete", methods={"DELETE"})
      */
     public function delete()
     {
