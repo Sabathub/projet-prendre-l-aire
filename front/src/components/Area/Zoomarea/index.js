@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Map, TileLayer,
+  Map, TileLayer, Marker,
 } from 'react-leaflet';
 
 
@@ -15,12 +15,15 @@ const Zoomarea = ({ latitude, longitude }) => {
         id="zoomarea"
         center={position}
         zoom={17}
-        zoomControl={false}
+        zoomControl={true}
+        maxZoom={17}
+        minZoom={4}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <Marker position={position} />
       </Map>
     </>
 

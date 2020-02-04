@@ -64,6 +64,8 @@ class Maparea extends React.Component {
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxZoom={17}
+            minZoom={4}
           />
           {!searchedarealoading && searchedareas.map((searchedarea) => (
             <Marker position={[searchedarea.latitude, searchedarea.longitude]} key={searchedarea.id}>
