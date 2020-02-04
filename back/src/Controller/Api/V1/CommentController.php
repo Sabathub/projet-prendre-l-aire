@@ -58,7 +58,6 @@ class CommentController extends AbstractController
 
         // and replace this into the request with parameters in array shape
         $request->request->replace(is_array($data) ? $data : array());
-        //dd($newComment, $request->request);
 
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment, ['csrf_protection' => false]);
@@ -68,8 +67,9 @@ class CommentController extends AbstractController
             // if the user actually fill the picture data, then we upload it
             if ($form['picture']->getData() !== null) {
                 // upload of the picture 
-                $fileName = $imageUploader->moveFile($form['picture']->getData(), 'images');
-                $comment->setPicture($fileName);
+                $urlFile = $form['picture']->getData();
+                $file = $imageUploader->downloadFile($urlFile, 'images');
+                $comment->setPicture($file);
             }
             
             // if the user fill the rate data, then we set it
@@ -106,5 +106,6 @@ class CommentController extends AbstractController
 
         return $this->json('Form invalid');
     }
+
 }
 
