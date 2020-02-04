@@ -13,7 +13,6 @@ import './team.scss';
 
 const Team = () => (
   <Container id="team">
-    <Header id="pageTitle" as="h1">Qui sommes-nous ?</Header>
     <Card.Group id="cards">
       {/* Team member card */}
       <Card className="card">

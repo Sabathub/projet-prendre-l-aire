@@ -7,6 +7,8 @@ import {
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 
+import { stopLoadingPictures } from 'src/store/actions';
+
 import './commentsarea.scss';
 
 class CommentsArea extends React.Component {
@@ -65,6 +67,7 @@ class CommentsArea extends React.Component {
         .then((res) => {
           doImage(res.data.secure_url);
           console.log(res.data.secure_url);
+          stopLoadingPictures();
         });
     };
     const handleSubmit = (evt) => {

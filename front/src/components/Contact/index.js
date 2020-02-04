@@ -36,7 +36,6 @@ class Contact extends React.Component {
     return (
       <div id="container">
         <Form className="form" onSubmit={handleSubmit}>
-          <h1>Formulaire de contact</h1>
           <Form.Field className="field">
             <label htmlFor="name">
             Saisissez votre nom :
