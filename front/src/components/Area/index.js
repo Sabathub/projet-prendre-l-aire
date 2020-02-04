@@ -36,8 +36,8 @@ import Zoomarea from './Zoomarea';
 import './area.scss';
 
 class Area extends React.Component {
-  componentDidMount() {
-    const {clearForm} = this.props;
+  componentWillUnmount() {
+    const { clearForm } = this.props;
     clearForm();
   }
 
@@ -298,6 +298,7 @@ Area.propTypes = {
   doImage: PropTypes.func.isRequired,
   logged: PropTypes.bool.isRequired,
   getAreaName: PropTypes.func.isRequired,
+  clearForm: PropTypes.func.isRequired,
 };
 
 Area.defaultProps = {

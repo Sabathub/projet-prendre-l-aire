@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Login from 'src/components/Login';
 
-import { changeInput, doLogin } from 'src/store/actions';
+import { changeInput, doLogin, doFailPassword } from 'src/store/actions';
 
 
 const mapStateToProps = (state) => ({
@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   doConnect: () => {
     dispatch(doLogin());
+  },
+  clearForm: () => {
+    dispatch(doFailPassword());
   },
 });
 

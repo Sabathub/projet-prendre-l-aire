@@ -31,6 +31,11 @@ class Profile extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    const { clearForm } = this.props;
+    clearForm();
+  }
+
   render() {
     const {
       profileData,
@@ -342,6 +347,7 @@ Profile.propTypes = {
   showModalDelete: PropTypes.bool.isRequired,
   closingModalDelete: PropTypes.func.isRequired,
   openModalDelete: PropTypes.func.isRequired,
+  clearForm: PropTypes.func.isRequired,
 };
 
 export default Profile;
