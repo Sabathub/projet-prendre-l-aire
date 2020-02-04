@@ -19,6 +19,8 @@ const commentMiddleware = (store) => (next) => (action) => {
       };
 
       // Ouvrir une connexion avec le serveur
+      const token = window.localStorage.getItem('token');
+      axios.defaults.headers.Authorization = `Bearer ${token}`;
       axios.post('http://54.85.18.78/api/v1/secured/comments/', {
         comment,
       })
