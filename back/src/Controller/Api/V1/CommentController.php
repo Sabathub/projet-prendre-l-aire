@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -48,7 +48,7 @@ class CommentController extends AbstractController
      * Create a new comment
      * @Route("/", name="new", methods={"POST"})
      */
-    public function new(Request $request, ImageUploader $imageUploader, SerializerInterface $serializer, KernelInterface $kernel)
+    public function new(Request $request, ImageUploader $imageUploader, SerializerInterface $serializer, KernelInterface $kernel, ContainerInterface $container)
     {
         // first action we get the Json content
         $newComment = $request->getContent();
@@ -69,7 +69,7 @@ class CommentController extends AbstractController
                 // upload of the picture 
                 $urlFile = $form['picture']->getData();
                 $file = $imageUploader->downloadFile($urlFile, 'images');
-                $comment->setPicture($file);
+                $comment->setPicture($container->getParameter('kernel.project_dir').'/public/images/' . $file);
             }
             
             // if the user fill the rate data, then we set it
