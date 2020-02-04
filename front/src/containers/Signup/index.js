@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch) => ({
   failPassword: () => {
     dispatch(doFailPassword());
   },
+  clearForm: () => {
+    dispatch(doFailPassword());
+  },
 });
 
 const SignupContainer = connect(
