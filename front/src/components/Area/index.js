@@ -42,6 +42,21 @@ import Zoomarea from './Zoomarea';
 import './area.scss';
 
 class Area extends React.Component {
+  /* componentDidMount() {
+    const {
+      arealoading,
+      areaData,
+      fetchGallery,
+      highwayloading,
+    } = this.props;
+
+    if (!arealoading && !highwayloading && areaData.comments.length !== 0) {
+      const commentsList = areaData.comments;
+      const commentsWithImages = commentsList.filter((commentList) => commentList.picture !== null);
+      fetchGallery(commentsWithImages);
+    }
+  } */
+
   componentDidUpdate(prevProps) {
     const {
       areas,
@@ -64,10 +79,7 @@ class Area extends React.Component {
       />
     );
 
-    if ((areas !== prevProps) && !arealoading && !areaDataLoading) {
-      const areaDatas = areaData;
-      const commentsWithImages = areaDatas.filter(() => areaData.comments.picture !== null);
-      fetchGallery(commentsWithImages);
+    if ((areas !== prevProps.areas) && !arealoading && !areaDataLoading) {
       return <Refresh path="/areas/:slug" />;
     }
   }
@@ -104,18 +116,20 @@ class Area extends React.Component {
     evt.preventDefault();
     console.log('upload');
   } */
-
-    if (!areaDataLoading && !arealoading && !highwayloading) {
-      const areaDatas = areaData;
-      const commentsWithImages = areaDatas.filter(() => areaData.comments.picture.length !== 0);
-      fetchGallery(commentsWithImages);
+    let commentsWithImages = [];
+    if (!arealoading && !highwayloading && areaData.comments.length !== 0) {
+      const commentsList = areaData.comments;
+      commentsWithImages = commentsList.filter((commentList) => commentList.picture !== null);
+      console.log(commentsWithImages);
     }
+
+
     const handleClick = () => {
       const areaname = areaData.name;
       getAreaName(areaname);
     };
 
-    if (!areaDataLoading && !arealoading === false) {
+    if (arealoading === false && highwayloading === false) {
       console.log('picturedComments', picturedComments);
     }
 
@@ -333,24 +347,25 @@ class Area extends React.Component {
                 )}
               </Grid.Row>
 
+              {commentsWithImages.length !== 0 && (
               <Grid.Row>
                 <Grid.Column width={8} textAlign="center">
                   <Segment className="services">
                     <Header as="h3">Galerie d'images</Header>
                   </Segment>
                   <Carousel infiniteLoop useKeyboardArrows dynamicHeight>
-                    {/*{!picturedCommentsLoading && !arealoading && !highwayloading && picturedComments.map((comment) => {
+                    {commentsWithImages.map((comment) => {
                       const url = `http://54.85.18.78${comment.picture}`;
-                      console.log(url);
                       return (
                         <div>
                           <img src={url} alt="" />
                         </div>
                       );
-                    })}*/}
+                    })}
                   </Carousel>
                 </Grid.Column>
               </Grid.Row>
+              )}
             </Grid>
             <Button id="suggest" as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
             <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />

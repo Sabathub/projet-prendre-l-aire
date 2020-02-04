@@ -60,6 +60,7 @@ class CommentsArea extends React.Component {
       const fd = new FormData();
       fd.append('upload_preset', 'hq6ssejy');
       fd.append('file', file);
+      fd.append('api_key', '567461742636924');
       const config = {
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
       };
