@@ -19,7 +19,7 @@ const Team = () => (
       <Card className="card">
         <Image src={Laetitia} wrapped ui={false} />
         <Card.Content>
-          <Card.Header>Laetitia Lez</Card.Header>
+          <Card.Header>Laetitia Elbaz</Card.Header>
           <Card.Description>
             <p className="job">Développeuse Web Full Stack</p>
             <p className="role">Scrum Master</p>

@@ -105,11 +105,11 @@ Maparea.propTypes = {
     kilometers: PropTypes.string.isRequired,
     latitude: PropTypes.string.isRequired,
     longitude: PropTypes.string.isRequired,
-    comments: PropTypes.arrayOf(PropTypes.shape({
+    /* comments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
       rate: PropTypes.number.isRequired,
-    })).isRequired,
+    })).isRequired, */
     /* gasStation: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,

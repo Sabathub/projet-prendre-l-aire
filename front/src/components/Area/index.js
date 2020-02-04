@@ -10,19 +10,25 @@ import {
   Button,
 } from 'semantic-ui-react';
 import {
-  FaGasPump,
   FaShoppingCart,
   FaWifi,
   FaUtensils,
-  FaAccessibleIcon,
   FaBaby,
   FaShower,
   FaRestroom,
   FaFutbol,
   FaEuroSign,
+  FaTruck,
+  FaHotel,
+  FaPlug,
+  FaSmoking,
 } from 'react-icons/fa';
 import {
   GiFlatTire,
+  GiShop,
+  GiElectric,
+  GiCaravan,
+  GiBookshelf,
 } from 'react-icons/gi';
 
 // import Carousel component
@@ -36,9 +42,19 @@ import Zoomarea from './Zoomarea';
 import './area.scss';
 
 class Area extends React.Component {
+  componentDidMount() {
+    const { clearForm, arealoading, highwayloading, areaData, fetchGallery } = this.props;
+    
   componentWillUnmount() {
     const { clearForm } = this.props;
+  
     clearForm();
+
+    if (arealoading === false && highwayloading === false) {
+      const commentsList = areaData.comments;
+      const commentsWithImages = commentsList.filter((commentList) => commentList.picture !== null);
+      fetchGallery(commentsWithImages);
+    }
   }
 
   render() {
@@ -50,10 +66,8 @@ class Area extends React.Component {
       logged,
       // found,
       getAreaName,
+      picturedComments,
     } = this.props;
-    if (arealoading === false && highwayloading === false) {
-      console.log(areaData.averageRate);
-    }
 
     /* const handleFile = (evt) => {
     evt.preventDefault();
@@ -70,6 +84,10 @@ class Area extends React.Component {
       const areaname = areaData.name;
       getAreaName(areaname);
     };
+
+    if (arealoading === false && highwayloading === false) {
+      console.log('picturedComments' ,picturedComments);
+    }
 
     return (
 
@@ -191,6 +209,76 @@ class Area extends React.Component {
                           </div>
                         );
                       }
+                      if (service.icon === 'GiShop') {
+                        return (
+                          <div className="iconlabelled">
+                            <GiShop className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'GiElectric') {
+                        return (
+                          <div className="iconlabelled">
+                            <GiElectric className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'GiCaravan') {
+                        return (
+                          <div className="iconlabelled">
+                            <GiCaravan className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'GiBookshelf') {
+                        return (
+                          <div className="iconlabelled">
+                            <GiBookshelf className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaTruck') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaTruck className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaPlug') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaPlug className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaSmoking') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaSmoking className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaHotel') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaHotel className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaShoppingCart') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaShoppingCart className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'Picnic') {
+                        return (
+                          <div className="iconlabelled">
+                            <img className="servicesIcon" src="https://image.flaticon.com/icons/svg/1964/1964967.svg" alt="" width="31px" display="inline" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
 
                       return (
                         <div className="iconlabelled">
@@ -214,24 +302,27 @@ class Area extends React.Component {
                 </Grid.Column>
                 )}
               </Grid.Row>
-              <Grid.Row>
+
+              {/* <Grid.Row>
                 <Grid.Column width={8} textAlign="center">
                   <Segment className="services">
                     <Header as="h3">Galerie d'images</Header>
                   </Segment>
                   <Carousel infiniteLoop useKeyboardArrows dynamicHeight>
-                    <div>
-                      <img alt="image1" src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
-                    </div>
-                    <div>
-                      <img alt="image2" src="https://images.unsplash.com/photo-1580125311881-fd485603cc42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
-                    </div>
-                    <div>
-                      <img alt="image3" src="https://images.unsplash.com/photo-1580125350380-ee0d38f38a0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
-                    </div>
+                    {!arealoading && !highwayloading && picturedComments.map((comment) => {
+                      const url = `http://54.85.18.78${comment.picture}`;
+                      console.log(url);
+                      return (
+                        comment.picture !== null ? (
+                          <div>
+                            <img src={url} alt="" />
+                          </div>
+                        ) : <div />
+                      );
+                    })}
                   </Carousel>
                 </Grid.Column>
-              </Grid.Row>
+              </Grid.Row> */}
             </Grid>
             <Button as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
             <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
@@ -299,6 +390,7 @@ Area.propTypes = {
   logged: PropTypes.bool.isRequired,
   getAreaName: PropTypes.func.isRequired,
   clearForm: PropTypes.func.isRequired,
+  fetchGallery: PropTypes.func.isRequired,
 };
 
 Area.defaultProps = {
