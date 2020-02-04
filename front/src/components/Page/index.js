@@ -10,6 +10,7 @@ import Team from 'src/containers/Team';
 import Profile from 'src/containers/Profile';
 import Contact from 'src/containers/Contact';
 import Notfound from 'src/containers/Notfound';
+import Legalmentions from 'src/containers/Legalmentions';
 
 const Page = ({ logged }) => (
   <Switch>
@@ -29,6 +30,9 @@ const Page = ({ logged }) => (
     </Route>
     <Route path="/contact">
       <Contact />
+    </Route>
+    <Route path="/legalmentions">
+      <Legalmentions />
     </Route>
     <Route path="/not-found">
       <Notfound />
