@@ -4,6 +4,7 @@ export const CHANGE_MARKERS_VALUE = 'CHANGE_MARKERS_VALUE';
 export const CHANGE_AREAS_DATA = 'CHANGE_AREAS_DATA';
 export const DO_SIGNUP = 'DO_SIGNUP';
 export const DO_FAIL_PASSWORD = 'DO_FAIL_PASSWORD';
+export const DO_FAIL_CONTACT = 'DO_FAIL_CONTACT';
 export const DO_LOGIN = 'DO_LOGIN';
 export const DO_CONTACT = 'DO_CONTACT';
 export const DO_COMMENT = 'DO_COMMENT';
@@ -71,6 +72,10 @@ export const doSignup = () => ({
 
 export const doFailPassword = () => ({
   type: DO_FAIL_PASSWORD,
+});
+
+export const doFailContact = () => ({
+  type: DO_FAIL_CONTACT,
 });
 
 export const doLogin = () => ({

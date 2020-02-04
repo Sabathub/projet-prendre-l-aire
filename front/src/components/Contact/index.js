@@ -67,7 +67,7 @@ class Contact extends React.Component {
               />
             </label>
           </Form.Field>
-          {areaname != null && (
+          {areaname.length !== 0 && (
           <Form.Field className="field">
             <label className="label">
             Objet :
@@ -78,13 +78,13 @@ class Contact extends React.Component {
                 placeholder="Quel est l'objet de votre message ?"
                 id="subject"
                 name="subject"
-                value={areaname + subjectValue}
+                value={areaname}
                 onChange={handleChange}
               />
             </label>
           </Form.Field>
           )}
-          {areaname == null && (
+          {areaname.length === 0 && (
           <Form.Field className="field">
             <label className="label">
             Objet :
