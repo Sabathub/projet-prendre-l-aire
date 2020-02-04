@@ -35,197 +35,213 @@ import Zoomarea from './Zoomarea';
 
 import './area.scss';
 
-const Area = ({
-  areaData,
-  arealoading,
-  highwayloading,
-  // doImage,
-  logged,
-  // found,
-  getAreaName,
-}) => {
-  if (arealoading === false && highwayloading === false) {
-    console.log(areaData.averageRate);
+class Area extends React.Component {
+  componentDidMount() {
+    const {clearForm} = this.props;    
+    clearForm();
   }
 
-  /* const handleFile = (evt) => {
+  render() {
+    const {
+      areaData,
+      arealoading,
+      highwayloading,
+      // doImage,
+      logged,
+      // found,
+      getAreaName,
+    } = this.props;
+    if (arealoading === false && highwayloading === false) {
+      console.log(areaData.averageRate);
+    }
+
+    /* const handleFile = (evt) => {
     evt.preventDefault();
     const file = evt.target.files[0];
     console.log(file);
     doImage(file);
   }; */
 
-  /* const handleUpload = (evt) => {
+    /* const handleUpload = (evt) => {
     evt.preventDefault();
     console.log('upload');
   } */
-  const handleClick = () => {
-    const areaname = areaData.name;
-    getAreaName(areaname);
-  };
+    const handleClick = () => {
+      const areaname = areaData.name;
+      getAreaName(areaname);
+    };
 
-  return (
+    return (
 
-    <>
-      {arealoading && highwayloading && <div>Veuillez patienter</div>}
-      {/* {!loading && found && ( */}
-      {!arealoading && !highwayloading && (
-        <>
-          <Segment id="areaname" compact>
-            <Header as="h2">{areaData.name}</Header>
-          </Segment>
+      <>
+        {arealoading && highwayloading && <div>Veuillez patienter</div>}
+        {/* {!loading && found && ( */}
+        {!arealoading && !highwayloading && (
+          <>
+            <Segment id="areaname" compact>
+              <Header as="h2">{areaData.name}</Header>
+            </Segment>
 
-          <Grid centered stackable>
-            <Grid.Row>
-              <Grid.Column width={5}>
-                <Zoomarea latitude={areaData.latitude} longitude={areaData.longitude} />
-              </Grid.Column>
-              <Grid.Column width={5} textAlign="center" verticalAlign="middle">
-                <Segment basic>
-                  <Rating icon="star" defaultRating={Math.round(areaData.averageRate)} maxRating={5} disabled />
-                  <p id="rating">Note moyenne de {areaData.comments.length} avis</p>
-                </Segment>
-                <Segment id="area-infos">
-                  <p id="highway">Autoroute {areaData.destinations[0].highways.name}</p>
-                  <p id="direction">Direction : {areaData.destinations[0].name}</p>
-                  <p id="km">{Math.round(areaData.kilometers)} km</p>
-                </Segment>
-              </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row>
-              {areaData.gasStation != null && (
-              <Grid.Column width={5}>
-                <Segment className="services" textAlign="center">
-                  <Header as="h3">Station service</Header>
-                </Segment>
-                <Segment.Group>
-                  <Segment>
-                    <Image centered src={areaData.gasStation.brandPicture} alt={areaData.gasStation.name} size="small" />
+            <Grid centered stackable>
+              <Grid.Row>
+                <Grid.Column width={5}>
+                  <Zoomarea latitude={areaData.latitude} longitude={areaData.longitude} />
+                </Grid.Column>
+                <Grid.Column width={5} textAlign="center" verticalAlign="middle">
+                  {!arealoading && !highwayloading && areaData.averageRate != null && (
+                  <Segment basic>
+                    <Rating icon="star" defaultRating={Math.round(areaData.averageRate)} maxRating={5} disabled />
+                    <p id="rating">Note moyenne de {areaData.comments.length} avis</p>
                   </Segment>
-                  {areaData.gasPrices.map((gasPrice) => (
-                    <Segment.Group horizontal key={gasPrice.id}>
-                      <Segment textAlign="center" className="gasname">{gasPrice.gasType.name}</Segment>
-                      <Segment textAlign="center" className="gasprice">{gasPrice.price} €</Segment>
-                    </Segment.Group>
-                  ))}
-                </Segment.Group>
-              </Grid.Column>
-              )}
-              {areaData.services.length !== 0 && (
-              <Grid.Column width={6}>
-                <Segment className="services" textAlign="center">
-                  <Header as="h3">Services proposés</Header>
-                </Segment>
-                <Segment textAlign="center" className="flex">
-                  {areaData.services.map((service) => {
-                    const ServiceIcon = service.icon;
-                    if (service.icon === 'FaRestroom') {
-                      return (
-                        <div className="iconlabelled">
-                          <FaRestroom className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
-                    if (service.icon === 'FaBaby') {
-                      return (
-                        <div className="iconlabelled">
-                          <FaBaby className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
-                    if (service.icon === 'FaShower') {
-                      return (
-                        <div className="iconlabelled">
-                          <FaShower className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
-                    if (service.icon === 'FaEuroSign') {
-                      return (
-                        <div className="iconlabelled">
-                          <FaEuroSign className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
-                    if (service.icon === 'FaUtensils') {
-                      return (
-                        <div className="iconlabelled">
-                          <FaUtensils className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
-                    if (service.icon === 'FaFutbol') {
-                      return (
-                        <div className="iconlabelled">
-                          <FaFutbol className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
-                    if (service.icon === 'FaWifi') {
-                      return (
-                        <div className="iconlabelled">
-                          <FaWifi className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
-                    if (service.icon === 'GiFlatTire') {
-                      return (
-                        <div className="iconlabelled">
-                          <GiFlatTire className="servicesIcon" /><p>{service.name}</p>
-                        </div>
-                      );
-                    }
+                  )}
+                  {!arealoading && !highwayloading && areaData.averageRate == null && (
+                  <Segment basic>
+                    <Rating icon="star" defaultRating={0} maxRating={5} disabled />
+                    <p id="rating">Soyez le premier à noter cette aire<br />dans l'espace commentaire</p>
+                  </Segment>
+                  )}
+                  <Segment id="area-infos">
+                    <p id="highway">Autoroute {areaData.destinations[0].highways.name}</p>
+                    <p id="direction">Direction : {areaData.destinations[0].name}</p>
+                    <p id="km">{Math.round(areaData.kilometers)} km</p>
+                  </Segment>
+                </Grid.Column>
+              </Grid.Row>
 
-                    return (
-                      <div className="iconlabelled">
-                        {ServiceIcon}
-                      </div>
-                    );
-                  })}
-                </Segment>
-              </Grid.Column>
-              )}
-              {areaData.restaurants.length !== 0 && (
-              <Grid.Column width={5}>
-                <Segment className="services" textAlign="center">
-                  <Header as="h3">Restaurants</Header>
-                </Segment>
-                <Segment className="flex">
-                  {areaData.restaurants.map((restaurant) => (
-                    <Image className="restaurant-brand" centered alt={restaurant.name} src={restaurant.brandPicture} key={restaurant.id} />
-                  ))}
-                </Segment>
-              </Grid.Column>
-              )}
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={8} textAlign="center">
-                <Segment className="services">
-                  <Header as="h3">Galerie d'images</Header>
-                </Segment>
-                <Carousel infiniteLoop useKeyboardArrows dynamicHeight>
-                  <div>
-                    <img alt="image1" src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
-                  </div>
-                  <div>
-                    <img alt="image2" src="https://images.unsplash.com/photo-1580125311881-fd485603cc42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
-                  </div>
-                  <div>
-                    <img alt="image3" src="https://images.unsplash.com/photo-1580125350380-ee0d38f38a0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
-                  </div>
-                </Carousel>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-          <Button as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
-          <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
-        </>
-      )}
-      {/* {!found && <Redirect to="/not-found" />} */}
-    </>
-  );
-};
+              <Grid.Row>
+                {areaData.gasStation != null && (
+                <Grid.Column width={5}>
+                  <Segment className="services" textAlign="center">
+                    <Header as="h3">Station service</Header>
+                  </Segment>
+                  <Segment.Group>
+                    <Segment>
+                      <Image centered src={areaData.gasStation.brandPicture} alt={areaData.gasStation.name} size="small" />
+                    </Segment>
+                    {areaData.gasPrices.map((gasPrice) => (
+                      <Segment.Group horizontal key={gasPrice.id}>
+                        <Segment textAlign="center" className="gasname">{gasPrice.gasType.name}</Segment>
+                        <Segment textAlign="center" className="gasprice">{gasPrice.price} €</Segment>
+                      </Segment.Group>
+                    ))}
+                  </Segment.Group>
+                </Grid.Column>
+                )}
+                {areaData.services.length !== 0 && (
+                <Grid.Column width={6}>
+                  <Segment className="services" textAlign="center">
+                    <Header as="h3">Services proposés</Header>
+                  </Segment>
+                  <Segment textAlign="center" className="flex">
+                    {areaData.services.map((service) => {
+                      const ServiceIcon = service.icon;
+                      if (service.icon === 'FaRestroom') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaRestroom className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaBaby') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaBaby className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaShower') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaShower className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaEuroSign') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaEuroSign className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaUtensils') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaUtensils className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaFutbol') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaFutbol className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'FaWifi') {
+                        return (
+                          <div className="iconlabelled">
+                            <FaWifi className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+                      if (service.icon === 'GiFlatTire') {
+                        return (
+                          <div className="iconlabelled">
+                            <GiFlatTire className="servicesIcon" /><p>{service.name}</p>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div className="iconlabelled">
+                          {ServiceIcon}
+                        </div>
+                      );
+                    })}
+                  </Segment>
+                </Grid.Column>
+                )}
+                {areaData.restaurants.length !== 0 && (
+                <Grid.Column width={5}>
+                  <Segment className="services" textAlign="center">
+                    <Header as="h3">Restaurants</Header>
+                  </Segment>
+                  <Segment className="flex">
+                    {areaData.restaurants.map((restaurant) => (
+                      <Image className="restaurant-brand" centered alt={restaurant.name} src={restaurant.brandPicture} key={restaurant.id} />
+                    ))}
+                  </Segment>
+                </Grid.Column>
+                )}
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={8} textAlign="center">
+                  <Segment className="services">
+                    <Header as="h3">Galerie d'images</Header>
+                  </Segment>
+                  <Carousel infiniteLoop useKeyboardArrows dynamicHeight>
+                    <div>
+                      <img alt="image1" src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
+                    </div>
+                    <div>
+                      <img alt="image2" src="https://images.unsplash.com/photo-1580125311881-fd485603cc42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
+                    </div>
+                    <div>
+                      <img alt="image3" src="https://images.unsplash.com/photo-1580125350380-ee0d38f38a0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
+                    </div>
+                  </Carousel>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+            <Button as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
+            <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
+          </>
+        )}
+        {/* {!found && <Redirect to="/not-found" />} */}
+      </>
+    );
+  }
+}
 
 Area.propTypes = {
   areaData: PropTypes.shape({
@@ -236,6 +252,7 @@ Area.propTypes = {
     kilometers: PropTypes.string.isRequired,
     latitude: PropTypes.string.isRequired,
     longitude: PropTypes.string.isRequired,
+    averageRate: PropTypes.string.isRequired,
     comments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,

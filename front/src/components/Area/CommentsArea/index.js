@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Comment, Form, Header, Segment, Divider,
+  Button, Comment, Form, Header, Segment, Divider, Rating,
 } from 'semantic-ui-react';
 // import Moment from 'react-moment';
 import { Route } from 'react-router-dom';
@@ -39,6 +39,7 @@ class CommentsArea extends React.Component {
       addArea,
       newContent,
       doImage,
+      changeRate,
     } = this.props;
 
     const handleChange = (evt) => {
@@ -46,11 +47,13 @@ class CommentsArea extends React.Component {
       const fieldName = evt.target.id;
       changeInputValue(fieldValue, fieldName);
     };
+    const handleRate = (evt, data) => {
+      changeRate(data.rating);
+    };
     const handleFile = (evt) => {
       evt.preventDefault();
       const file = evt.target.files[0];
       console.log(file);
-      // doImage(file);
       const url = 'https://api.cloudinary.com/v1_1/kiveun/image/upload';
       const fd = new FormData();
       fd.append('upload_preset', 'hq6ssejy');
@@ -60,8 +63,6 @@ class CommentsArea extends React.Component {
       };
       axios.post(url, fd, config)
         .then((res) => {
-          console.log(res);
-          console.log(res.data.secure_url);
           doImage(res.data.secure_url);
         });
     };
@@ -134,7 +135,11 @@ class CommentsArea extends React.Component {
             </label>
           </Form.Field>
           <Form.Field className="label">
-            <label>Select file</label>
+            <label>Notez cette aire (optionnel) :</label>
+            <Rating icon="star" defaultRating={3} maxRating={5} onRate={handleRate} />
+          </Form.Field>
+          <Form.Field className="label">
+            <label>Partagez une image (optionnel) :</label>
             <input type="file" name="file" onChange={handleFile} />
           </Form.Field>
           <Button content="Ajoutez un commentaire" labelPosition="left" icon="edit" primary />

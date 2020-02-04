@@ -13,7 +13,7 @@ const commentMiddleware = (store) => (next) => (action) => {
     case DO_COMMENT: {
       const comment = {
         description: (store.getState().form.commentContent),
-        rate: 5,
+        rate: (store.getState().form.rate),
         area: (store.getState().form.areaId),
         picture: (store.getState().form.picture),
       };

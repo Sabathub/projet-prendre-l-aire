@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { getAreaBySlug } from 'src/utils/selectors';
 import Area from 'src/components/Area';
 
-import { stockImageToState, changeInput, doComment, receiveAreaName } from 'src/store/actions';
+import { stockImageToState, changeInput, doComment, receiveAreaName, doFailPassword } from 'src/store/actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getAreaName: (areaname) => {
     dispatch(receiveAreaName(areaname));
+  },
+  clearForm: () => {
+    dispatch(doFailPassword());
   },
 });
 
