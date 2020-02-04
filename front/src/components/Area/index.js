@@ -44,6 +44,10 @@ import './area.scss';
 class Area extends React.Component {
   componentDidMount() {
     const { clearForm, arealoading, highwayloading, areaData, fetchGallery } = this.props;
+    
+  componentWillUnmount() {
+    const { clearForm } = this.props;
+  
     clearForm();
 
     if (arealoading === false && highwayloading === false) {

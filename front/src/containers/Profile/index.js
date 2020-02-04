@@ -13,6 +13,7 @@ import {
   doOpenModalPassword,
   doCloseModalDelete,
   doOpenModalDelete,
+  doFailPassword,
 } from 'src/store/actions';
 
 
@@ -61,6 +62,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   openModalDelete: () => {
     dispatch(doOpenModalDelete());
+  },
+  clearForm: () => {
+    dispatch(doFailPassword());
   },
 });
 
