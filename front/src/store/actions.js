@@ -35,8 +35,10 @@ export const RECEIVE_AREA_NAME = 'RECEIVE_AREA_NAME';
 export const RECEIVE_HIGHWAYS_DATA = 'RECEIVE_HIGHWAYS_DATA';
 export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
+export const STOP_LOADING_AREA_DATA = 'STOP_LOADING_AREA_DATA';
 export const STOP_LOADING_HIGHWAYS = 'STOP_LOADING_HIGHWAYS';
 export const STOP_LOADING_SEARCHED_AREA = 'STOP_LOADING_SEARCHED_AREA';
+export const STOP_LOADING_PICTURES = 'STOP_LOADING_PICTURES';
 export const STOP_LOADING_COMMENTS = 'STOP_LOADING_COMMENTS';
 export const ADD_IMAGE = 'ADD_IMAGE';
 export const ADD_RATE = 'ADD_RATE';
@@ -220,6 +222,10 @@ export const stopLoading = () => ({
   type: STOP_LOADING,
 });
 
+export const stopLoadingAreaData = () => ({
+  type: STOP_LOADING_AREA_DATA,
+});
+
 export const stopLoadingHighways = () => ({
   type: STOP_LOADING_HIGHWAYS,
 });
@@ -230,6 +236,10 @@ export const stopLoadingComments = () => ({
 
 export const stopLoadingSearchedArea = () => ({
   type: STOP_LOADING_SEARCHED_AREA,
+});
+
+export const stopLoadingPictures = () => ({
+  type: STOP_LOADING_PICTURES,
 });
 
 export const addImage = (file) => ({

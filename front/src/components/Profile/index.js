@@ -107,7 +107,6 @@ class Profile extends React.Component {
 
     return (
       <Container>
-        <h1>Mon profil</h1>
         <Segment>
 
           <Grid columns={3} stackable centered>

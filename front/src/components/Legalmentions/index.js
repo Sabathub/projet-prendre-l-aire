@@ -9,7 +9,6 @@ import './legalmentions.scss';
 // == Composant
 const Legalmentions = () => (
   <div id="legalMentionsContainer">
-    <h1 id="legalMentionsTitle">Mentions Légales</h1>
     <h4 className="titleLegalMentions">Editeur</h4>
     <p className="legalMentions">
         Prendre l'aire, collaboration au capital de 0,59 €

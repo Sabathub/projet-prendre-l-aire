@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import {
   Grid,
   Image,
@@ -42,24 +42,46 @@ import Zoomarea from './Zoomarea';
 import './area.scss';
 
 class Area extends React.Component {
-  componentDidMount() {
-    const { clearForm, arealoading, highwayloading, areaData, fetchGallery } = this.props;
-    
-  componentWillUnmount() {
-    const { clearForm } = this.props;
-  
-    clearForm();
+  componentDidUpdate(prevProps) {
+    const {
+      areas,
+      arealoading,
+      areaDataLoading,
+      areaData,
+      fetchGallery,
+    } = this.props;
 
-    if (arealoading === false && highwayloading === false) {
-      const commentsList = areaData.comments;
-      const commentsWithImages = commentsList.filter((commentList) => commentList.picture !== null);
+    const Refresh = ({ path = '/' }) => (
+      <Route
+        path={path}
+        component={({ history, location, match }) => {
+          history.replace({
+            ...location,
+            pathname: location.pathname.substring(match.path.length),
+          });
+          return null;
+        }}
+      />
+    );
+
+    if ((areas !== prevProps) && !arealoading && !areaDataLoading) {
+      const areaDatas = areaData;
+      const commentsWithImages = areaDatas.filter(() => areaData.comments.picture !== null);
       fetchGallery(commentsWithImages);
+      return <Refresh path="/areas/:slug" />;
     }
   }
+
+  componentWillUnmount() {
+    const { clearForm } = this.props;
+    clearForm();
+  }
+
 
   render() {
     const {
       areaData,
+      areaDataLoading,
       arealoading,
       highwayloading,
       // doImage,
@@ -67,6 +89,8 @@ class Area extends React.Component {
       // found,
       getAreaName,
       picturedComments,
+      picturedCommentsLoading,
+      fetchGallery,
     } = this.props;
 
     /* const handleFile = (evt) => {
@@ -80,13 +104,19 @@ class Area extends React.Component {
     evt.preventDefault();
     console.log('upload');
   } */
+
+    if (!areaDataLoading && !arealoading && !highwayloading) {
+      const areaDatas = areaData;
+      const commentsWithImages = areaDatas.filter(() => areaData.comments.picture.length !== 0);
+      fetchGallery(commentsWithImages);
+    }
     const handleClick = () => {
       const areaname = areaData.name;
       getAreaName(areaname);
     };
 
-    if (arealoading === false && highwayloading === false) {
-      console.log('picturedComments' ,picturedComments);
+    if (!areaDataLoading && !arealoading === false) {
+      console.log('picturedComments', picturedComments);
     }
 
     return (
@@ -303,28 +333,26 @@ class Area extends React.Component {
                 )}
               </Grid.Row>
 
-              {/* <Grid.Row>
+              <Grid.Row>
                 <Grid.Column width={8} textAlign="center">
                   <Segment className="services">
                     <Header as="h3">Galerie d'images</Header>
                   </Segment>
                   <Carousel infiniteLoop useKeyboardArrows dynamicHeight>
-                    {!arealoading && !highwayloading && picturedComments.map((comment) => {
+                    {/*{!picturedCommentsLoading && !arealoading && !highwayloading && picturedComments.map((comment) => {
                       const url = `http://54.85.18.78${comment.picture}`;
                       console.log(url);
                       return (
-                        comment.picture !== null ? (
-                          <div>
-                            <img src={url} alt="" />
-                          </div>
-                        ) : <div />
+                        <div>
+                          <img src={url} alt="" />
+                        </div>
                       );
-                    })}
+                    })}*/}
                   </Carousel>
                 </Grid.Column>
-              </Grid.Row> */}
+              </Grid.Row>
             </Grid>
-            <Button as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
+            <Button id="suggest" as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
             <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
           </>
         )}
@@ -347,6 +375,7 @@ Area.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
+      picture: PropTypes.string.isRequired,
       rate: PropTypes.number.isRequired,
       user: PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -384,6 +413,8 @@ Area.propTypes = {
     })).isRequired,
   }),
   arealoading: PropTypes.bool.isRequired,
+  areaDataLoading: PropTypes.bool.isRequired,
+  picturedCommentsLoading: PropTypes.bool.isRequired,
   highwayloading: PropTypes.bool.isRequired,
   // found: PropTypes.bool.isRequired,
   doImage: PropTypes.func.isRequired,
