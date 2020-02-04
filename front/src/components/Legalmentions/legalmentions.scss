@@ -1,7 +1,14 @@
+@import 'src/styles/vars';
+
 .legalMentions {
-    padding: 0.5em;
+    padding: 1em;
     line-height: 150%;
     width: 80%;
+}
+.titleLegalMentions {
+    font-size: 22px;
+    font-weight: bold;
+    color: $primary-color;
 }
 #legalMentionsTitle {
     margin-bottom: 1em;
