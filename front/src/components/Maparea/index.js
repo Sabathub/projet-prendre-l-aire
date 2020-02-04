@@ -14,7 +14,6 @@ import slugify from 'slugify';
 import './maparea.scss';
 
 class Maparea extends React.Component {
-
   componentDidUpdate(prevProps) {
     const {
       areas, arealoading, newAreasValue, updateNewAreasData,
@@ -32,7 +31,7 @@ class Maparea extends React.Component {
       />
     );
 
-    if (newAreasValue.highwayId !== prevProps.newAreasValue.highwayId && !arealoading) {
+    if ((newAreasValue.highwayId !== prevProps.newAreasValue.highwayId) && !arealoading) {
       const newAreasData = areas.filter((area) => area.destinations[0].id === newAreasValue.highwayId);
       console.log(newAreasData, 'suis-je vide?');
       updateNewAreasData(newAreasData);
@@ -42,7 +41,7 @@ class Maparea extends React.Component {
 
   render() {
     const {
-      lat, lng, zoom, areas, arealoading, newAreasValue,
+      lat, lng, zoom, areas, arealoading, newAreasValue, searchedareas, searchedarealoading,
     } = this.props;
 
     const position = [lat, lng];
@@ -66,7 +65,16 @@ class Maparea extends React.Component {
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {!arealoading && areas.map((area) => (
+          {!searchedarealoading && searchedareas.map((searchedarea) => (
+            <Marker position={[searchedarea.latitude, searchedarea.longitude]} key={searchedarea.id}>
+              <Popup>
+                <p className="popup-area-name">{searchedarea.name}</p>
+
+                <Button as={Link} to={`/areas/${slugify(searchedarea.name)}`} size="mini" color="teal">Fiche détaillée</Button>
+              </Popup>
+            </Marker>
+          ))}
+          {!arealoading && searchedarealoading && areas.map((area) => (
             <Marker position={[area.latitude, area.longitude]} key={area.id}>
               <Popup>
                 <p className="popup-area-name">{area.name}</p>
@@ -129,7 +137,50 @@ Maparea.propTypes = {
       }).isRequired,
     })).isRequired,
   })).isRequired,
+  searchedareas: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    zipCode: PropTypes.number.isRequired,
+    city: PropTypes.string.isRequired,
+    kilometers: PropTypes.string.isRequired,
+    latitude: PropTypes.string.isRequired,
+    longitude: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      rate: PropTypes.number.isRequired,
+    })).isRequired,
+    /* gasStation: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired, */
+    gasPrices: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      price: PropTypes.string.isRequired,
+      gasType: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
+    restaurants: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    services: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+    destinations: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      highways: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })).isRequired,
+  })).isRequired,
   arealoading: PropTypes.bool.isRequired,
+  searchedarealoading: PropTypes.bool.isRequired,
   newAreasValue: PropTypes.shape({
     highwayId: PropTypes.number.isRequired,
   }).isRequired,

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Grid,
   Image,
@@ -91,7 +91,7 @@ class Area extends React.Component {
                   {!arealoading && !highwayloading && areaData.averageRate != null && (
                   <Segment basic>
                     <Rating icon="star" defaultRating={Math.round(areaData.averageRate)} maxRating={5} disabled />
-                    <p id="rating">Note moyenne des vis</p>
+                    <p id="rating">Note moyenne des avis</p>
                   </Segment>
                   )}
                   {!arealoading && !highwayloading && areaData.averageRate == null && (

@@ -35,6 +35,7 @@ export const RECEIVE_HIGHWAYS_DATA = 'RECEIVE_HIGHWAYS_DATA';
 export const RECEIVE_PROFILE_DATA = 'RECEIVE_PROFILE_DATA';
 export const STOP_LOADING = 'STOP_LOADING';
 export const STOP_LOADING_HIGHWAYS = 'STOP_LOADING_HIGHWAYS';
+export const STOP_LOADING_SEARCHED_AREA = 'STOP_LOADING_SEARCHED_AREA';
 export const ADD_IMAGE = 'ADD_IMAGE';
 export const ADD_RATE = 'ADD_RATE';
 export const COMMENT_AREA_ID = 'COMMENT_AREA_ID';
@@ -52,9 +53,9 @@ export const changeMarkers = (newAreasValue) => ({
   newAreasValue,
 });
 
-export const changeAreas = (areas) => ({
+export const changeAreas = (searchedareas) => ({
   type: CHANGE_AREAS_DATA,
-  areas,
+  searchedareas,
 });
 
 export const doSignup = () => ({
@@ -209,6 +210,10 @@ export const stopLoading = () => ({
 
 export const stopLoadingHighways = () => ({
   type: STOP_LOADING_HIGHWAYS,
+});
+
+export const stopLoadingSearchedArea = () => ({
+  type: STOP_LOADING_SEARCHED_AREA,
 });
 
 export const addImage = (file) => ({
