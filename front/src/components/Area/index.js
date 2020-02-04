@@ -91,7 +91,7 @@ class Area extends React.Component {
                   {!arealoading && !highwayloading && areaData.averageRate != null && (
                   <Segment basic>
                     <Rating icon="star" defaultRating={Math.round(areaData.averageRate)} maxRating={5} disabled />
-                    <p id="rating">Note moyenne de {areaData.comments.length} avis</p>
+                    <p id="rating">Note moyenne des avis</p>
                   </Segment>
                   )}
                   {!arealoading && !highwayloading && areaData.averageRate == null && (
