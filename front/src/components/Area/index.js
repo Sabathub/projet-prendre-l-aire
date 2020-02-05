@@ -150,6 +150,7 @@ class Area extends React.Component {
                   <Zoomarea latitude={areaData.latitude} longitude={areaData.longitude} />
                 </Grid.Column>
                 <Grid.Column width={5} textAlign="center" verticalAlign="middle">
+
                   {!arealoading && !highwayloading && areaData.averageRate != null && (
                   <Segment basic>
                     <Rating icon="star" defaultRating={Math.round(areaData.averageRate)} maxRating={5} disabled />
@@ -368,7 +369,7 @@ class Area extends React.Component {
               )}
             </Grid>
             <Button id="suggest" as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
-            <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
+              <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
           </>
         )}
         {/* {!found && <Redirect to="/not-found" />} */}
