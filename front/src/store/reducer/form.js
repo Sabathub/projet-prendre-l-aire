@@ -11,11 +11,11 @@ import {
   DO_EDIT_USERNAME,
   DO_EDIT_PASSWORD,
   DO_DELETE_USER,
-  SUBMIT_USER,
   SUBMIT_CONTACT,
   SUBMIT_COMMENT,
   SUBMIT_EDIT_USERNAME,
   SUBMIT_EDIT_PASSWORD,
+  DO_FAIL_SIGNUP,
   ADD_IMAGE,
   ADD_RATE,
   COMMENT_AREA_ID,
@@ -129,12 +129,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
       };
-    case SUBMIT_USER:
-      return {
-        ...state,
-        username: '',
-        passwordVerify: '',
-      };
     case SUBMIT_CONTACT:
       return {
         ...state,
@@ -160,6 +154,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         submitedPassword: true,
         password: '',
+      };
+    case DO_FAIL_SIGNUP:
+      return {
+        ...state,
+        username: '',
+        passwordVerify: '',
       };
     case RECEIVE_AREA_NAME:
       return {

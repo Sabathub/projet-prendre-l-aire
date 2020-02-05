@@ -34,16 +34,16 @@
 #areaname {
   border-radius: 5px;
   margin: 0 auto 1em;
-  background-color: $primary-color;  
+  background-color: $beige;  
 }
 
 h2.ui.header {
-  color: white;
+  color: $primary-color;
 }
 
 #rating {
   font-size: .8em;
-  color: $primary-color;
+  color: $beige;
   margin-top: .5em;
 }
 
@@ -56,7 +56,7 @@ h2.ui.header {
 }
 
 h3.ui.header {
-  color: white;
+  color: $primary-color;
 }
 
 .ui.image.restaurant-brand {
@@ -64,7 +64,7 @@ h3.ui.header {
 }
 
 .segment.services {
-  background-color: $secondary-color;
+  background-color: $beige;
   border:none;
   border-radius: 30px;
 }
