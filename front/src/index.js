@@ -20,7 +20,9 @@ import store from 'src/store';
 // 1. Le composant racine (celui qui contient l'ensemble de l'app)
 const rootComponent = (
   <Provider store={store}>
-    <Router>
+    <Router
+      basename="/"
+    >
       <App />
     </Router>
   </Provider>
