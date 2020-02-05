@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Segment } from 'semantic-ui-react';
 
 import { Redirect } from 'react-router-dom';
 
@@ -38,40 +38,42 @@ class Login extends React.Component {
     }
 
     return (
-      <div id="container">
-        <Form className="form" onSubmit={handleSubmit}>
-          <Form.Field>
-            <label htmlFor="email">
-            Saisissez votre email
-              <Form.Input
-                type="email"
-                icon="mail"
-                iconPosition="left"
-                placeholder="Votre email"
-                id="email"
-                name="email"
-                value={emailValue}
-                onChange={handleChange}
-              />
-            </label>
-          </Form.Field>
-          <Form.Field>
-            <label htmlFor="password">
-            Saisissez votre mot de passe
-              <Form.Input
-                type="password"
-                icon="lock"
-                iconPosition="left"
-                placeholder="Votre mot de passe"
-                id="password"
-                name="password"
-                value={passwordValue}
-                onChange={handleChange}
-              />
-            </label>
-          </Form.Field>
-          <Button type="submit" color="teal">Connectez-vous</Button>
-        </Form>
+      <div className="container">
+        <Segment>
+          <Form className="form" onSubmit={handleSubmit}>
+            <Form.Field>
+              <label htmlFor="email">
+              Saisissez votre email
+                <Form.Input
+                  type="email"
+                  icon="mail"
+                  iconPosition="left"
+                  placeholder="Votre email"
+                  id="email"
+                  name="email"
+                  value={emailValue}
+                  onChange={handleChange}
+                />
+              </label>
+            </Form.Field>
+            <Form.Field>
+              <label htmlFor="password">
+              Saisissez votre mot de passe
+                <Form.Input
+                  type="password"
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Votre mot de passe"
+                  id="password"
+                  name="password"
+                  value={passwordValue}
+                  onChange={handleChange}
+                />
+              </label>
+            </Form.Field>
+            <Button type="submit" color="teal">Connectez-vous</Button>
+          </Form>
+        </Segment>
       </div>
 
     );

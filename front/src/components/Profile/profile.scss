@@ -23,4 +23,19 @@
 .comment {
   margin-left: 1em;
 }
+
+.containerModal {
+  display: flex;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+  align-content:center;
+  flex-direction: center;
+}
+
+#deleteTitle {
+  color: black;
+  font-weight: bold;
+  padding-bottom: 1em;
+}
  

@@ -13,6 +13,10 @@
     font-size: 20px;
 }
 
+#commentIsLoged {
+  background-color: rgb(248, 248, 248);
+}
+
 .ui.title {
     padding: 3em;
     background-color: $beige;
@@ -100,4 +104,9 @@ h3.ui.header {
 
 #suggest {
   margin-top: 2em;
+}
+
+#file {
+  border-radius: 5px;
+  padding: 2em;
 }

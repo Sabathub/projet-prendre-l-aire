@@ -137,31 +137,35 @@ class Profile extends React.Component {
                   open={showModalUsername}
                   onClose={closeModalUsername}
                   closeIcon
-                  size="mini"
+                  size="fullscreen"
                 >
                   <Modal.Header>Modifier mon pseudo</Modal.Header>
-                  <Modal.Content image>
-                    <Modal.Description>
-                      <Form className="form" onSubmit={handleSubmitUsername}>
-                        <Form.Field>
-                          <label htmlFor="username">
-                          Choisissez votre nouveau pseudonyme
-                            <Form.Input
-                              type="text"
-                              icon="user"
-                              iconPosition="left"
-                              placeholder="Votre nouveau pseudonyme"
-                              id="username"
-                              name="username"
-                              value={usernameValue}
-                              onChange={handleChange}
-                            />
-                          </label>
-                        </Form.Field>
-                        <Button type="submit" color="teal">Envoyer</Button>
-                      </Form>
-                    </Modal.Description>
-                  </Modal.Content>
+                  <div className="containerModal">
+                    <Modal.Content image>
+                      <Modal.Description>
+                        <Segment>
+                        <Form className="form" onSubmit={handleSubmitUsername}>
+                          <Form.Field>
+                            <label htmlFor="username">
+                            Choisissez votre nouveau pseudonyme
+                              <Form.Input
+                                type="text"
+                                icon="user"
+                                iconPosition="left"
+                                placeholder="Votre nouveau pseudonyme"
+                                id="username"
+                                name="username"
+                                value={usernameValue}
+                                onChange={handleChange}
+                              />
+                            </label>
+                          </Form.Field>
+                          <Button type="submit" color="teal">Envoyer</Button>
+                        </Form>
+                        </Segment>
+                      </Modal.Description>
+                    </Modal.Content>
+                  </div>
                 </Modal>
 
                 <Modal
@@ -182,31 +186,35 @@ class Profile extends React.Component {
                   open={showModalPassword}
                   onClose={closeModalPassword}
                   closeIcon
-                  size="mini"
+                  size="fullscreen"
                 >
                   <Modal.Header>Modifier mon mot de passe</Modal.Header>
-                  <Modal.Content image>
-                    <Modal.Description>
-                      <Form className="form" onSubmit={handleSubmitPassword}>
-                        <Form.Field>
-                          <label htmlFor="password">
-                          Saisissez votre nouveau mot de passe
-                            <Form.Input
-                              type="password"
-                              icon="lock"
-                              iconPosition="left"
-                              placeholder="Votre nouveau mot de passe"
-                              id="password"
-                              name="password"
-                              value={passwordValue}
-                              onChange={handleChange}
-                            />
-                          </label>
-                        </Form.Field>
-                        <Button type="submit" color="teal">Envoyer</Button>
-                      </Form>
-                    </Modal.Description>
-                  </Modal.Content>
+                  <div className="containerModal">
+                    <Modal.Content image>
+                      <Modal.Description>
+                        <Segment>
+                          <Form className="form" onSubmit={handleSubmitPassword}>
+                            <Form.Field>
+                              <label htmlFor="password">
+                              Saisissez votre nouveau mot de passe
+                                <Form.Input
+                                  type="password"
+                                  icon="lock"
+                                  iconPosition="left"
+                                  placeholder="Votre nouveau mot de passe"
+                                  id="password"
+                                  name="password"
+                                  value={passwordValue}
+                                  onChange={handleChange}
+                                />
+                              </label>
+                            </Form.Field>
+                            <Button type="submit" color="teal">Envoyer</Button>
+                          </Form>
+                        </Segment>
+                      </Modal.Description>
+                    </Modal.Content>
+                  </div>
                 </Modal>
 
                 <Modal
@@ -227,31 +235,30 @@ class Profile extends React.Component {
                   open={showModalDelete}
                   onClose={closeModalDelete}
                   closeIcon
-                  size="mini"
+                  size="fullscreen"
                 >
                   <Header icon="archive" content="Supprimer mon compte" />
-                  <Modal.Content>
-                    <p>
-                      Voulez-vous supprimer votre compte?
-                    </p>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button
-                      basic
-                      color="red"
-                      inverted
-                      onClick={handleClickNo}
-                    >
-                      <Icon name="remove" /> Non
-                    </Button>
-                    <Button
-                      color="green"
-                      inverted
-                      onClick={handleClick}
-                    >
-                      <Icon name="checkmark" /> Oui
-                    </Button>
-                  </Modal.Actions>
+                  <div className="containerModal">
+                    <Segment>
+                      <h5 id="deleteTitle">Voulez-vous supprimer votre compte?</h5>
+                      <Modal.Actions>
+                        <Button
+                          color="red"
+                          inverted
+                          onClick={handleClickNo}
+                        >
+                          <Icon name="remove" /> Non
+                        </Button>
+                        <Button
+                          color="green"
+                          inverted
+                          onClick={handleClick}
+                        >
+                          <Icon name="checkmark" /> Oui
+                        </Button>
+                      </Modal.Actions>
+                    </Segment>
+                  </div>
                 </Modal>
               </Grid.Column>
             </Grid.Row>
