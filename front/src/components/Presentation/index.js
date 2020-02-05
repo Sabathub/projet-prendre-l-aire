@@ -13,7 +13,7 @@ import './presentation.scss';
 // == Composant
 const Presentation = () => (
   <>
-    <Grid centered id="presentation" stackable>
+    <Grid id="presentation" stackable>
       <Grid.Column width={9}>
         <div>
           <p><b>Prendre l'aire</b> est un site collaboratif qui vise à mettre en relation les usagers des aires d'autoroutes françaises.<br /><br />

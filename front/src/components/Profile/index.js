@@ -268,7 +268,7 @@ class Profile extends React.Component {
 
           <Grid divided="vertically">
             <Grid.Row columns={1}>
-              {profileDatas.comments != null && profileDatas.comments.map((comment) => {
+              {profileDatas.comments.length !== 0 && profileDatas.comments.map((comment) => {
                 const currentDate = new Date(comment.createdAt);
                 const date = currentDate.getDate();
                 const month = currentDate.getMonth();
