@@ -58,9 +58,10 @@ class CommentsArea extends React.Component {
       console.log(file);
       const url = 'https://api.cloudinary.com/v1_1/kiveun/image/upload';
       const fd = new FormData();
-      fd.append('upload_preset', 'hq6ssejy');
-      fd.append('file', file);
       fd.append('api_key', '567461742636924');
+      fd.append('file', file);
+      fd.append('public_id', 'sample_image');
+      fd.append('upload_preset', 'hq6ssejy');
       const config = {
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
       };
@@ -68,7 +69,7 @@ class CommentsArea extends React.Component {
         .then((res) => {
           doImage(res.data.secure_url);
           console.log(res.data.secure_url);
-          stopLoadingPictures();
+          // stopLoadingPictures();
         });
     };
     const handleSubmit = (evt) => {
