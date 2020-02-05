@@ -61,10 +61,10 @@ class CommentsArea extends React.Component {
       fd.append('upload_preset', 'hq6ssejy');
       fd.append('file', file);
       fd.append('api_key', '567461742636924');
-
-      axios.defaults.headers.Authorization = '';
-      axios.defaults.headers = { 'X-Requested-With': 'XMLHttpRequest' };
-      axios.post(url, fd)
+      const config = {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+      };
+      axios.post(url, fd, config)
         .then((res) => {
           doImage(res.data.secure_url);
           console.log(res.data.secure_url);
