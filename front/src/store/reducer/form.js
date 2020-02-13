@@ -136,6 +136,7 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         subject: '',
         content: '',
+        areaname: '',
       };
     case SUBMIT_COMMENT:
       return {

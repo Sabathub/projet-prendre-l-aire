@@ -2,13 +2,13 @@ import axios from 'axios';
 
 import { DO_CONTACT, submitContact, doFailPassword } from 'src/store/actions';
 
-const signupMiddleware = (store) => (next) => (action) => {
+const contactMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case DO_CONTACT: {
       const contact = {
         name: (store.getState().form.name),
         email: (store.getState().form.email),
-        subject: (store.getState().form.subject),
+        subject: (store.getState().form.subject || store.getState().form.areaname),
         content: (store.getState().form.content),
       };
       console.log(contact);
@@ -43,4 +43,4 @@ const signupMiddleware = (store) => (next) => (action) => {
   }
 };
 
-export default signupMiddleware;
+export default contactMiddleware;
