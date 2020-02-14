@@ -47,7 +47,19 @@ const commentMiddleware = (store) => (next) => (action) => {
               const stopLoadingAction = stopLoading();
               store.dispatch(stopLoadingAction);
             });
-        })
+          const token = window.localStorage.getItem('token');
+          axios.defaults.headers.Authorization = `Bearer ${token}`;
+          axios.get('http://54.85.18.78/api/v1/secured/users/profile')
+            .then((response3) => {
+              console.log('Response', response3);
+              window.localStorage.setItem('profileData', JSON.stringify(response3.data));
+              const profileData = JSON.parse(window.localStorage.getItem('profileData'));
+              store.dispatch(receiveProfileData(profileData));
+            })
+            .catch((error3) => {
+              console.log('Error', error3);
+            });
+      })
       // Erreur
         .catch((error1) => {
           console.log('Error', error1);
