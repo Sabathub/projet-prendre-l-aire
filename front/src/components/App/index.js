@@ -14,17 +14,18 @@ import DynamicScrollToTop from 'src/utils/DynamicScrollToTop';
 class App extends React.Component {
   componentDidMount() {
     // appel à l'API pour initialiser les données
-    const { fetchAreas, fetchHighways, keepLogged } = this.props;
+    const { fetchAreas, fetchHighways } = this.props;
     fetchAreas();
     fetchHighways();
+  }
+
+  render() {
+    const { keepLogged } = this.props;
     const localStorageToken = window.localStorage.getItem('token');
     const profileData = JSON.parse(window.localStorage.getItem('profileData'));
     if (localStorageToken !== null && profileData !== null) {
       keepLogged();
     }
-  }
-
-  render() {
     return (
       <div id="app">
         <DynamicScrollToTop />
