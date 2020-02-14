@@ -59,7 +59,7 @@ const commentMiddleware = (store) => (next) => (action) => {
             .catch((error3) => {
               console.log('Error', error3);
             });
-      })
+        })
       // Erreur
         .catch((error1) => {
           console.log('Error', error1);

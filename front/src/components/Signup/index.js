@@ -46,8 +46,9 @@ class Signup extends React.Component {
     }
 
     return (
-      <div className="container">
-        <Segment>
+      <>
+        <Segment inverted color="orange">Les mots de passe que vous avez saisis sont différents !</Segment>
+        <Segment className="formSegment">
           <Form className="form" onSubmit={handleSubmit}>
             <Form.Field>
               <label htmlFor="username">
@@ -112,7 +113,7 @@ class Signup extends React.Component {
             <Button type="submit" color="teal">Inscrivez-vous</Button>
           </Form>
         </Segment>
-      </div>
+      </>
     );
   }
 }

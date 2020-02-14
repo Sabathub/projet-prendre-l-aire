@@ -8,7 +8,9 @@ import {
 } from 'semantic-ui-react';
 import { Link, Route } from 'react-router-dom';
 import slugify from 'slugify';
-import LocateControl from './locatecontrol';
+
+// Geolocalisation OFF because no HTTPS yet
+// import LocateControl from './locatecontrol';
 
 
 import './maparea.scss';
@@ -85,7 +87,9 @@ class Maparea extends React.Component {
               </Popup>
             </Marker>
           ))}
+          {/* Geolocalisation OFF because no HTTPS yet
           <LocateControl options={locateOptions} startDirectly />
+          */}
         </Map>
       </>
 
@@ -105,15 +109,6 @@ Maparea.propTypes = {
     kilometers: PropTypes.string.isRequired,
     latitude: PropTypes.string.isRequired,
     longitude: PropTypes.string.isRequired,
-    /* comments: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      rate: PropTypes.number.isRequired,
-    })).isRequired, */
-    /* gasStation: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired, */
     gasPrices: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       price: PropTypes.string.isRequired,
