@@ -79,7 +79,7 @@ class Area extends React.Component {
       />
     );
 
-    if ((areas !== prevProps.areas) && !arealoading && !areaDataLoading) {
+    if ((areaData !== prevProps.areaData) && !arealoading && !areaDataLoading) {
       return <Refresh path="/areas/:slug" />;
     }
   }
@@ -153,7 +153,7 @@ class Area extends React.Component {
 
                   {!arealoading && !highwayloading && areaData.averageRate != null && (
                   <Segment basic>
-                    <Rating icon="star" defaultRating={Math.round(areaData.averageRate)} maxRating={5} disabled />
+                    <Rating icon="star" rating={Math.round(areaData.averageRate)} maxRating={5} disabled />
                     <p id="rating">Note moyenne des avis</p>
                   </Segment>
                   )}
@@ -369,7 +369,7 @@ class Area extends React.Component {
               )}
             </Grid>
             <Button id="suggest" as={Link} to="/contact" size="mini" color="orange" onClick={handleClick}>Suggérer une modification/Signaler une erreur</Button>
-              <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
+            <CommentsArea comments={areaData.comments} logged={logged} areaId={areaData.id} />
           </>
         )}
         {/* {!found && <Redirect to="/not-found" />} */}
